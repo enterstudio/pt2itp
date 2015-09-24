@@ -1,18 +1,34 @@
 #!/usr/bin/env node
 
-require('./lib/help');
-require('./lib/build');
-require('./lib/map');
+var help = require('./lib/help');
+var map = require('./lib/map');
+var settings = require('./package.json');
 
 var argv = require('minimist')(process.argv, {
-    string: [],
-    boolean: []
+    string: ["output", "in-network", "in-address"],
+    boolean: ["help"],
+    alias: {
+        "version": "v",
+        "output":  "o"
+    }
 });
 
-if (argv.help) { help(argv); }
+if (argv.help) { 
+    help(argv); 
+    process.exit(0);
+} else if (argv.version) {
+    console.log(settings.name + ' version ' + settings.version);
+}
+
 
 switch (argv._[2]) {
-    case ("help"):  help(argv);
-    case ("build"): build();
-    case ("map"):   map();
+    case ("help"):
+        help(argv);
+        break;
+    case ("map"):
+        map(argv);
+        break;
+    default:
+        help(argv);
+        break;
 }

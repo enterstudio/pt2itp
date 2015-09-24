@@ -1,25 +1,30 @@
 {
   "name": "magic",
   "version": "1.0.0",
-  "description": "",
+  "description": "Attach interpolation values given a road network and address points",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint index.js lib",
+    "test": "npm run lint"
   },
   "author": "Nicholas Ingalls <nicholas.ingalls@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "eslint": "^1.5.1",
-    "minimist": "^1.2.0"
-  },
-  "scripts": {
-    "lint": "eslint index.js lib",
-    "test": "npm run lint"
+    "minimist": "^1.2.0",
+    "tile-reduce": "^2.0.0",
+    "turf": "^2.0.2"
   },
   "eslintConfig": {
     "rules": {
-      "no-use-before-define": [ 2, "nofunc" ],
-      "space-before-function-paren": [2, "never"],
+      "no-use-before-define": [
+        2,
+        "nofunc"
+      ],
+      "space-before-function-paren": [
+        2,
+        "never"
+      ],
       "space-in-parens": 2,
       "space-before-blocks": 2,
       "space-after-keywords": 2,
