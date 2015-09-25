@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint index.js lib",
-    "test": "npm run lint"
+    "test": "npm run lint && tape test/*.test.js"
   },
   "author": "Nicholas Ingalls <nicholas.ingalls@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "eslint": "^1.5.1",
+    "lodash": "^3.10.1",
     "minimist": "^1.2.0",
+    "tape": "^4.2.0",
     "tile-reduce": "^2.0.0",
     "turf": "^2.0.2"
   },
@@ -46,7 +48,7 @@
       "key-spacing": 0
     },
     "env": {
-      "note": true
+      "node": true
     }
   },
   "engines": {
