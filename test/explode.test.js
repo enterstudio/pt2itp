@@ -25,7 +25,7 @@ test('explode', function(t) {
             }
         }]
     }).features[0].geometry.coordinates, [[-1,-1,], [0,0], [1,1]], '--> -->');
-    
+
     t.deepEquals(explode({
         "type": "FeatureCollection",
         "features": [{
@@ -37,7 +37,7 @@ test('explode', function(t) {
             }
         }]
     }).features[0].geometry.coordinates, [[-1,-1,], [0,0], [1,1]], '--> <--');
-    
+
     t.deepEquals(explode({
         "type": "FeatureCollection",
         "features": [{
@@ -61,7 +61,7 @@ test('explode', function(t) {
             }
         }]
     }).features[0].geometry.coordinates, [[-1,-1,], [0,0], [1,1],[2,2],[3,3]], '-1-> -3-> <-2- <-4-');
-    
+
     var res = explode({
         "type": "FeatureCollection",
         "features": [{

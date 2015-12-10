@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint index.js lib",
+    "coverage": "istanbul cover tape test/*.js && coveralls < ./coverage/lcov.info",
     "test": "npm run lint && tape test/*.test.js"
   },
   "author": "Nicholas Ingalls <nicholas.ingalls@gmail.com>",
@@ -13,9 +14,13 @@
     "eslint": "^1.5.1",
     "lodash": "^3.10.1",
     "minimist": "^1.2.0",
-    "tape": "^4.2.0",
     "tile-reduce": "^2.0.0",
     "turf": "^2.0.2"
+  },
+  "devDependencies": {
+    "tape": "^4.2.0",
+    "coveralls": "^2.11.4",
+    "istanbul": "^0.4.0"
   },
   "eslintConfig": {
     "rules": {
