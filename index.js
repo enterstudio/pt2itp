@@ -13,8 +13,8 @@ var argv = require('minimist')(process.argv, {
     }
 });
 
-if (argv.help) { 
-    help(argv); 
+if (argv.help) {
+    help(argv);
     process.exit(0);
 } else if (argv.version) {
     console.log(settings.name + ' version ' + settings.version);
