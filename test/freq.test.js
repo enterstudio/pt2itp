@@ -17,7 +17,7 @@ test('freq', function(t) {
     
     var res = freq(feats, feats);
 
-    t.deepEqual(res, { _max: 1, _min: 4, main: 0.25, ne: 0.5, road: 0.5, se: 0.5, stanley: 0.5, street: 0.25, sw: 0.5 }, 'test result');
+    t.deepEqual(res, { _max: 4, _min: 1, main: 1, ne: 2, road: 2, se: 2, stanley: 2, street: 1, sw: 2 }, 'test result');
     t.end();
 });
 
