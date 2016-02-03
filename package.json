@@ -1,5 +1,5 @@
 {
-  "name": "magic",
+  "name": "pt2itp",
   "version": "1.0.0",
   "description": "Attach interpolation values given a road network and address points",
   "main": "index.js",

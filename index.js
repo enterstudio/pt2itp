@@ -17,7 +17,8 @@ if (argv.help) {
     help(argv);
     process.exit(0);
 } else if (argv.version) {
-    console.log(settings.name + ' version ' + settings.version);
+    console.log(settings.name + '@' + settings.version);
+    process.exit(0);
 }
 
 
