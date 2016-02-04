@@ -38,6 +38,25 @@ test('linker - cardinals', function(t) {
     t.end();
 });
 
+test('linker - misc', function(t) {
+    var streets = genFeat([
+        'main street west',
+        'main street east'
+    ]);
+    var addresses = genFeat([
+        'main street east'
+    ]);
+
+    var freqs = freq(streets, addresses);
+
+    var link = linker(freqs, streets, addresses);
+    t.deepEquals(link, {1: 0});
+
+    t.end();
+});
+
+
+
 function genFeat(streets) {
     var feats = streets.map(function(street) {
         return turf.point([0,0], {
