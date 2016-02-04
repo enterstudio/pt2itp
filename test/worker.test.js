@@ -4,40 +4,48 @@ var path = require('path');
 var fs = require('fs');
 var _ = require('lodash');
 
-test('worker - no addresses', function(t) {
-    worker({
-        Addresses: {
-            addresses: { 
-                features: []
-            }
-        }
-    }, [1,1,1], null, function(err, res) {
-        t.equal(err.toString(), 'Error: No address data in: 1,1,1');
-        t.end();    
-    });
-});
+//Set FIXTURE="string" and it will only run fixture(s) that match the string
+//this allows you to isolate a single test if one breaks and not have to 
+//scroll through a million lines of output
 
-test('worker - no streets', function(t) {
-    worker({
-        Addresses: {
-            addresses: { 
-                features: [ 'Fake Address' ]
+if (!process.env.FIXTURE) {
+    test('worker - no addresses', function(t) {
+        worker({
+            Addresses: {
+                addresses: { 
+                    features: []
+                }
             }
-        },
-        Streets: {
-            streets: {
-                features: []
-            }
-        }
-    }, [1,1,1], null, function(err, res) {
-        t.equal(err.toString(), 'Error: No street data in: 1,1,1');
-        t.end();    
+        }, [1,1,1], null, function(err, res) {
+            t.equal(err.toString(), 'Error: No address data in: 1,1,1');
+            t.end();    
+        });
     });
-});
+
+    test('worker - no streets', function(t) {
+        worker({
+            Addresses: {
+                addresses: { 
+                    features: [ 'Fake Address' ]
+                }
+            },
+            Streets: {
+                streets: {
+                    features: []
+                }
+            }
+        }, [1,1,1], null, function(err, res) {
+            t.equal(err.toString(), 'Error: No street data in: 1,1,1');
+            t.end();    
+        });
+    });
+}
 
 test('worker - fixtures', function(t) {
     var fixtures = fs.readdirSync(path.resolve(__dirname, '..', 'test/fixtures'));
     fixtures.forEach(function(fixture) {
+        if (process.env.FIXTURE && fixture.indexOf(process.env.FIXTURE) === -1) return;
+
         (function(fixture) {
             t.test(function(q) {
                 var fixtures = require('./fixtures/' + fixture);
