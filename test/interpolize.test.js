@@ -1,6 +1,24 @@
 var test = require('tape');
 var interpolize = require('../lib/interpolize');
 
+test('LSB forward', function(t) {
+    var LSB = interpolize.lsb(
+        [-79.37625288963318,38.83449282408381],
+        [-79.37467575073241,38.83594698648804]
+    )
+    t.equal(LSB, 1);
+    t.end();
+});
+
+test('LSB reverse', function(t) {
+    var LSB = interpolize.lsb(
+        [-79.37467575073241,38.83594698648804],
+        [-79.37625288963318,38.83449282408381]
+    )
+    t.equal(LSB, 1);
+    t.end();
+});
+
 test('Interpolize', function(t) {
     var street = {
         type: "Feature",
@@ -8,8 +26,8 @@ test('Interpolize', function(t) {
         geometry: {
             type: "LineString",
             coordinates: [
-                [-77.21064805984497,39.1773849237293],
-                [-77.21062123775481,39.17687343078357]
+                [-77.21062123775481,39.17687343078357],
+                [-77.21064805984497,39.1773849237293]
             ]
         }
     }
@@ -34,10 +52,10 @@ test('Interpolize', function(t) {
     var res = interpolize(street, address);
     t.deepEquals(res.properties, {
         street: 'Battleridge Place',
-        lstart: '10',
-        lend: '8',
-        rstart: '11',
-        rend: '9'
+        lstart: '9',
+        lend: '11',
+        rstart: '8',
+        rend: '10'
     });
     t.end();
 });
