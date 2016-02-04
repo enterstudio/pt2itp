@@ -32,6 +32,12 @@ test('Interpolize', function(t) {
     }
 
     var res = interpolize(street, address);
-
+    t.deepEquals(res.properties, {
+        street: 'Battleridge Place',
+        lstart: '10',
+        lend: '8',
+        rstart: '11',
+        rend: '9'
+    });
     t.end();
 });
