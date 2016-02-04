@@ -17,7 +17,7 @@ if (!process.env.FIXTURE) {
                 }
             }
         }, [1,1,1], null, function(err, res) {
-            t.equal(err.toString(), 'Error: No address data in: 1,1,1');
+            t.equal(res.toString(), 'No address data in: 1,1,1');
             t.end();    
         });
     });
@@ -35,7 +35,7 @@ if (!process.env.FIXTURE) {
                 }
             }
         }, [1,1,1], null, function(err, res) {
-            t.equal(err.toString(), 'Error: No street data in: 1,1,1');
+            t.equal(res.toString(), 'No street data in: 1,1,1');
             t.end();    
         });
     });
@@ -47,7 +47,7 @@ test('worker - fixtures', function(t) {
         if (process.env.FIXTURE && fixture.indexOf(process.env.FIXTURE) === -1) return;
 
         (function(fixture) {
-            t.test(function(q) {
+            t.test('./test/fixtures/'+fixture, function(q) {
                 var fixtures = require('./fixtures/' + fixture);
 
                 var streetFixture = fixtures.features.filter(function(fixture) {
@@ -78,6 +78,7 @@ test('worker - fixtures', function(t) {
                         streets: turf.featurecollection([street])
                     }
                 }, [1,1,1], null, function(err, res) {
+                    t.error(err);
                     t.equal(streetFixture.properties.lstart, res[0].properties.lstart, 'lstart matched');
                     t.equal(streetFixture.properties.lend, res[0].properties.lend, 'lend matched');
                     t.equal(streetFixture.properties.rstart, res[0].properties.rstart, 'rstart matched');

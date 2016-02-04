@@ -48,7 +48,7 @@ Input line-delimited geojson features of lines. Each line should have a property
 #### `DEBUG`
 
 By default map will spit out the interpolation data to `--output` To visualize matches between address clusters
-one can set `export DEBUG=1` and stylized GeoJSON will be output to StdErr that can be visualized in geojson.io
+one can set `export DEBUG=1` and stylized GeoJSON will be output that can be visualized in geojson.io
 
 #### `WORKERS`
 
