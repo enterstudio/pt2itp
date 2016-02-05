@@ -8,6 +8,18 @@ test('explode', function(t) {
             "type": "Feature",
             "properties": {},
             "geometry": {
+                "type": "Point",
+                "coordinates": [1,1]
+            }
+        }]
+    }).features[0].geometry.coordinates,  [ 1, 1 ] , 'Non linestrings are ignored');
+
+    t.deepEquals(explode({
+        "type": "FeatureCollection",
+        "features": [{
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
                 "type": "MultiLineString",
                 "coordinates": [[[0,0],[1,1]]]
             }
