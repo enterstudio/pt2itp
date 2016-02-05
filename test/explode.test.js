@@ -12,7 +12,7 @@ test('explode', function(t) {
                 "coordinates": [[[0,0],[1,1]]]
             }
         }]
-    }).features[0].geometry.coordinates, [ [ [ 0, 0 ], [ 1, 1 ] ] ], '-->');
+    }).features[0].geometry.coordinates,  [ [ 0, 0 ], [ 1, 1 ] ] , '-->');
 
     t.deepEquals(explode({
         "type": "FeatureCollection",
