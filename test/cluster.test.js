@@ -28,7 +28,7 @@ test('cluster', function(t) {
     var res = clusterAddress(feat);
 
     t.equal(res.features.length, 1, 'produces 1 feature');
-    t.deepEquals(res.features[0].properties.numbers, [ '10', '12' ], 'produces address cluster');
+    t.deepEquals(res.features[0].properties.numbers, [ 10, 12 ], 'produces address cluster');
     t.deepEquals(res.features[0].geometry.coordinates, [ [ 0, 0 ], [ 1, 1 ] ], 'produces multipoint');
     t.end();
 });

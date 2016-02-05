@@ -79,10 +79,10 @@ test('worker - fixtures', function(t) {
                     }
                 }, [1,1,1], null, function(err, res) {
                     t.error(err);
-                    t.equal(streetFixture.properties.lstart, res[0].properties.lstart, 'lstart matched');
-                    t.equal(streetFixture.properties.lend, res[0].properties.lend, 'lend matched');
-                    t.equal(streetFixture.properties.rstart, res[0].properties.rstart, 'rstart matched');
-                    t.equal(streetFixture.properties.rend, res[0].properties.rend, 'rend matched');
+                    t.equal(parseInt(streetFixture.properties.lstart), res[0].properties.lstart, 'lstart matched');
+                    t.equal(parseInt(streetFixture.properties.lend), res[0].properties.lend, 'lend matched');
+                    t.equal(parseInt(streetFixture.properties.rstart), res[0].properties.rstart, 'rstart matched');
+                    t.equal(parseInt(streetFixture.properties.rend), res[0].properties.rend, 'rend matched');
                     q.end();    
                 });
             });
