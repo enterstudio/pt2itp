@@ -1,5 +1,6 @@
 var test = require('tape');
 var interpolize = require('../lib/interpolize');
+var turf = require('turf');
 
 test('LSB forward', function(t) {
     var LSB = interpolize.lsb(
@@ -16,6 +17,23 @@ test('LSB reverse', function(t) {
         [-79.37625288963318,38.83449282408381]
     )
     t.equal(LSB, 1);
+    t.end();
+});
+
+test('segments', function(t) {
+    var seg = interpolize.segment(
+        { 
+            "type": "Feature", 
+            "properties": {},
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [ [ -77.00275003910065, 38.963765608971286 ], [ -77.00335085391998, 38.963765608971286 ], [ -77.00378805398941, 38.9637697800411 ] ]
+              }
+        },
+        0.01,
+        'kilometers'
+    )
+    t.deepEquals(seg, [ [ -77.00275003910065, 38.963765608971286 ], [ -77.00335085391998, 38.963765608971286 ] ]);
     t.end();
 });
 
