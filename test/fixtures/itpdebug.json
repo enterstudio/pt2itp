@@ -1,0 +1,138 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "street": "Battleridge Place",
+                "lparity": "O",
+                "lstart": "9",
+                "lend": "11",
+                "rparity": "E",
+                "rstart": "8",
+                "rend": "10"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -77.21062123775481,
+                        39.17687343078357
+                    ],
+                    [
+                        -77.21064805984497,
+                        39.1773849237293
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.21054881811142,
+                    39.1769482836422
+                ]
+            },
+            "properties": {
+                "address": "8",
+                "marker-symbol": "marker-stroked"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.21056759357452,
+                    39.17731007133552
+                ]
+            },
+            "properties": {
+                "address": "10",
+                "marker-symbol": "marker-stroked"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.2107258439064,
+                    39.176966996844406
+                ]
+            },
+            "properties": {
+                "address": "9",
+                "marker-symbol": "marker"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.21077680587769,
+                    39.177320467506085
+                ]
+            },
+            "properties": {
+                "address": "11",
+                "marker-symbol": "marker"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.21054881811142,
+                    39.1769482836422
+                ]
+            },
+            "properties": {
+                "marker-color": "#b80e05"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.21056759357452,
+                    39.17731007133552
+                ]
+            },
+            "properties": {
+                "marker-color": "#b80e05"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.2107258439064,
+                    39.176966996844406
+                ]
+            },
+            "properties": {
+                "marker-color": "#00a70d"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.21077680587769,
+                    39.177320467506085
+                ]
+            },
+            "properties": {
+                "marker-color": "#00a70d"
+            }
+        }
+    ]
+}

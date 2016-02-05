@@ -42,13 +42,13 @@ if (!process.env.FIXTURE) {
 }
 
 test('worker - fixtures', function(t) {
-    var fixtures = fs.readdirSync(path.resolve(__dirname, '..', 'test/fixtures'));
+    var fixtures = fs.readdirSync(path.resolve(__dirname, '..', 'test/workers'));
     fixtures.forEach(function(fixture) {
         if (process.env.FIXTURE && fixture.indexOf(process.env.FIXTURE) === -1) return;
 
         (function(fixture) {
-            t.test('./test/fixtures/'+fixture, function(q) {
-                var fixtures = require('./fixtures/' + fixture);
+            t.test('./test/workers/'+fixture, function(q) {
+                var fixtures = require('./workers/' + fixture);
 
                 var streetFixture = fixtures.features.filter(function(fixture) {
                     if (fixture.properties.address) return false;
