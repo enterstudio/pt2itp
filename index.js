@@ -7,7 +7,8 @@ var settings = require('./package.json');
 
 var argv = require('minimist')(process.argv, {
     string: ["input", "output", "in-network", "in-address"],
-    boolean: ["help"],
+    integer: ["workers"],
+    boolean: ["help", "debug"],
     alias: {
         "version": "v",
         "output":  "o",
@@ -23,6 +24,8 @@ if (argv.help) {
     process.exit(0);
 }
 
+if (!argv.debug && process.env.DEBUG) argv.debug = true;
+if (!argv.workers && process.env.WORKERS) argv.workers = parseInt(process.env.WORKERS);
 
 switch (argv._[2]) {
     case ("help"):

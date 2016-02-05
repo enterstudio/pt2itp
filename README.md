@@ -45,6 +45,10 @@ Input line-delimited geojson features of lines. Each line should have a property
 
 ### Environment Variables
 
+There are several environmental variables that can be set to change the behaviour of the scripts.
+Some of these settings can only be modified through the variables while others also have command line flags.
+Check `./index [command] --help` for more info.
+
 #### `DEBUG`
 
 By default map will spit out the interpolation data to `--output` To visualize matches between address clusters
