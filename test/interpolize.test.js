@@ -70,8 +70,10 @@ test('Interpolize', function(t) {
     var res = interpolize(street, address);
     t.deepEquals(res.properties, {
         street: 'Battleridge Place',
+        lparity: 'O',
         lstart: '9',
         lend: '11',
+        rparity: 'E',
         rstart: '8',
         rend: '10'
     });

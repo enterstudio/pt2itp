@@ -538,6 +538,7 @@
       },
       "properties": {
         "street": "eastern ave ne",
+        "lparity": "E",
         "lstart": 5810,
         "lend": 6552,
         "rstart": null,

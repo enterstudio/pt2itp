@@ -162,8 +162,10 @@
       },
       "properties": {
         "street": "warren pl nw",
+        "lparity": "E",
         "lstart": "5118",
         "lend": "5126",
+        "rparity": "O",
         "rstart": "5127",
         "rend": "5133"
       }

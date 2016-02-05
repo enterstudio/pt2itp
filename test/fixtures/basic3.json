@@ -198,8 +198,10 @@
       },
       "properties": {
         "street": "chain bridge rd nw",
+        "lparity": "E",
         "lstart": "2300",
         "lend": "2412",
+        "rparity": "O",
         "rstart": "2301",
         "rend": "2315"
       }

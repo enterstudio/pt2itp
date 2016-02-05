@@ -142,8 +142,10 @@
       },
       "properties": {
         "street": "52nd ct nw",
+        "lparity": "E",
         "lstart": "5112",
         "lend": "5102",
+        "rparity": "O",
         "rstart": "5111",
         "rend": "5103"
       }

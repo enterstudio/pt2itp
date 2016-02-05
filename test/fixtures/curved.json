@@ -438,8 +438,10 @@
       },
       "properties": {
         "street": "stanton rd se",
+        "lparity": "E",
         "lstart": 2638,
         "lend": 2742,
+        "rparity": "O",
         "rstart": 2609,
         "rend": 2801
       }

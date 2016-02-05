@@ -304,6 +304,7 @@
         "street": "north portal dr nw",
         "lstart": null,
         "lend": null,
+        "rparity": "O",
         "rstart": 1601,
         "rend": 1775
       }
