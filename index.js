@@ -2,14 +2,16 @@
 
 var help = require('./lib/help');
 var map = require('./lib/map');
+var convert = require('./lib/convert');
 var settings = require('./package.json');
 
 var argv = require('minimist')(process.argv, {
-    string: ["output", "in-network", "in-address"],
+    string: ["input", "output", "in-network", "in-address"],
     boolean: ["help"],
     alias: {
         "version": "v",
-        "output":  "o"
+        "output":  "o",
+        "input":   "i"
     }
 });
 
@@ -28,6 +30,9 @@ switch (argv._[2]) {
         break;
     case ("map"):
         map(argv);
+        break;
+    case ("convert"):
+        convert(argv);
         break;
     default:
         help(argv);
