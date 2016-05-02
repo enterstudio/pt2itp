@@ -11,8 +11,10 @@
   "author": "Nicholas Ingalls <nicholas.ingalls@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "d3-queue": "^2.0.3",
     "eslint": "^1.5.1",
     "lodash": "^4.2.0",
+    "mapnik": "^3.5.13",
     "minimist": "^1.2.0",
     "tile-reduce": "3.1.1",
     "turf": "^2.0.2",
