@@ -90,7 +90,7 @@ test('worker - fixtures', function(t) {
                     Streets: {
                         streets: turf.featurecollection([street])
                     }
-                }, [1,1,1], null, function(err, res) {
+                }, [1,1,14], null, function(err, res) {
                     t.error(err);
                     t.equal(res[0].properties.lparity, streetFixture.properties.lparity, 'lparity matched');
                     t.equal(res[0].properties.lstart, streetFixture.properties.lstart ? parseInt(streetFixture.properties.lstart) : null, 'lstart matched');
