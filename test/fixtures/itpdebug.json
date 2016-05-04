@@ -37,6 +37,7 @@
             },
             "properties": {
                 "address": "8",
+                "street": "Battleridge Place",
                 "marker-symbol": "marker-stroked"
             }
         },
@@ -51,6 +52,7 @@
             },
             "properties": {
                 "address": "10",
+                "street": "Battleridge Place",
                 "marker-symbol": "marker-stroked"
             }
         },
@@ -65,6 +67,7 @@
             },
             "properties": {
                 "address": "9",
+                "street": "Battleridge Place",
                 "marker-symbol": "marker"
             }
         },
@@ -79,6 +82,7 @@
             },
             "properties": {
                 "address": "11",
+                "street": "Battleridge Place",
                 "marker-symbol": "marker"
             }
         },

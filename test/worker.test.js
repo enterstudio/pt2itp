@@ -17,7 +17,20 @@ if (!process.env.FIXTURE) {
                 }
             }
         }, [1,1,1], null, function(err, res) {
-            t.equal(res.toString(), 'No address data in: 1,1,1');
+            t.equal(res.toString(), 'Add tiles must be z14:1,1,1');
+            t.end();    
+        });
+    });
+
+    test('worker - no addresses', function(t) {
+        worker({
+            Addresses: {
+                addresses: { 
+                    features: []
+                }
+            }
+        }, [1,1,14], null, function(err, res) {
+            t.equal(res.toString(), 'No address data in: 1,1,14');
             t.end();    
         });
     });
@@ -34,8 +47,8 @@ if (!process.env.FIXTURE) {
                     features: []
                 }
             }
-        }, [1,1,1], null, function(err, res) {
-            t.equal(res.toString(), 'No street data in: 1,1,1');
+        }, [1,1,14], null, function(err, res) {
+            t.equal(res.toString(), 'No street data in: 1,1,14');
             t.end();    
         });
     });
@@ -77,7 +90,7 @@ test('worker - fixtures', function(t) {
                     Streets: {
                         streets: turf.featurecollection([street])
                     }
-                }, [1,1,1], null, function(err, res) {
+                }, [1,1,14], null, function(err, res) {
                     t.error(err);
                     t.equal(res[0].properties.lparity, streetFixture.properties.lparity, 'lparity matched');
                     t.equal(res[0].properties.lstart, streetFixture.properties.lstart ? parseInt(streetFixture.properties.lstart) : null, 'lstart matched');

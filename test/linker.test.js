@@ -17,7 +17,7 @@ test('linker - exact match', function(t) {
     var freqs = freq(streets, addresses);
 
     var link = linker(freqs, streets, addresses);
-    t.deepEquals(link, {0: 0});
+    t.deepEquals(link, { dups: { forward: [ 'main,street,se' ], process: [ 0 ], reverse: { 'main,street,se': [ 0 ] } }, link: { 0: 0 } });
 
     t.end();
 });
@@ -33,7 +33,7 @@ test('linker - cardinals', function(t) {
     var freqs = freq(streets, addresses);
 
     var link = linker(freqs, streets, addresses);
-    t.deepEquals(link, {0: 0});
+    t.deepEquals(link, { dups: { forward: [ 'main,street,se' ], process: [ 0 ], reverse: { 'main,street,se': [ 0 ] } }, link: { 0: 0 } });
 
     t.end();
 });
@@ -50,7 +50,7 @@ test('linker - misc', function(t) {
     var freqs = freq(streets, addresses);
 
     var link = linker(freqs, streets, addresses);
-    t.deepEquals(link, {1: 0});
+    t.deepEquals(link, { dups: { forward: [ 'main,street,west', 'main,street,east' ], process: [ 0, 1 ], reverse: { 'main,street,east': [ 1 ], 'main,street,west': [ 0 ] } }, link: { 1: 0 } });
 
     t.end();
 });
