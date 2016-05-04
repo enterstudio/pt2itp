@@ -28,6 +28,15 @@ test('tokenizes basic strings', function(t) {
     t.deepEqual(tokenize('京都市'), ['京都市']);
     t.end();
 });
+
+test('Uses replacement tokens', function(t) {
+    t.deepEqual(tokenize('foo', null), ['foo'], 'handles null token replacer');
+    t.deepEqual(tokenize('foo', {}), ['foo'], 'handles empty args');
+    t.deepEqual(tokenize('foo', { tokens: [] }), ['foo'], 'handles empty tokens array');
+    t.deepEqual(tokenize('barter', { tokens: { 'barter': 'foo' }}), ['foo'], 'basic single replacement');
+    t.end();
+});
+
 test('edge cases - empty string', function(t) {
     t.deepEqual(tokenize(''), []);
     t.end();
