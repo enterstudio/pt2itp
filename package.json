@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "d3-queue": "^2.0.3",
-    "eslint": "^1.5.1",
+    "eslint": "2.9.0",
     "lodash": "^4.2.0",
     "mapnik": "^3.5.13",
     "minimist": "^1.2.0",
@@ -37,7 +37,7 @@
       ],
       "space-in-parens": 2,
       "space-before-blocks": 2,
-      "space-after-keywords": 2,
+      "keyword-spacing": 2,
       "comma-style": 2,
       "no-lonely-if": 2,
       "no-else-return": 0,

@@ -70,7 +70,7 @@ test('worker - fixtures', function(t) {
                 })[0];
 
                 var street = _.cloneDeep(streetFixture);
-                ['lstart', 'lend', 'rstart', 'rend'].forEach(function(key){
+                ['carmen:lfromhn', 'carmen:ltohn', 'carmen:rfromhn', 'carmen:rtohn'].forEach(function(key){
                     delete street.properties[key]; 
                 });
 
@@ -92,12 +92,12 @@ test('worker - fixtures', function(t) {
                     }
                 }, [1,1,14], null, function(err, res) {
                     t.error(err);
-                    t.equal(res[0].properties.lparity, streetFixture.properties.lparity, 'lparity matched');
-                    t.equal(res[0].properties.lstart, streetFixture.properties.lstart ? parseInt(streetFixture.properties.lstart) : null, 'lstart matched');
-                    t.equal(res[0].properties.lend, streetFixture.properties.lend ? parseInt(streetFixture.properties.lend) : null, 'lend matched');
-                    t.equal(res[0].properties.rparity, streetFixture.properties.rparity, 'rparity matched');
-                    t.equal(res[0].properties.rstart, streetFixture.properties.rstart ? parseInt(streetFixture.properties.rstart) : null, 'rstart matched');
-                    t.equal(res[0].properties.rend, streetFixture.properties.rend ? parseInt(streetFixture.properties.rend) : null, 'rend matched');
+                    t.equal(res[0].properties['carmen:lparity'], streetFixture.properties['carmen:lparity'], 'lparity matched');
+                    t.equal(res[0].properties['carmen:lfromhn'], streetFixture.properties['carmen:lfromhn'] ? parseInt(streetFixture.properties['carmen:lfromhn']) : null, 'lstart matched');
+                    t.equal(res[0].properties['carmen:ltohn'], streetFixture.properties['carmen:ltohn'] ? parseInt(streetFixture.properties['carmen:ltohn']) : null, 'lend matched');
+                    t.equal(res[0].properties['carmen:rparity'], streetFixture.properties['carmen:rparity'], 'rparity matched');
+                    t.equal(res[0].properties['carmen:rfromhn'], streetFixture.properties['carmen:rfromhn'] ? parseInt(streetFixture.properties['carmen:rfromhn']) : null, 'rstart matched');
+                    t.equal(res[0].properties['carmen:rtohn'], streetFixture.properties['carmen:rtohn'] ? parseInt(streetFixture.properties['carmen:rtohn']) : null, 'rend matched');
                     q.end();    
                 });
             });

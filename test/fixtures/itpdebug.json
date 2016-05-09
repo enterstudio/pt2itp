@@ -4,13 +4,18 @@
         {
             "type": "Feature",
             "properties": {
-                "street": "Battleridge Place",
-                "lparity": "O",
-                "lstart": "9",
-                "lend": "11",
-                "rparity": "E",
-                "rstart": "8",
-                "rend": "10"
+                "carmen:text": [
+                    "Battleridge",
+                    "Place"
+                ],
+                "carmen:lparity": "O",
+                "carmen:lfromhn": "9",
+                "carmen:ltohn": "11",
+                "carmen:rparity": "E",
+                "carmen:rfromhn": "8",
+                "carmen:rtohn": "10",
+                "carmen:center": "-77.2106346487999,39.17712917725643",
+                "carmen:rangetype": "tiger"
             },
             "geometry": {
                 "type": "LineString",
@@ -96,7 +101,8 @@
                 ]
             },
             "properties": {
-                "marker-color": "#b80e05"
+                "marker-color": "#b80e05",
+                "address": "rfromhn"
             }
         },
         {
@@ -109,7 +115,8 @@
                 ]
             },
             "properties": {
-                "marker-color": "#b80e05"
+                "marker-color": "#b80e05",
+                "address": "rtohn"
             }
         },
         {
@@ -122,7 +129,8 @@
                 ]
             },
             "properties": {
-                "marker-color": "#00a70d"
+                "marker-color": "#00a70d",
+                "address": "lfromhn"
             }
         },
         {
@@ -135,7 +143,8 @@
                 ]
             },
             "properties": {
-                "marker-color": "#00a70d"
+                "marker-color": "#00a70d",
+                "address": "ltohn"
             }
         }
     ]

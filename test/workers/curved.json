@@ -438,12 +438,12 @@
       },
       "properties": {
         "street": "stanton rd se",
-        "lparity": "E",
-        "lstart": 2638,
-        "lend": 2742,
-        "rparity": "O",
-        "rstart": 2609,
-        "rend": 2801
+        "carmen:lparity": "E",
+        "carmen:lfromhn": 2638,
+        "carmen:ltohn": 2742,
+        "carmen:rparity": "O",
+        "carmen:rfromhn": 2609,
+        "carmen:rtohn": 2801
       }
     },
     {
