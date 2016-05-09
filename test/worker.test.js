@@ -93,11 +93,11 @@ test('worker - fixtures', function(t) {
                 }, [1,1,14], null, function(err, res) {
                     t.error(err);
                     t.equal(res[0].properties['carmen:lparity'], streetFixture.properties['carmen:lparity'], 'lparity matched');
-                    t.equal(res[0].properties['carmen:lfromhn'], streetFixture.properties['carmen:lfromhn'] ? parseInt(streetFixture.properties.lstart) : null, 'lstart matched');
-                    t.equal(res[0].properties['carmen:ltohn'], streetFixture.properties['carmen:ltohn'] ? parseInt(streetFixture.properties.lend) : null, 'lend matched');
+                    t.equal(res[0].properties['carmen:lfromhn'], streetFixture.properties['carmen:lfromhn'] ? parseInt(streetFixture.properties['carmen:lfromhn']) : null, 'lstart matched');
+                    t.equal(res[0].properties['carmen:ltohn'], streetFixture.properties['carmen:ltohn'] ? parseInt(streetFixture.properties['carmen:ltohn']) : null, 'lend matched');
                     t.equal(res[0].properties['carmen:rparity'], streetFixture.properties['carmen:rparity'], 'rparity matched');
-                    t.equal(res[0].properties['carmen:rfromhn'], streetFixture.properties['carmen:rfromhn'] ? parseInt(streetFixture.properties.rstart) : null, 'rstart matched');
-                    t.equal(res[0].properties['carmen:rtohn'], streetFixture.properties['carmen:rtohn'] ? parseInt(streetFixture.properties.rend) : null, 'rend matched');
+                    t.equal(res[0].properties['carmen:rfromhn'], streetFixture.properties['carmen:rfromhn'] ? parseInt(streetFixture.properties['carmen:rfromhn']) : null, 'rstart matched');
+                    t.equal(res[0].properties['carmen:rtohn'], streetFixture.properties['carmen:rtohn'] ? parseInt(streetFixture.properties['carmen:rtohn']) : null, 'rend matched');
                     q.end();    
                 });
             });

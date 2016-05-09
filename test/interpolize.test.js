@@ -1,6 +1,7 @@
 var test = require('tape');
 var interpolize = require('../lib/interpolize');
 var turf = require('turf');
+var fs = require('fs');
 
 test('LSB forward', function(t) {
     var LSB = interpolize.lsb(
@@ -69,13 +70,15 @@ test('Interpolize', function(t) {
 
     var res = interpolize(street, address);
     t.deepEquals(res.properties, {
-        street: 'Battleridge Place',
-        lparity: 'O',
-        lstart: '9',
-        lend: '11',
-        rparity: 'E',
-        rstart: '8',
-        rend: '10'
+        'carmen:text': 'Battleridge Place',
+        'carmen:center': '-77.2106346487999,39.17712917725643',
+        'carmen:rangetype': 'tiger',
+        'carmen:lparity': 'O',
+        'carmen:lfromhn': '9',
+        'carmen:ltohn': '11',
+        'carmen:rparity': 'E',
+        'carmen:rfromhn': '8',
+        'carmen:rtohn': '10'
     }, 'has expected properties');
     t.end();
 });
@@ -111,6 +114,18 @@ test('Interpolize - DEBUG', function(t) {
     }
 
     var res = interpolize(street, address, { debug: true });
+
+    res.features.forEach(function(sng_feat, sng_feat_it) {
+        if (!res.features[sng_feat_it].properties.address) {
+            t.ok(res.features[sng_feat_it].id, sng_feat_it + ' has id field');
+            delete res.features[sng_feat_it].id;
+        }
+    });
+
+    if (process.env.UPDATE) {
+        fs.writeFileSync(__dirname + '/fixtures/itpdebug.json', JSON.stringify(res, null, 4));
+        t.fail('had to update fixture');
+    }
     t.deepEquals(res, require('./fixtures/itpdebug.json'));
     t.end();
 });
