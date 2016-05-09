@@ -302,11 +302,11 @@
       },
       "properties": {
         "street": "north portal dr nw",
-        "lstart": null,
-        "lend": null,
-        "rparity": "O",
-        "rstart": 1601,
-        "rend": 1775
+        "carmen:lfromhn": null,
+        "carmen:ltohn": null,
+        "carmen:rparity": "O",
+        "carmen:rfromhn": 1601,
+        "carmen:rtohn": 1775
       }
     },
     {

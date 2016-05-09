@@ -162,12 +162,12 @@
       },
       "properties": {
         "street": "warren pl nw",
-        "lparity": "E",
-        "lstart": "5118",
-        "lend": "5126",
-        "rparity": "O",
-        "rstart": "5127",
-        "rend": "5133"
+        "carmen:lparity": "E",
+        "carmen:lfromhn": "5118",
+        "carmen:ltohn": "5126",
+        "carmen:rparity": "O",
+        "carmen:rfromhn": "5127",
+        "carmen:rtohn": "5133"
       }
     },
     {

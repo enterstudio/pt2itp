@@ -142,12 +142,12 @@
       },
       "properties": {
         "street": "52nd ct nw",
-        "lparity": "E",
-        "lstart": "5112",
-        "lend": "5102",
-        "rparity": "O",
-        "rstart": "5111",
-        "rend": "5103"
+        "carmen:lparity": "E",
+        "carmen:lfromhn": "5112",
+        "carmen:ltohn": "5102",
+        "carmen:rparity": "O",
+        "carmen:rfromhn": "5111",
+        "carmen:rtohn": "5103"
       }
     },
     {

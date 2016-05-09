@@ -198,12 +198,12 @@
       },
       "properties": {
         "street": "chain bridge rd nw",
-        "lparity": "E",
-        "lstart": "2300",
-        "lend": "2412",
-        "rparity": "O",
-        "rstart": "2301",
-        "rend": "2315"
+        "carmen:lparity": "E",
+        "carmen:lfromhn": "2300",
+        "carmen:ltohn": "2412",
+        "carmen:rparity": "O",
+        "carmen:rfromhn": "2301",
+        "carmen:rtohn": "2315"
       }
     },
     {

@@ -538,11 +538,11 @@
       },
       "properties": {
         "street": "eastern ave ne",
-        "lparity": "E",
-        "lstart": 5810,
-        "lend": 6552,
-        "rstart": null,
-        "rend": null 
+        "carmen:lparity": "E",
+        "carmen:lfromhn": 5810,
+        "carmen:ltohn": 6552,
+        "carmen:rfromhn": null,
+        "carmen:rtohn": null 
       }
     },
     {
