@@ -40,7 +40,7 @@ Input line-delimited geojson features of lines. Each line should have a property
 ## Generating Interpolation Network
 
 ```
-./index.js map --in-network=<FILE.mbtiles> --in-address=<File.mbtiles> --output=<File.geojson>"
+./index.js map --in-network=<FILE.mbtiles> --in-address=<File.mbtiles> --output=<File.geojson> --tokens=./lib/tokens/en.json"
 ```
 
 ### Environment Variables
