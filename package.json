@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "d3-queue": "^2.0.3",
-    "eslint": "^1.5.1",
+    "eslint": "^1.10.3",
     "lodash": "^4.2.0",
     "mapnik": "^3.5.13",
     "minimist": "^1.2.0",
