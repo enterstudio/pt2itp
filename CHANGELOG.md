@@ -1,3 +1,7 @@
+### v2.1.1
+
+- Pin mapnik version to allow binary installation (3.5.13)
+
 ### v2.1.0
 
 - Allow zooms other than 14.
