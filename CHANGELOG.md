@@ -1,3 +1,7 @@
+### v2.1.0
+
+- Allow zooms other than 14.
+
 ### v2.0.0
 
 - Output in carmen range format for easy indexing
