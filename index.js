@@ -6,7 +6,7 @@ var convert = require('./lib/convert');
 var settings = require('./package.json');
 
 var argv = require('minimist')(process.argv, {
-    string: ["input", "output", "in-network", "in-address", "tokens"],
+    string: ["input", "output", "in-network", "in-address", "tokens", "map"],
     integer: ["workers"],
     boolean: ["help", "debug"],
     alias: {
