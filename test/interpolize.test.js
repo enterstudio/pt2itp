@@ -71,7 +71,7 @@ test('Interpolize', function(t) {
     var res = interpolize(street, address);
     t.deepEquals(res.properties, {
         'carmen:text': 'Battleridge Place',
-        'carmen:center': '-77.2106346487999,39.17712917725643',
+        'carmen:center': '-77.21062123775481,39.17687343078357',
         'carmen:rangetype': 'tiger',
         'carmen:lparity': 'O',
         'carmen:lfromhn': '9',
