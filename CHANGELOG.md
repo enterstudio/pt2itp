@@ -1,3 +1,7 @@
+### v2.2.1
+
+- Use first coord in linestring as carmen:center to avoid miscalculated centroids
+
 ### v2.2.0
 
 - Add --map function which allows non-standard vector tiles to be mapped into the address/street standard defined in the readme
