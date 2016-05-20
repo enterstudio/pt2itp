@@ -1,3 +1,7 @@
+### v2.2.2
+
+- Use centre coord to avoid being rejected by carmen's verify centroid
+
 ### v2.2.1
 
 - Use first coord in linestring as carmen:center to avoid miscalculated centroids
