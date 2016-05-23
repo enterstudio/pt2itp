@@ -68,10 +68,10 @@ test('Interpolize', function(t) {
         }
     }
 
-    var res = interpolize(street, address);
+    var res = interpolize(street, address, {zoom: 14});
     t.deepEquals(res.properties, {
         'carmen:text': 'Battleridge Place',
-        'carmen:center': '-77.21064805984497,39.1773849237293',
+        'carmen:center': [ -77.2106346487999, 39.17712917725643 ],
         'carmen:rangetype': 'tiger',
         'carmen:lparity': 'O',
         'carmen:lfromhn': '9',
@@ -113,7 +113,7 @@ test('Interpolize - DEBUG', function(t) {
         }
     }
 
-    var res = interpolize(street, address, { debug: true });
+    var res = interpolize(street, address, { debug: true, zoom: 14 });
 
     res.features.forEach(function(sng_feat, sng_feat_it) {
         if (!res.features[sng_feat_it].properties.address) {
