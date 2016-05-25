@@ -1,3 +1,8 @@
+### v2.3.0
+
+- Use centroid verification to ensure calculated centroid is within tile
+- Fall back from point-on-surface to centre of z14 tile
+
 ### v2.2.2
 
 - Use centre coord to avoid being rejected by carmen's verify centroid
