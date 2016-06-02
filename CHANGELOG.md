@@ -1,3 +1,16 @@
+### v2.3.0
+
+- Use centroid verification to ensure calculated centroid is within tile
+- Fall back from point-on-surface to centre of z14 tile
+
+### v2.2.2
+
+- Use centre coord to avoid being rejected by carmen's verify centroid
+
+### v2.2.1
+
+- Use first coord in linestring as carmen:center to avoid miscalculated centroids
+
 ### v2.2.0
 
 - Add --map function which allows non-standard vector tiles to be mapped into the address/street standard defined in the readme
