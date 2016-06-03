@@ -1,3 +1,8 @@
+### v2.4.0
+
+- Add --zoom option to specify non-standard zoom
+- Add --xy & --coords options to only process a single tile for debug work
+
 ### v2.3.0
 
 - Use centroid verification to ensure calculated centroid is within tile
