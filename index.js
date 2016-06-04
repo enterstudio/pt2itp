@@ -4,6 +4,7 @@ var help = require('./lib/help');
 var map = require('./lib/map');
 var convert = require('./lib/convert');
 var settings = require('./package.json');
+var util = require('./lib/util');
 
 var argv = require('minimist')(process.argv, {
     string: ["input", "output", "in-network", "in-address", "tokens", "map", "coords", "xy"],
@@ -30,6 +31,9 @@ if (!argv.workers && process.env.WORKERS) argv.workers = parseInt(process.env.WO
 switch (argv._[2]) {
     case ("help"):
         help(argv);
+        break;
+    case ("util"):
+        util(argv);
         break;
     case ("map"):
         map(argv);
