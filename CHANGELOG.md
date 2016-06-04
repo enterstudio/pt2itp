@@ -1,3 +1,7 @@
+### v2.4.1
+
+- Fix bug in explode.js where explode would silently drop a LineString if it was the last unconnected LineString in a MultiLineString.
+
 ### v2.4.0
 
 - Add --zoom option to specify non-standard zoom
