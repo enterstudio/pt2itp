@@ -1,3 +1,7 @@
+### v2.4.2
+
+- Retain `carmen:text` field in cluster module
+
 ### v2.4.1
 
 - Fix bug in explode.js where explode would silently drop a LineString if it was the last unconnected LineString in a MultiLineString.
