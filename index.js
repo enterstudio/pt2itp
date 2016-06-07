@@ -7,7 +7,7 @@ var settings = require('./package.json');
 var util = require('./lib/util');
 
 var argv = require('minimist')(process.argv, {
-    string: ["input", "output", "in-network", "in-address", "tokens", "map", "coords", "xy"],
+    string: ["input", "output", "in-network", "in-address", "tokens", "map", "coords", "xy", "raw"],
     integer: ["workers", "zoom"],
     boolean: ["help", "debug"],
     alias: {
