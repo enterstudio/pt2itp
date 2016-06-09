@@ -1,3 +1,9 @@
+### v2.5.0
+
+- Add name mode which will dump unnamed streets, when combined with the --debug flag it will also include the 2 address clusters which have the highest probability of having the correct street name.
+- Add --raw <TYPE> mode which allows dumping of address data in a given tile (works for map and name mode ToDo allow streets & \*)
+- Add plurals as aliases so I have to check my own docs less
+
 ### v2.4.2
 
 - Retain `carmen:text` field in cluster module
