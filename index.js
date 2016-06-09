@@ -5,12 +5,14 @@ var map = require('./lib/map');
 var convert = require('./lib/convert');
 var settings = require('./package.json');
 var util = require('./lib/util');
+var name = require('./lib/name');
 
 var argv = require('minimist')(process.argv, {
-    string: ["input", "output", "in-network", "in-address", "tokens", "map", "coords", "xy"],
+    string: ["input", "output", "in-network", "in-address", "tokens", "map", "coords", "xy", "raw"],
     integer: ["workers", "zoom"],
     boolean: ["help", "debug"],
     alias: {
+        "in-address": "in-addresses",
         "version": "v",
         "output":  "o",
         "input":   "i"
@@ -35,6 +37,7 @@ switch (argv._[2]) {
     case ("util"):
         util(argv);
         break;
+    case ("name"):
     case ("map"):
         map(argv);
         break;
