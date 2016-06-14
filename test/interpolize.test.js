@@ -38,6 +38,20 @@ test('segments', function(t) {
     t.end();
 });
 
+test('Interpolize - Missing args', function(t) {
+    t.throws(function() {
+        var res = interpolize(null, null, null);
+    }, /argv required/, 'did not throw with expected message');
+    t.end();
+});
+
+test('Interpolize - Missing zoom', function(t) {
+    t.throws(function() {
+        var res = interpolize(null, null, {});
+    }, /argv\.zoom required/, 'did not throw with expected message');
+    t.end();
+});
+
 test('Interpolize', function(t) {
     var street = {
         type: "Feature",
