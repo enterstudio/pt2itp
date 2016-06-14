@@ -15,7 +15,8 @@ var argv = require('minimist')(process.argv, {
         "in-address": "in-addresses",
         "version": "v",
         "output":  "o",
-        "input":   "i"
+        "input":   "i",
+        "tokens": "token"
     }
 });
 

@@ -50,22 +50,23 @@ test('worker - fixtures', function(t) {
             t.test('./test/workers/'+fixture, function(q) {
                 var fixtures = require('./workers/' + fixture);
 
-                var streetFixture = fixtures.features.filter(function(fixture) {
-                    if (fixture.properties.address) return false;
-                    else if (fixture.geometry.type === 'Point') return false;
-                    else return true;
-                })[0];
+                var streetFixtures = fixtures.features.filter(function(fixture) {
+                    if (fixture.geometry.type === 'LineString') return true;
+                    else return false;
+                });
 
-                var street = _.cloneDeep(streetFixture);
-                ['carmen:lfromhn', 'carmen:ltohn', 'carmen:rfromhn', 'carmen:rtohn'].forEach(function(key){
-                    delete street.properties[key]; 
+                var inputStreets = _.cloneDeep(streetFixtures);
+                inputStreets.forEach(function(street, street_it) {
+                    ['carmen:lfromhn', 'carmen:ltohn', 'carmen:rfromhn', 'carmen:rtohn'].forEach(function(key){
+                        delete inputStreets[street_it].properties[key]; 
+                    });
                 });
 
                 var addresses = fixtures.features.filter(function(fixture) {
                     if (fixture.properties.address) return true;
                     else return false;
                 }).map(function(fixture) {
-                    if (!fixture.properties.street) fixture.properties.street = street.properties.street; 
+                    if (!fixture.properties.street) fixture.properties.street = fixture.properties['carmen:text'];
                     if (fixture.properties.address) fixture.properties.number = fixture.properties.address;
                     return fixture;
                 });
@@ -75,7 +76,7 @@ test('worker - fixtures', function(t) {
                         addresses: turf.featurecollection(addresses)
                     },
                     Streets: {
-                        streets: turf.featurecollection([street])
+                        streets: turf.featurecollection(inputStreets)
                     }
                 }, [1,1,14], null, function(err, res) {
                     t.error(err);
