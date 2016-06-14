@@ -46,3 +46,23 @@ test('Convert - FeatureCollection', function(t) {
         t.end();
     });
 });
+
+test('Convert - Feature', function(t) {
+    convert({
+        input: __dirname + '/fixtures/convert.Feature',
+        output: os.tmpdir() + '/' + 'convert.Feature.json'
+    }, function(err) {
+        t.error(err);  
+
+        var res = require(os.tmpdir() + '/' + 'convert.Feature.json');
+
+        t.equals(res.type, 'FeatureCollection');
+        t.equals(res.features.length, 10);
+
+        res.features.forEach(function(feat) {
+            t.equals(feat.type, 'Feature');
+        });
+        
+        t.end();
+    });
+});
