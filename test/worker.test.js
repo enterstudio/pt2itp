@@ -23,7 +23,7 @@ test('worker - dump raw', function(t) {
     });
 
     function writeData(data) {
-        t.deepEquals(data, addresses.features[i]);
+        t.deepEquals(JSON.parse(data), addresses.features[i], 'addr ' + i + ' has equality');
         i = i + 1;
     }
 });
