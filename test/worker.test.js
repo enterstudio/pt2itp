@@ -7,7 +7,7 @@ var _ = require('lodash');
 var addresses = require('./fixtures/addresses.json');
 var streets = require('./fixtures/streets.json');
 
-test('worker - dump raw', function(t) {
+test('worker - dump raw addresses', function(t) {
     global.mapOptions = {
         raw: 'addresses'
     };
@@ -18,12 +18,31 @@ test('worker - dump raw', function(t) {
         Addresses: { addresses: addresses },
         Streets: { streets: streets }
     }, [3789,2373,12], writeData, function(err, res) {
-        //t.deepEqual(res, addresses);
         t.end();    
     });
 
     function writeData(data) {
         t.deepEquals(JSON.parse(data), addresses.features[i], 'addr ' + i + ' has equality');
+        i = i + 1;
+    }
+});
+
+test('worker - dump raw streets', function(t) {
+    global.mapOptions = {
+        raw: 'streets'
+    };
+
+    var i = 0;
+
+    worker({
+        Addresses: { addresses: addresses },
+        Streets: { streets: streets }
+    }, [3789,2373,12], writeData, function(err, res) {
+        t.end();    
+    });
+
+    function writeData(data) {
+        t.deepEquals(JSON.parse(data), streets.features[i], 'street ' + i + ' has equality');
         i = i + 1;
     }
 });
