@@ -66,3 +66,23 @@ test('Convert - Feature', function(t) {
         t.end();
     });
 });
+
+test('Convert - Raw', function(t) {
+    convert({
+        input: __dirname + '/fixtures/convert.Raw',
+        output: os.tmpdir() + '/' + 'convert.Raw.json'
+    }, function(err) {
+        t.error(err);  
+
+        var res = require(os.tmpdir() + '/' + 'convert.Raw.json');
+
+        t.equals(res.type, 'FeatureCollection');
+        t.equals(res.features.length, 10);
+
+        res.features.forEach(function(feat) {
+            t.equals(feat.type, 'Feature');
+        });
+        
+        t.end();
+    });
+});
