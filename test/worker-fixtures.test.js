@@ -88,6 +88,8 @@ test('worker - fixtures', function(t) {
                 }, tile, null, function(err, res) {
                     q.error(err);
 
+                    console.log(res, streetFixtures)
+
                     //Iterate through each input street and make sure it matches an output
                     for (var street_it = 0; street_it < streetFixtures.length; street_it++) {
                         resPass = false;

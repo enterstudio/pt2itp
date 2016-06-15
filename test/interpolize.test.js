@@ -100,7 +100,10 @@ test('Interpolize', function(t) {
 test('Interpolize - DEBUG', function(t) {
     var street = {
         type: "Feature",
-        properties: { street: ["Battleridge", "Place"] },
+        properties: { 
+            street: ["Battleridge", "Place"],
+            'carmen:text': 'Battleridge Place'
+        },
         geometry: {
             type: "LineString",
             coordinates: [
@@ -131,8 +134,10 @@ test('Interpolize - DEBUG', function(t) {
 
     res.features.forEach(function(sng_feat, sng_feat_it) {
         if (!res.features[sng_feat_it].properties.address) {
-            t.ok(res.features[sng_feat_it].id, sng_feat_it + ' has id field');
-            delete res.features[sng_feat_it].id;
+            if (res.features[sng_feat_it].geometry.type === 'LineString') {
+                t.ok(res.features[sng_feat_it].id, sng_feat_it + ' has id field');
+                delete res.features[sng_feat_it].id;
+            }
         }
     });
 
