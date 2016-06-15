@@ -57,7 +57,11 @@ test('worker - fixtures', function(t) {
 
                 var inputStreets = _.cloneDeep(streetFixtures);
                 inputStreets.forEach(function(street, street_it) {
-                    ['carmen:rparity', 'carmen:lparity', 'carmen:lfromhn', 'carmen:ltohn', 'carmen:rfromhn', 'carmen:rtohn'].forEach(function(key){
+                    delete inputStreets[street_it].id;
+                    if (!inputStreets[street_it].properties.street) {
+                        inputStreets[street_it].properties.street = inputStreets[street_it].properties['carmen:text'];
+                    }
+                    ['carmen:text', 'carmen:rangetype', 'carmen:center', 'carmen:rparity', 'carmen:lparity', 'carmen:lfromhn', 'carmen:ltohn', 'carmen:rfromhn', 'carmen:rtohn'].forEach(function(key){
                         delete inputStreets[street_it].properties[key]; 
                     });
                 });
@@ -69,6 +73,7 @@ test('worker - fixtures', function(t) {
                     if (fixture.properties.address) fixture.properties.number = fixture.properties.address;
                     return fixture;
                 });
+                console.log(inputStreets)
 
                 worker({
                     Addresses: {
