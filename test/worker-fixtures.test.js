@@ -3,6 +3,7 @@ var test = require('tape');
 var path = require('path');
 var fs = require('fs');
 var _ = require('lodash');
+var cover = require('tile-cover');
 
 //Set FIXTURE="string" and it will only run fixture(s) that match the string
 //this allows you to isolate a single test if one breaks and not have to 
@@ -73,7 +74,9 @@ test('worker - fixtures', function(t) {
                     if (fixture.properties.address) fixture.properties.number = fixture.properties.address;
                     return fixture;
                 });
-                console.log(inputStreets)
+
+                //Assumes all geometry in test fixture is from the same tile
+                var tile = cover.tiles(inputStreets[0].geometry, {min_zoom: 12, max_zoom: 12})[0];
 
                 worker({
                     Addresses: {
@@ -82,7 +85,7 @@ test('worker - fixtures', function(t) {
                     Streets: {
                         streets: turf.featurecollection(inputStreets)
                     }
-                }, [1,1,14], null, function(err, res) {
+                }, tile, null, function(err, res) {
                     q.error(err);
 
                     //Iterate through each input street and make sure it matches an output
