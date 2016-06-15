@@ -15,7 +15,8 @@ var argv = require('minimist')(process.argv, {
         "in-address": "in-addresses",
         "version": "v",
         "output":  "o",
-        "input":   "i"
+        "input":   "i",
+        "tokens": "token"
     }
 });
 
@@ -35,14 +36,29 @@ switch (argv._[2]) {
         help(argv);
         break;
     case ("util"):
-        util(argv);
+        util(argv, function(err, res) {
+            if (err) {
+                console.error(err.toString());
+                process.exit(1);
+            } else {
+                console.log(res);
+                process.exit(0);
+            }
+        });
         break;
     case ("name"):
     case ("map"):
         map(argv);
         break;
     case ("convert"):
-        convert(argv);
+        convert(argv, function(err) {
+            if (err) {
+                console.error(err.toString());
+                process.exit(1);
+            } else {
+                process.exit(0);
+            }
+        });
         break;
     default:
         help(argv);
