@@ -216,6 +216,7 @@
         ]
       },
       "properties": {
+        "street": "chain bridge rd nw",
         "address": "2300",
         "marker-symbol": "marker-stroked"
       }
@@ -230,6 +231,7 @@
         ]
       },
       "properties": {
+        "street": "chain bridge rd nw",
         "address": "2302",
         "marker-symbol": "marker-stroked"
       }
@@ -244,6 +246,7 @@
         ]
       },
       "properties": {
+        "street": "chain bridge rd nw",
         "address": "2304",
         "marker-symbol": "marker-stroked"
       }
@@ -258,6 +261,7 @@
         ]
       },
       "properties": {
+        "street": "chain bridge rd nw",
         "address": "2306",
         "marker-symbol": "marker-stroked"
       }
@@ -272,6 +276,7 @@
         ]
       },
       "properties": {
+        "street": "chain bridge rd nw",
         "address": "2301",
         "marker-symbol": "marker"
       }
@@ -286,6 +291,7 @@
         ]
       },
       "properties": {
+        "street": "chain bridge rd nw",
         "address": "2305",
         "marker-symbol": "marker"
       }
@@ -300,6 +306,7 @@
         ]
       },
       "properties": {
+        "street": "chain bridge rd nw",
         "address": "2303",
         "marker-symbol": "marker"
       }
@@ -314,6 +321,7 @@
         ]
       },
       "properties": {
+        "street": "chain bridge rd nw",
         "address": "2402",
         "marker-symbol": "marker-stroked"
       }
@@ -328,6 +336,7 @@
         ]
       },
       "properties": {
+        "street": "chain bridge rd nw",
         "address": "2307",
         "marker-symbol": "marker"
       }
@@ -342,6 +351,7 @@
         ]
       },
       "properties": {
+        "street": "chain bridge rd nw",
         "address": "2309",
         "marker-symbol": "marker"
       }
@@ -356,6 +366,7 @@
         ]
       },
       "properties": {
+        "street": "chain bridge rd nw",
         "address": "2404",
         "marker-symbol": "marker-stroked"
       }
@@ -370,6 +381,7 @@
         ]
       },
       "properties": {
+        "street": "chain bridge rd nw",
         "address": "2406",
         "marker-symbol": "marker-stroked"
       }
@@ -384,6 +396,7 @@
         ]
       },
       "properties": {
+        "street": "chain bridge rd nw",
         "address": "2408",
         "marker-symbol": "marker-stroked"
       }
@@ -398,6 +411,7 @@
         ]
       },
       "properties": {
+        "street": "chain bridge rd nw",
         "address": "2412",
         "marker-symbol": "marker-stroked"
       }
@@ -412,6 +426,7 @@
         ]
       },
       "properties": {
+        "street": "chain bridge rd nw",
         "address": "2415",
         "marker-symbol": "marker"
       }
@@ -426,6 +441,7 @@
         ]
       },
       "properties": {
+        "street": "chain bridge rd nw",
         "address": "2315",
         "marker-symbol": "marker"
       }

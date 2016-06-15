@@ -57,16 +57,16 @@ test('worker - fixtures', function(t) {
 
                 var inputStreets = _.cloneDeep(streetFixtures);
                 inputStreets.forEach(function(street, street_it) {
-                    ['carmen:lfromhn', 'carmen:ltohn', 'carmen:rfromhn', 'carmen:rtohn'].forEach(function(key){
+                    ['carmen:rparity', 'carmen:lparity', 'carmen:lfromhn', 'carmen:ltohn', 'carmen:rfromhn', 'carmen:rtohn'].forEach(function(key){
                         delete inputStreets[street_it].properties[key]; 
                     });
                 });
 
                 var addresses = fixtures.features.filter(function(fixture) {
+                    console.log(fixture)
                     if (fixture.properties.address) return true;
                     else return false;
                 }).map(function(fixture) {
-                    if (!fixture.properties.street) fixture.properties.street = fixture.properties['carmen:text'];
                     if (fixture.properties.address) fixture.properties.number = fixture.properties.address;
                     return fixture;
                 });
@@ -80,12 +80,15 @@ test('worker - fixtures', function(t) {
                     }
                 }, [1,1,14], null, function(err, res) {
                     t.error(err);
-                    t.equal(res[0].properties['carmen:lparity'], streetFixture.properties['carmen:lparity'], 'lparity matched');
-                    t.equal(res[0].properties['carmen:lfromhn'], streetFixture.properties['carmen:lfromhn'] ? parseInt(streetFixture.properties['carmen:lfromhn']) : null, 'lstart matched');
-                    t.equal(res[0].properties['carmen:ltohn'], streetFixture.properties['carmen:ltohn'] ? parseInt(streetFixture.properties['carmen:ltohn']) : null, 'lend matched');
-                    t.equal(res[0].properties['carmen:rparity'], streetFixture.properties['carmen:rparity'], 'rparity matched');
-                    t.equal(res[0].properties['carmen:rfromhn'], streetFixture.properties['carmen:rfromhn'] ? parseInt(streetFixture.properties['carmen:rfromhn']) : null, 'rstart matched');
-                    t.equal(res[0].properties['carmen:rtohn'], streetFixture.properties['carmen:rtohn'] ? parseInt(streetFixture.properties['carmen:rtohn']) : null, 'rend matched');
+
+                    console.log(res)
+
+                    t.equal(res[0].properties['carmen:lparity'], streetFixtures.properties['carmen:lparity'], 'lparity matched');
+                    t.equal(res[0].properties['carmen:lfromhn'], streetFixtures.properties['carmen:lfromhn'] ? parseInt(streetFixture.properties['carmen:lfromhn']) : null, 'lstart matched');
+                    t.equal(res[0].properties['carmen:ltohn'], streetFixtures.properties['carmen:ltohn'] ? parseInt(streetFixture.properties['carmen:ltohn']) : null, 'lend matched');
+                    t.equal(res[0].properties['carmen:rparity'], streetFixtures.properties['carmen:rparity'], 'rparity matched');
+                    t.equal(res[0].properties['carmen:rfromhn'], streetFixtures.properties['carmen:rfromhn'] ? parseInt(streetFixture.properties['carmen:rfromhn']) : null, 'rstart matched');
+                    t.equal(res[0].properties['carmen:rtohn'], streetFixtures.properties['carmen:rtohn'] ? parseInt(streetFixture.properties['carmen:rtohn']) : null, 'rend matched');
                     q.end();    
                 });
             });

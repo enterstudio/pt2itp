@@ -160,6 +160,7 @@
         ]
       },
       "properties": {
+        "street": "52nd ct nw",
         "address": "5102",
         "marker-symbol": "marker-stroked"
       }
@@ -174,6 +175,7 @@
         ]
       },
       "properties": {
+        "street": "52nd ct nw",
         "address": "5104",
         "marker-symbol": "marker-stroked"
       }
@@ -188,6 +190,7 @@
         ]
       },
       "properties": {
+        "street": "52nd ct nw",
         "address": "5106",
         "marker-symbol": "marker-stroked"
       }
@@ -202,6 +205,7 @@
         ]
       },
       "properties": {
+        "street": "52nd ct nw",
         "address": "5108",
         "marker-symbol": "marker-stroked"
       }
@@ -216,6 +220,7 @@
         ]
       },
       "properties": {
+        "street": "52nd ct nw",
         "address": "5110",
         "marker-symbol": "marker-stroked"
       }
@@ -230,6 +235,7 @@
         ]
       },
       "properties": {
+        "street": "52nd ct nw",
         "address": "5103",
         "marker-symbol": "marker"
       }
@@ -244,6 +250,7 @@
         ]
       },
       "properties": {
+        "street": "52nd ct nw",
         "address": "5105",
         "marker-symbol": "marker"
       }
@@ -258,6 +265,7 @@
         ]
       },
       "properties": {
+        "street": "52nd ct nw",
         "address": "5107",
         "marker-symbol": "marker"
       }
@@ -272,6 +280,7 @@
         ]
       },
       "properties": {
+        "street": "52nd ct nw",
         "address": "5109",
         "marker-symbol": "marker"
       }
@@ -286,6 +295,7 @@
         ]
       },
       "properties": {
+        "street": "52nd ct nw",
         "address": "5112",
         "marker-symbol": "marker-stroked"
       }
@@ -300,6 +310,7 @@
         ]
       },
       "properties": {
+        "street": "52nd ct nw",
         "address": "5111",
         "marker-symbol": "marker"
       }
