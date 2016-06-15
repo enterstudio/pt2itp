@@ -63,7 +63,6 @@ test('worker - fixtures', function(t) {
                 });
 
                 var addresses = fixtures.features.filter(function(fixture) {
-                    console.log(fixture)
                     if (fixture.properties.address) return true;
                     else return false;
                 }).map(function(fixture) {
@@ -79,16 +78,25 @@ test('worker - fixtures', function(t) {
                         streets: turf.featurecollection(inputStreets)
                     }
                 }, [1,1,14], null, function(err, res) {
-                    t.error(err);
+                    q.error(err);
 
-                    console.log(res)
+                    //Iterate through each input street and make sure it matches an output
+                    for (var street_it = 0; street_it < streetFixtures.length; street_it++) {
+                        resPass = false;
 
-                    t.equal(res[0].properties['carmen:lparity'], streetFixtures.properties['carmen:lparity'], 'lparity matched');
-                    t.equal(res[0].properties['carmen:lfromhn'], streetFixtures.properties['carmen:lfromhn'] ? parseInt(streetFixture.properties['carmen:lfromhn']) : null, 'lstart matched');
-                    t.equal(res[0].properties['carmen:ltohn'], streetFixtures.properties['carmen:ltohn'] ? parseInt(streetFixture.properties['carmen:ltohn']) : null, 'lend matched');
-                    t.equal(res[0].properties['carmen:rparity'], streetFixtures.properties['carmen:rparity'], 'rparity matched');
-                    t.equal(res[0].properties['carmen:rfromhn'], streetFixtures.properties['carmen:rfromhn'] ? parseInt(streetFixture.properties['carmen:rfromhn']) : null, 'rstart matched');
-                    t.equal(res[0].properties['carmen:rtohn'], streetFixtures.properties['carmen:rtohn'] ? parseInt(streetFixture.properties['carmen:rtohn']) : null, 'rend matched');
+                        for (var res_it = 0; res_it < res.length; res_it++) {
+                            if (
+                                res[res_it].properties['carmen:lparity'] === streetFixtures[street_it].properties['carmen:lparity'] &&
+                                res[res_it].properties['carmen:lfromhn'] === (streetFixtures[street_it].properties['carmen:lfromhn'] ? parseInt(streetFixtures[street_it].properties['carmen:lfromhn']) : null) &&
+                                res[res_it].properties['carmen:rparity'] === streetFixtures[street_it].properties['carmen:rparity'] &&
+                                res[res_it].properties['carmen:rfromhn'] === (streetFixtures[street_it].properties['carmen:rfromhn'] ? parseInt(streetFixtures[street_it].properties['carmen:rfromhn']) : null) &&
+                                res[res_it].properties['carmen:rtohn']   === (streetFixtures[street_it].properties['carmen:rtohn'] ? parseInt(streetFixtures[street_it].properties['carmen:rtohn']) : null) &&
+                                res[res_it].properties['carmen:ltohn']   === (streetFixtures[street_it].properties['carmen:ltohn'] ? parseInt(streetFixtures[street_it].properties['carmen:ltohn']) : null)
+                            ) resPass = true;
+                        }
+
+                        if (!resPass) q.notok('ITP not match any output');
+                    }
                     q.end();    
                 });
             });
