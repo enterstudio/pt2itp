@@ -1,3 +1,7 @@
+### v2.5.1
+- Add expansive tests to bring coverage from ~50% to ~85%
+- Change debug output slightly to be able to better generate unit tests
+
 ### v2.5.0
 
 - Add name mode which will dump unnamed streets, when combined with the --debug flag it will also include the 2 address clusters which have the highest probability of having the correct street name.
