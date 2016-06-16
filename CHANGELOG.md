@@ -1,3 +1,6 @@
+### v2.5.2
+- Add split test
+
 ### v2.5.1
 - Add expansive tests to bring coverage from ~50% to ~85%
 - Change debug output slightly to be able to better generate unit tests
