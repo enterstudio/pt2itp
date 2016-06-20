@@ -8,7 +8,18 @@ var util = require('./lib/util');
 var name = require('./lib/name');
 
 var argv = require('minimist')(process.argv, {
-    string: ["input", "output", "in-network", "in-address", "tokens", "map", "coords", "xy", "raw"],
+    string: [
+        "input",
+        "output",
+        "in-network",
+        "in-address",
+        "tokens",
+        "map",
+        "coords",
+        "xy",
+        "raw",
+        "name"
+    ],
     integer: ["workers", "zoom"],
     boolean: ["help", "debug"],
     alias: {
