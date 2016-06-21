@@ -17,11 +17,10 @@ var argv = require('minimist')(process.argv, {
         "map",
         "coords",
         "xy",
-        "raw",
-        "name"
+        "raw"
     ],
     integer: ["workers", "zoom"],
-    boolean: ["help", "debug"],
+    boolean: ["help", "debug", "name"],
     alias: {
         "in-address": "in-addresses",
         "version": "v",
