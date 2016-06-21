@@ -1,3 +1,6 @@
+### v2.5.3
+- Parse integers from --xy as internal functions expect integers
+
 ### v2.5.2
 - Add split test
 
