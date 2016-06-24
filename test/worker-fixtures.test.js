@@ -80,10 +80,10 @@ test('worker - fixtures', function(t) {
 
                 worker({
                     Addresses: {
-                        addresses: turf.featurecollection(addresses)
+                        addresses: turf.featureCollection(addresses)
                     },
                     Streets: {
-                        streets: turf.featurecollection(inputStreets)
+                        streets: turf.featureCollection(inputStreets)
                     }
                 }, tile, null, function(err, res) {
                     q.error(err);
