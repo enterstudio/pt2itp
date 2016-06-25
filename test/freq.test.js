@@ -13,7 +13,7 @@ test('freq', function(t) {
             street: street
         });
     })
-    var feats = turf.featurecollection(feats);
+    var feats = turf.featureCollection(feats);
     
     var res = freq(feats, feats);
 
