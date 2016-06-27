@@ -63,5 +63,5 @@ function genFeat(streets) {
             street: tokenize(street)
         });
     })
-    return feats = turf.featurecollection(feats);
+    return feats = turf.featureCollection(feats);
 }
