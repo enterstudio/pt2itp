@@ -35,7 +35,7 @@ test('Simple Buffer', function(t) {
     }
 
     var fixture = require('./fixtures/buffer.simple.json');
-    t.deepEquals(res, fixture);
+    t.deepEquals(round(res), round(fixture));
     t.end();
 });
 
@@ -51,7 +51,7 @@ test('Curved Buffer', function(t) {
     }
 
     var fixture = require('./fixtures/buffer.curved.json');
-    t.deepEquals(res, fixture);
+    t.deepEquals(round(res), round(fixture));
     t.end();
 });
 
