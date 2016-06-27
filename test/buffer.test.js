@@ -67,6 +67,16 @@ test('Self Intersection Buffer', function(t) {
     }
 
     var fixture = require('./fixtures/buffer.si.json');
-    t.deepEquals(res, fixture);
+    t.deepEquals(round(res), round(fixture));
     t.end();
 });
+
+function round(poly) {
+    poly.geometry.coordinates.map(function(poly) {
+        return poly.map(function(coords) {
+            return coords.map(function(coord) {
+                return Number((coord).toFixed(5));
+            });
+        });
+    });
+}
