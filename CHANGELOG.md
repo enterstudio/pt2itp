@@ -1,3 +1,9 @@
+### v2.6.0
+
+- Add `--name` flag to `map` mode which will attempt to autoname roads
+- Make `name` mode use generic closestCluster to share with `map` mode
+- Add road side buffering module and tests
+
 ### v2.5.3
 - Parse integers from --xy as internal functions expect integers
 
