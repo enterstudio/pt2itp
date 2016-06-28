@@ -1,5 +1,8 @@
-### v2.6.0
+### v2.7.0
+- Add streaming input/output option to `convert` module.
+- `--input` and `--output` are now optional - falling back to stdout and stdin
 
+### v2.6.0
 - Add `--name` flag to `map` mode which will attempt to autoname roads
 - Make `name` mode use generic closestCluster to share with `map` mode
 - Add road side buffering module and tests
