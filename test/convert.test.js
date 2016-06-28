@@ -9,24 +9,6 @@ test('Convert - no args', function(t) {
     });
 });
 
-test('Convert - no input', function(t) {
-    convert({
-        output: true
-    }, function(err) {
-        t.equals(err.toString(), 'Error: input path required');
-        t.end();
-    });
-});
-
-test('Convert - no output', function(t) {
-    convert({
-        input: true
-    }, function(err) {
-        t.equals(err.toString(), 'Error: output path required');
-        t.end();
-    });
-});
-
 test('Convert - FeatureCollection', function(t) {
     convert({
         input: __dirname + '/fixtures/convert.FeatureCollection',

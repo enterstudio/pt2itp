@@ -65,8 +65,6 @@ switch (argv._[2]) {
             if (err) {
                 console.error(err.toString());
                 process.exit(1);
-            } else {
-                process.exit(0);
             }
         });
         break;
