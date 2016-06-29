@@ -4,7 +4,8 @@
         {
             "type": "Feature",
             "properties": {
-                "street": []
+                "street": [],
+                "alternates": []
             },
             "geometry": {}
         }
