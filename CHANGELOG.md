@@ -21,16 +21,16 @@
 ### v2.6.0
 - :tada: Add `--name` flag to `map` mode which will attempt to autoname roads
 - :tada: Make `name` mode use generic closestCluster to share with `map` mode
-- :tada: :white_check_arrow: Add road side buffering module and tests
+- :tada: :white_check_mark: Add road side buffering module and tests
 
 ### v2.5.3
 - :bug: Parse integers from --xy as internal functions expect integers
 
 ### v2.5.2
-- :white_check_arrow: Add split test
+- :white_check_mark: Add split test
 
 ### v2.5.1
-- :white_check_arrow: Add expansive tests to bring coverage from ~50% to ~85%
+- :white_check_mark: Add expansive tests to bring coverage from ~50% to ~85%
 - :tada: Change debug output slightly to be able to better generate unit tests
 
 ### v2.5.0
