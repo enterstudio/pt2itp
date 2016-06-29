@@ -1,5 +1,77 @@
 var tokenize = require('../lib/tokenize');
 var test = require('tape');
+var fs = require('fs');
+
+test('perFeat - basic tokenization', function(t) {
+    var res = tokenize.perFeat({
+        type: 'FeatureCollection',
+        features: [{
+            type: 'Feature',
+            properties: {
+                street: 'Main Street East'
+            },
+            geometry: {}
+        }]
+    });
+
+    if (process.env.UPDATE) {
+        fs.writeFileSync(__dirname + '/fixtures/token.simple.json', JSON.stringify(res, null, 4));
+        t.fail('had to update fixture');
+    }
+
+    var fixture = require('./fixtures/token.simple.json');
+    t.deepEquals(res, fixture);
+    t.end();
+});
+
+test('perFeat - no street', function(t) {
+    var res = tokenize.perFeat({
+        type: 'FeatureCollection',
+        features: [{
+            type: 'Feature',
+            properties: {},
+            geometry: {}
+        }]
+    });
+
+    if (process.env.UPDATE) {
+        fs.writeFileSync(__dirname + '/fixtures/token.streetless.json', JSON.stringify(res, null, 4));
+        t.fail('had to update fixture');
+    }
+
+    var fixture = require('./fixtures/token.streetless.json');
+    t.deepEquals(res, fixture);
+    t.end();
+});
+
+test('perFeat - alternates', function(t) {
+    var res = tokenize.perFeat({
+        type: 'FeatureCollection',
+        features: [{
+            type: 'Feature',
+            properties: {
+                street: [
+                    'Highway H',
+                    'Main Street',
+                    'Main Street',
+                    'MAIN STREET',
+                    'Other Street',
+                    'Fake Avenue'
+                ]
+            },
+            geometry: {}
+        }]
+    });
+
+    if (process.env.UPDATE) {
+        fs.writeFileSync(__dirname + '/fixtures/token.alternates.json', JSON.stringify(res, null, 4));
+        t.fail('had to update fixture');
+    }
+
+    var fixture = require('./fixtures/token.alternates.json');
+    t.deepEquals(res, fixture);
+    t.end();
+});
 
 test('tokenizes basic strings', function(t) {
     t.deepEqual(tokenize('foo'), ['foo']);
