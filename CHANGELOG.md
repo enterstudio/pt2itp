@@ -7,6 +7,9 @@
 - :arrow_up: when upgrading dependencies
 - :tada: when adding new features
 
+### Branch
+- :tada: qa-tiles map now emits string for single name or array for multiple street names (alternates)
+
 ### v2.7.1
 - :tada: Allow `unclassified` highway type in qa-tiles map
 - :bug: Explode streets after autoname function to ensure they are clustered properly
