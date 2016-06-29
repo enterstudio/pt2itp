@@ -1,21 +1,34 @@
+# CHANGELOG
+
+# Emoji Cheatsheet
+- :pencil2: Docs update
+- :bug: when fixing a bug
+- :white_check_mark: when adding tests
+- :arrow_up: when upgrading dependencies
+- :tada: when adding new features
+
+### v2.7.1
+- :tada: Allow `unclassified` highway type in qa-tiles map
+- :bug: Explode streets after autoname function to ensure they are clustered properly
+
 ### v2.7.0
-- Add streaming input/output option to `convert` module.
-- `--input` and `--output` are now optional - falling back to stdout and stdin
+- :tada: Add streaming input/output option to `convert` module.
+- :tada: `--input` and `--output` are now optional - falling back to stdout and stdin
 
 ### v2.6.0
-- Add `--name` flag to `map` mode which will attempt to autoname roads
-- Make `name` mode use generic closestCluster to share with `map` mode
-- Add road side buffering module and tests
+- :tada: Add `--name` flag to `map` mode which will attempt to autoname roads
+- :tada: Make `name` mode use generic closestCluster to share with `map` mode
+- :tada: :white_check_arrow: Add road side buffering module and tests
 
 ### v2.5.3
-- Parse integers from --xy as internal functions expect integers
+- :bug: Parse integers from --xy as internal functions expect integers
 
 ### v2.5.2
-- Add split test
+- :white_check_arrow: Add split test
 
 ### v2.5.1
-- Add expansive tests to bring coverage from ~50% to ~85%
-- Change debug output slightly to be able to better generate unit tests
+- :white_check_arrow: Add expansive tests to bring coverage from ~50% to ~85%
+- :tada: Change debug output slightly to be able to better generate unit tests
 
 ### v2.5.0
 
