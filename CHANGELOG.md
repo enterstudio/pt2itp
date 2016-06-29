@@ -12,6 +12,7 @@
 - :tada: qa-tiles map now emits string for single name or array for multiple street names (alternates)
 - :rocket: :white_check_mark: generalize `name#tokenizeFeats` and `worker#tokenizeFeats` to single `tokenize#perFeats` & add tests
 - :tada: :white_check_mark: `tokenize#perFeats` now handles alternate names by creating duplicate geometries with each name and a list of alternates for each + add tests
+- :tada: `interpolize` now adds alterate array to `carmen:text` (comma delimited)
 
 ### v2.7.1
 - :tada: Allow `unclassified` highway type in qa-tiles map
