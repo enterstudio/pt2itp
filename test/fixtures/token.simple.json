@@ -1,0 +1,18 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "street": [
+                    "main",
+                    "street",
+                    "east"
+                ],
+                "carmen:text": "Main Street East",
+                "alternates": []
+            },
+            "geometry": {}
+        }
+    ]
+}
