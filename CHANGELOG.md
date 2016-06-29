@@ -1,14 +1,17 @@
 # CHANGELOG
 
 # Emoji Cheatsheet
-- :pencil2: Docs update
+- :pencil2: doc updates
 - :bug: when fixing a bug
+- :rocket: when making general improvements
 - :white_check_mark: when adding tests
 - :arrow_up: when upgrading dependencies
 - :tada: when adding new features
 
 ### Branch
 - :tada: qa-tiles map now emits string for single name or array for multiple street names (alternates)
+- :rocket: :white_check_mark: generalize `name#tokenizeFeats` and `worker#tokenizeFeats` to single `tokenize#perFeats` & add tests
+- :tada: :white_check_mark: `tokenize#perFeats` now handles alternate names by creating duplicate geometries with each name and a list of alternates for each + add tests
 
 ### v2.7.1
 - :tada: Allow `unclassified` highway type in qa-tiles map
