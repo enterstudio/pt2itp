@@ -39,28 +39,32 @@ test('cluster', function(t) {
         type: 'FeatureCollection',
         features: [{
             properties: {
-                street: 'Test Street'
+                street: 'Test Street',
+                alternates: []
             },
             geometry: {
                 type: 'LineString'
             }
         },{
             properties: {
-                street: 'Test Street'
+                street: 'Test Street',
+                alternates: []
             },
             geometry: {
                 type: 'LineString'
             }
         },{
             properties: {
-                street: null
+                street: null,
+                alternates: []
             },
             geometry: {
                 type: 'LineString'
             }
         },{
             properties: {
-                street: null
+                street: null,
+                alternates: []
             },
             geometry: {
                 type: 'LineString'
