@@ -8,6 +8,10 @@
 - :arrow_up: when upgrading dependencies
 - :tada: when adding new features
 
+### v2.8.1
+- :arrow_up: d3-queue@3.0.1
+- :arrow_up: eslint@2.13.1
+
 ### v2.8.0
 - :tada: qa-tiles map now emits string for single name or array for multiple street names (alternates)
 - :rocket: :white_check_mark: generalize `name#tokenizeFeats` and `worker#tokenizeFeats` to single `tokenize#perFeats` & add tests
