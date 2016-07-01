@@ -8,6 +8,11 @@
 - :arrow_up: when upgrading dependencies
 - :tada: when adding new features
 
+### v2.8.2
+- :bug: `cluster#clusterCluster` now sorts internally
+- :bug: `cluster#closestCluster` doesn't include empty arrays of streets outside the buffer
+- :white_check_mark: Add basic `cluster#closestCluster` test to make sure nothing breaks
+
 ### v2.8.1
 - :arrow_up: d3-queue@3.0.1
 - :arrow_up: eslint@2.13.1
