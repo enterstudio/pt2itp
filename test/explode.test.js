@@ -21,6 +21,30 @@ test('explode', function(t) {
             "properties": {},
             "geometry": {
                 "type": "MultiLineString",
+                "coordinates": [[[0,0],[0,1]], [[0,1],[1,1]]]
+            }
+        }]
+    }, 100).features[0].geometry.coordinates,  [ [ 0, 0 ], [ 0, 1 ], [ 1, 1 ] ], 'Angle');
+
+    t.deepEquals(explode({
+        "type": "FeatureCollection",
+        "features": [{
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+                "type": "MultiLineString",
+                "coordinates": [[[0,0],[0,1]], [[0,1],[1,1]]]
+            }
+        }]
+    }, 30).features[0].geometry.coordinates, [ [ 0, 0 ], [ 0, 1 ] ], 'Angle cutoff');
+
+    t.deepEquals(explode({
+        "type": "FeatureCollection",
+        "features": [{
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+                "type": "MultiLineString",
                 "coordinates": [[[0,0],[1,1]]]
             }
         }]
@@ -99,6 +123,7 @@ test('explode', function(t) {
     });
     t.deepEquals(res.features[0].geometry.coordinates, [ [ -1, -1 ], [ 0, 0 ], [ 1, 1 ] ]);
     t.deepEquals(res.features[1].geometry.coordinates, [ [ 4, 4 ], [ 3, 3 ], [ 2, 2 ]]);
+    t.deepEquals(res.features.length, 2);
 
-t.end();
+    t.end();
 });
