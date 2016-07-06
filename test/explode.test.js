@@ -255,7 +255,7 @@ test('hasIntersect', function(t) {
     t.deepEquals(explode.hasIntersect(
         [[0,0], [1,1], [0,1]],
         [[1,0], [0,1]]
-    ), { x: 0.5, y: 0.5 });
+    ), true);
 
     t.end();
 });
