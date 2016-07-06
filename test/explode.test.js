@@ -48,7 +48,7 @@ test('explode', function(t) {
                 "coordinates": [[[0,0],[1,1]]]
             }
         }]
-    }).features[0].geometry.coordinates,  [ [ 0, 0 ], [ 1, 1 ] ] , '-->');
+    }).features[0].geometry.coordinates,  [ [ 0, 0 ], [ 1, 1 ] ] , '-1->');
 
     t.deepEquals(explode({
         "type": "FeatureCollection",
@@ -60,7 +60,19 @@ test('explode', function(t) {
                 "coordinates": [[[-1,-1],[0,0]],[[0,0],[1,1]]]
             }
         }]
-    }).features[0].geometry.coordinates, [[-1,-1,], [0,0], [1,1]], '--> -->');
+    }).features[0].geometry.coordinates, [[-1,-1,], [0,0], [1,1]], '-1-> -2->');
+
+    t.deepEquals(explode({
+        "type": "FeatureCollection",
+        "features": [{
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+                "type": "MultiLineString",
+                "coordinates": [[[0,0],[1,1]], [[-1,-1],[0,0]]]
+            }
+        }]
+    }).features[0].geometry.coordinates, [[-1,-1,], [0,0], [1,1]], '-2-> -1->');
 
     t.deepEquals(explode({
         "type": "FeatureCollection",
