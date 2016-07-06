@@ -57,18 +57,6 @@ test('explode', function(t) {
             "properties": {},
             "geometry": {
                 "type": "MultiLineString",
-                "coordinates": [[[0,0],[1,1]],[[0,0],[-1,-1]]]
-            }
-        }]
-    }).features[0].geometry.coordinates, [[-1,-1,], [0,0], [1,1]], '<-- -->');
-
-    t.deepEquals(explode({
-        "type": "FeatureCollection",
-        "features": [{
-            "type": "Feature",
-            "properties": {},
-            "geometry": {
-                "type": "MultiLineString",
                 "coordinates": [[[-1,-1],[0,0]],[[0,0],[1,1]]]
             }
         }]
@@ -84,7 +72,7 @@ test('explode', function(t) {
                 "coordinates": [[[-1,-1],[0,0]],[[1,1],[0,0]]]
             }
         }]
-    }).features[0].geometry.coordinates, [[-1,-1,], [0,0], [1,1]], '--> <--');
+    }).features[0].geometry.coordinates, [[-1,-1,], [0,0], [1,1]], '-1-> <-2-');
 
     t.deepEquals(explode({
         "type": "FeatureCollection",
@@ -93,10 +81,10 @@ test('explode', function(t) {
             "properties": {},
             "geometry": {
                 "type": "MultiLineString",
-                "coordinates": [[[0,0],[-1,-1]],[[0,0],[1,1]]]
+                "coordinates": [[[1,1],[0,0]], [[-1,-1],[0,0]]]
             }
         }]
-    }).features[0].geometry.coordinates, [[1,1,], [0,0], [-1,-1]], '<-- -->');
+    }).features[0].geometry.coordinates, [[1,1],[0,0],[-1,-1 ]], '-2-> <-1-');
 
     t.deepEquals(explode({
         "type": "FeatureCollection",
@@ -145,4 +133,28 @@ test('explode', function(t) {
     //t.deepEquals(res.features.length, 2);
 
     t.end();
+
+    t.deepEquals(explode({
+        "type": "FeatureCollection",
+        "features": [{
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+                "type": "MultiLineString",
+                "coordinates": [[[0,0],[1,1]],[[0,0],[-1,-1]]]
+            }
+        }]
+    }).features[0].geometry.coordinates, [[-1,-1,], [0,0], [1,1]], '<-2- -1->');
+
+    t.deepEquals(explode({
+        "type": "FeatureCollection",
+        "features": [{
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+                "type": "MultiLineString",
+                "coordinates": [[[0,0],[-1,-1]],[[0,0],[1,1]]]
+            }
+        }]
+    }).features[0].geometry.coordinates, [[1,1,], [0,0], [-1,-1]], '<-1- -2->');
 });
