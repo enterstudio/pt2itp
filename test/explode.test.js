@@ -148,7 +148,7 @@ test('explode', function(t) {
             }
         }]
     });
-    t.pass('-1-> -3->   <-2- <-4-');
+    t.ok(true, '-1-> -3->   <-2- <-4-');
     t.deepEquals(res.features[0].geometry.coordinates, [ [ -1, -1 ], [ 0, 0 ], [ 1, 1 ] ]);
     t.deepEquals(res.features[1].geometry.coordinates, [ [ 4, 4 ], [ 3, 3 ], [ 2, 2 ]]);
     t.deepEquals(res.features.length, 2);
