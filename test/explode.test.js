@@ -246,16 +246,16 @@ test('explode', function(t) {
     t.end();
 });
 
-test('hasIntersect', function(t) {
-    t.deepEquals(explode.hasIntersect(
+test('explode#hasIntersect', function(t) {
+    t.equals(explode.hasIntersect(
         [[0,0], [1,1]],
         [[1,1], [2,2]]
-    ), false);
+    ), false, 'simple join');
 
-    t.deepEquals(explode.hasIntersect(
+    t.equals(explode.hasIntersect(
         [[0,0], [1,1], [0,1]],
         [[1,0], [0,1]]
-    ), true);
+    ), true, 'crossing');
 
     t.end();
 });
