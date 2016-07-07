@@ -94,17 +94,25 @@ test('worker - fixtures', function(t) {
                         resPass = false;
 
                         for (var res_it = 0; res_it < res.length; res_it++) {
-                            if (
-                                res[res_it].properties['carmen:lparity'] === streetFixtures[street_it].properties['carmen:lparity'] &&
-                                res[res_it].properties['carmen:lfromhn'] === (streetFixtures[street_it].properties['carmen:lfromhn'] ? parseInt(streetFixtures[street_it].properties['carmen:lfromhn']) : null) &&
-                                res[res_it].properties['carmen:rparity'] === streetFixtures[street_it].properties['carmen:rparity'] &&
-                                res[res_it].properties['carmen:rfromhn'] === (streetFixtures[street_it].properties['carmen:rfromhn'] ? parseInt(streetFixtures[street_it].properties['carmen:rfromhn']) : null) &&
-                                res[res_it].properties['carmen:rtohn']   === (streetFixtures[street_it].properties['carmen:rtohn'] ? parseInt(streetFixtures[street_it].properties['carmen:rtohn']) : null) &&
-                                res[res_it].properties['carmen:ltohn']   === (streetFixtures[street_it].properties['carmen:ltohn'] ? parseInt(streetFixtures[street_it].properties['carmen:ltohn']) : null)
-                            ) resPass = true;
+                            if (res[res_it].properties['carmen:lparity'] !== streetFixtures[street_it].properties['carmen:lparity']) {
+                                t.equals(streetFixtures[street_it].properties['carmen:lparity'], res[res_it].properties['carmen:lparity'], 'lparity matches');
+                            }
+                            if (res[res_it].properties['carmen:lfromhn'] !== (streetFixtures[street_it].properties['carmen:lfromhn'] ? parseInt(streetFixtures[street_it].properties['carmen:lfromhn']) : null)) {
+                                t.equals(streetFixtures[street_it].properties['carmen:lfromhn'], res[res_it].properties['carmen:lfromhn'], 'lfromhn matches');
+                            }
+                            if (res[res_it].properties['carmen:rparity'] !== streetFixtures[street_it].properties['carmen:rparity']) {
+                                t.equals(streetFixtures[street_it].properties['carmen:rparity'], res[res_it].properties['carmen:rparity'], 'rparity matches');
+                            }
+                            if (res[res_it].properties['carmen:rfromhn'] !== (streetFixtures[street_it].properties['carmen:rfromhn'] ? parseInt(streetFixtures[street_it].properties['carmen:rfromhn']) : null)) {
+                                t.equals(streetFixtures[street_it].properties['carmen:rfromhn'], res[res_it].properties['carmen:rfromhn'], 'rfromhn matches');
+                            }
+                            if (res[res_it].properties['carmen:rtohn'] !== (streetFixtures[street_it].properties['carmen:rtohn'] ? parseInt(streetFixtures[street_it].properties['carmen:rtohn']) : null)) {
+                                t.equals(streetFixtures[street_it].properties['carmen:rtohn'], res[res_it].properties['carmen:rtohn'], 'rtohn matches');
+                            }
+                            if (res[res_it].properties['carmen:ltohn'] !== (streetFixtures[street_it].properties['carmen:ltohn'] ? parseInt(streetFixtures[street_it].properties['carmen:ltohn']) : null)) {
+                                t.equals(streetFixtures[street_it].properties['carmen:ltohn'], res[res_it].properties['carmen:ltohn'], 'ltohn matches');
+                            }
                         }
-
-                        if (!resPass) q.notok('ITP not match any output');
                     }
                     q.end();    
                 });
