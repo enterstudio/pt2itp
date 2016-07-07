@@ -8,6 +8,9 @@
 - :arrow_up: when upgrading dependencies
 - :tada: when adding new features
 
+### v2.10.1
+- :bug: Fix hard error on debug output when r/l start/end is autoincremented due to differing parity
+
 ### v2.10.0
 - :tada: parity is now assigned any time there is a valid start/end address
 - :tada: if only start/end is assigned then end/start is made to equal it
