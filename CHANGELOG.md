@@ -8,6 +8,12 @@
 - :arrow_up: when upgrading dependencies
 - :tada: when adding new features
 
+### v2.9.0
+- :white_check_mark: Add a ton of more tests to explode functions
+- :tada: Explode will not join if the resultant geometry self intersects (Less mixed odd/even addresses)
+- :tada: Explode will not join if angle of join is > 45deg (default - configurable) (Fixes dual carriageways)
+- :tada: Explode will has default max line length of 1 segment over 1km. (More accurate ITP segments)
+
 ### v2.8.2
 - :bug: `cluster#clusterCluster` now sorts internally
 - :bug: `cluster#closestCluster` doesn't include empty arrays of streets outside the buffer
