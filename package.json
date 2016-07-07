@@ -13,7 +13,7 @@
   "dependencies": {
     "cheap-ruler": "^2.4.1",
     "d3-queue": "3.0.1",
-    "eslint": "2.13.1",
+    "eslint": "3.0.1",
     "intersection": "0.0.1",
     "lodash": "^4.2.0",
     "mapnik": "3.5.13",
