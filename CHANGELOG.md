@@ -8,6 +8,10 @@
 - :arrow_up: when upgrading dependencies
 - :tada: when adding new features
 
+### v2.10.0
+- :tada: parity is now assigned any time there is a valid start/end address
+- :tada: if only start/end is assigned then end/start is made to equal it
+
 ### v2.9.1
 - :arrow_up: `eslint@3.0.1`
 - :arrow_up: `turf@3.0.14`
