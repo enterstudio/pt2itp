@@ -8,6 +8,10 @@
 - :arrow_up: when upgrading dependencies
 - :tada: when adding new features
 
+### v2.9.1
+- :arrow_up: `eslint@3.0.1`
+- :arrow_up: `turf@3.0.14`
+
 ### v2.9.0
 - :white_check_mark: Add a ton of more tests to explode functions
 - :tada: Explode will not join if the resultant geometry self intersects (Less mixed odd/even addresses)
