@@ -1,5 +1,6 @@
 var worker = require('../lib/worker');
 var test = require('tape');
+var turf = require('turf');
 var path = require('path');
 var fs = require('fs');
 var _ = require('lodash');
