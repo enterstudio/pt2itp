@@ -162,10 +162,10 @@
       },
       "properties": {
         "street": "warren pl nw",
-        "carmen:lparity": "E",
+        "carmen:parityl": "E",
         "carmen:lfromhn": "5118",
         "carmen:ltohn": "5126",
-        "carmen:rparity": "O",
+        "carmen:parityr": "O",
         "carmen:rfromhn": "5127",
         "carmen:rtohn": "5133"
       }

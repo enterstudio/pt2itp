@@ -5,10 +5,10 @@
             "type": "Feature",
             "properties": {
                 "carmen:text": "Battleridge Place",
-                "carmen:lparity": "O",
+                "carmen:parityl": "O",
                 "carmen:lfromhn": "9",
                 "carmen:ltohn": "11",
-                "carmen:rparity": "E",
+                "carmen:parityr": "E",
                 "carmen:rfromhn": "8",
                 "carmen:rtohn": "10",
                 "carmen:center": [
