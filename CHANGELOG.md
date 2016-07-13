@@ -8,6 +8,9 @@
 - :arrow_up: when upgrading dependencies
 - :tada: when adding new features
 
+### v3.0.0
+- :rocket: `[lr]parity` => `parity[lr]` as per the carmen spec
+
 ### v2.10.1
 - :bug: Fix hard error on debug output when r/l start/end is autoincremented due to differing parity
 
