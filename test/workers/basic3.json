@@ -198,10 +198,10 @@
       },
       "properties": {
         "street": "chain bridge rd nw",
-        "carmen:lparity": "E",
+        "carmen:parityl": "E",
         "carmen:lfromhn": "2300",
         "carmen:ltohn": "2412",
-        "carmen:rparity": "O",
+        "carmen:parityr": "O",
         "carmen:rfromhn": "2301",
         "carmen:rtohn": "2315"
       }

@@ -87,10 +87,10 @@ test('Interpolize', function(t) {
         'carmen:text': 'Battleridge Place',
         'carmen:center': [ -77.2106346487999, 39.17712917725643 ],
         'carmen:rangetype': 'tiger',
-        'carmen:lparity': 'O',
+        'carmen:parityl': 'O',
         'carmen:lfromhn': '9',
         'carmen:ltohn': '11',
-        'carmen:rparity': 'E',
+        'carmen:parityr': 'E',
         'carmen:rfromhn': '8',
         'carmen:rtohn': '10'
     }, 'has expected properties');

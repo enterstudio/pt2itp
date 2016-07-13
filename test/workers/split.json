@@ -54,10 +54,10 @@
       },
       "properties": {
         "carmen:text": "Stillwater Avenue",
-        "carmen:lparity": "E",
+        "carmen:parityl": "E",
         "carmen:lfromhn": 46,
         "carmen:ltohn": 4,
-        "carmen:rparity": "O",
+        "carmen:parityr": "O",
         "carmen:rfromhn": 33,
         "carmen:rtohn": 3,
         "carmen:center": [
@@ -751,10 +751,10 @@
       },
       "properties": {
         "carmen:text": "Stillwater Avenue",
-        "carmen:lparity": "E",
+        "carmen:parityl": "E",
         "carmen:lfromhn": 84,
         "carmen:ltohn": 48,
-        "carmen:rparity": "O",
+        "carmen:parityr": "O",
         "carmen:rfromhn": 79,
         "carmen:rtohn": 37,
         "carmen:center": [

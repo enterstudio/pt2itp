@@ -142,10 +142,10 @@
       },
       "properties": {
         "street": "52nd ct nw",
-        "carmen:lparity": "E",
+        "carmen:parityl": "E",
         "carmen:lfromhn": "5112",
         "carmen:ltohn": "5102",
-        "carmen:rparity": "O",
+        "carmen:parityr": "O",
         "carmen:rfromhn": "5111",
         "carmen:rtohn": "5103"
       }

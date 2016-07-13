@@ -63,7 +63,7 @@ test('worker - fixtures', function(t) {
                     if (!inputStreets[street_it].properties.street) {
                         inputStreets[street_it].properties.street = inputStreets[street_it].properties['carmen:text'];
                     }
-                    ['carmen:text', 'carmen:rangetype', 'carmen:center', 'carmen:rparity', 'carmen:lparity', 'carmen:lfromhn', 'carmen:ltohn', 'carmen:rfromhn', 'carmen:rtohn'].forEach(function(key){
+                    ['carmen:text', 'carmen:rangetype', 'carmen:center', 'carmen:parityr', 'carmen:parityl', 'carmen:lfromhn', 'carmen:ltohn', 'carmen:rfromhn', 'carmen:rtohn'].forEach(function(key){
                         delete inputStreets[street_it].properties[key]; 
                     });
                 });
@@ -95,9 +95,9 @@ test('worker - fixtures', function(t) {
 
                         for (var res_it = 0; res_it < res.length; res_it++) {
                             if (
-                                res[res_it].properties['carmen:lparity'] === streetFixtures[street_it].properties['carmen:lparity'] &&
+                                res[res_it].properties['carmen:parityl'] === streetFixtures[street_it].properties['carmen:parityl'] &&
                                 res[res_it].properties['carmen:lfromhn'] === (streetFixtures[street_it].properties['carmen:lfromhn'] ? parseInt(streetFixtures[street_it].properties['carmen:lfromhn']) : null) &&
-                                res[res_it].properties['carmen:rparity'] === streetFixtures[street_it].properties['carmen:rparity'] &&
+                                res[res_it].properties['carmen:parityr'] === streetFixtures[street_it].properties['carmen:parityr'] &&
                                 res[res_it].properties['carmen:rfromhn'] === (streetFixtures[street_it].properties['carmen:rfromhn'] ? parseInt(streetFixtures[street_it].properties['carmen:rfromhn']) : null) &&
                                 res[res_it].properties['carmen:rtohn']   === (streetFixtures[street_it].properties['carmen:rtohn'] ? parseInt(streetFixtures[street_it].properties['carmen:rtohn']) : null) &&
                                 res[res_it].properties['carmen:ltohn']   === (streetFixtures[street_it].properties['carmen:ltohn'] ? parseInt(streetFixtures[street_it].properties['carmen:ltohn']) : null)

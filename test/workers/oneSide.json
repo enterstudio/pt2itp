@@ -538,7 +538,7 @@
       },
       "properties": {
         "street": "eastern ave ne",
-        "carmen:lparity": "E",
+        "carmen:parityl": "E",
         "carmen:lfromhn": 5810,
         "carmen:ltohn": 6552,
         "carmen:rfromhn": null,
