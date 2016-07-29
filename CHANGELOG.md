@@ -8,6 +8,9 @@
 - :arrow_up: when upgrading dependencies
 - :tada: when adding new features
 
+### v3.0.1
+- :arrow_up: eslint@3.1.1
+
 ### v3.0.0
 - :rocket: `[lr]parity` => `parity[lr]` as per the carmen spec
 
