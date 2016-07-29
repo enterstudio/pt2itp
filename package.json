@@ -1,6 +1,6 @@
 {
   "name": "pt2itp",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Attach interpolation values given a road network and address points",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "dependencies": {
     "cheap-ruler": "^2.4.1",
     "d3-queue": "3.0.1",
-    "eslint": "3.0.1",
+    "eslint": "3.1.1",
     "intersection": "0.0.1",
     "lodash": "^4.2.0",
     "mapnik": "3.5.13",
