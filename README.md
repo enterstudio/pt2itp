@@ -42,18 +42,3 @@ Input line-delimited geojson features of lines. Each line should have a property
 ```
 ./index.js map --in-network=<FILE.mbtiles> --in-address=<File.mbtiles> --output=<File.geojson> --tokens=./lib/tokens/en.json"
 ```
-
-### Environment Variables
-
-There are several environmental variables that can be set to change the behaviour of the scripts.
-Some of these settings can only be modified through the variables while others also have command line flags.
-Check `./index [command] --help` for more info.
-
-#### `DEBUG`
-
-By default map will spit out the interpolation data to `--output` To visualize matches between address clusters
-one can set `export DEBUG=1` and stylized GeoJSON will be output that can be visualized in geojson.io
-
-#### `WORKERS`
-
-Override number of workers - defaults to number of cores
