@@ -8,6 +8,11 @@
 - :arrow_up: when upgrading dependencies
 - :tada: when adding new features
 
+### v3.0.2
+
+- Remove ENV vars from README
+- Update help documentation
+
 ### v3.0.1
 - :arrow_up: eslint@3.1.1
 
