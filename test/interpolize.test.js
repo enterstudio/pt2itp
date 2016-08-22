@@ -223,7 +223,7 @@ test('Interpolize - Addr past line end - opposite', function(t) {
         type: "Feature",
         properties: {
             street: ["Battleridge", "Place"],
-            numbers: ["8","10","9","11","12","13"]
+            numbers: ["8","10","9","11","13","12"]
         },
         geometry: {
             type: "MultiPoint",
@@ -232,7 +232,7 @@ test('Interpolize - Addr past line end - opposite', function(t) {
                 [-77.21056759357452,39.17731007133552],
                 [-77.2107258439064,39.176966996844406],
                 [-77.21077680587769,39.177320467506085],
-                [ -77.21077412366867,39.17755334132392],
+                [-77.21078217029572, 39.17767393639073],
                 [ -77.21056491136551,39.17757413359157 ]
             ]
         }
