@@ -23,8 +23,8 @@ test('LSB reverse', function(t) {
 
 test('segments', function(t) {
     var seg = interpolize.segment(
-        { 
-            "type": "Feature", 
+        {
+            "type": "Feature",
             "properties": {},
             "geometry": {
                 "type": "LineString",
@@ -100,7 +100,7 @@ test('Interpolize', function(t) {
 test('Interpolize - DEBUG', function(t) {
     var street = {
         type: "Feature",
-        properties: { 
+        properties: {
             street: ["Battleridge", "Place"],
             'carmen:text': 'Battleridge Place'
         },
@@ -146,5 +146,59 @@ test('Interpolize - DEBUG', function(t) {
         t.fail('had to update fixture');
     }
     t.deepEquals(res, require('./fixtures/itpdebug.json'));
+    t.end();
+});
+
+test('Interpolize - Addr past line end', function(t) {
+    var street = {
+        type: "Feature",
+        properties: {
+            street: ["Battleridge", "Place"],
+            'carmen:text': 'Battleridge Place'
+        },
+        geometry: {
+            type: "LineString",
+            coordinates: [
+                [-77.21062123775481,39.17687343078357],
+                [-77.21064805984497,39.1773849237293]
+            ]
+        }
+    }
+
+    var address = {
+        type: "Feature",
+        properties: {
+            street: ["Battleridge", "Place"],
+            numbers: ["8","10","9","11","13","12"]
+        },
+        geometry: {
+            type: "MultiPoint",
+            coordinates: [
+                [-77.21054881811142,39.1769482836422],
+                [-77.21056759357452,39.17731007133552],
+                [-77.2107258439064,39.176966996844406],
+                [-77.21077680587769,39.177320467506085],
+                [ -77.21077412366867,39.17755334132392],
+                [ -77.21056491136551,39.17757413359157 ]
+            ]
+        }
+    }
+
+    var res = interpolize(street, address, { debug: true, zoom: 14 });
+
+    res.features.forEach(function(sng_feat, sng_feat_it) {
+        if (!res.features[sng_feat_it].properties.address) {
+            if (res.features[sng_feat_it].geometry.type === 'LineString') {
+                t.ok(res.features[sng_feat_it].id, sng_feat_it + ' has id field');
+                delete res.features[sng_feat_it].id;
+            }
+        }
+    });
+
+    if (process.env.UPDATE) {
+        fs.writeFileSync(__dirname + '/fixtures/itp-pastline.json', JSON.stringify(res, null, 4));
+        t.fail('had to update fixture');
+    }
+    t.deepEquals(res, require('./fixtures/itp-pastline.json'));
     t.end();
 });
