@@ -5,15 +5,15 @@
             "type": "Feature",
             "properties": {
                 "carmen:text": "Battleridge Place",
-                "carmen:parityl": "O",
-                "carmen:lfromhn": "9",
-                "carmen:ltohn": "13",
-                "carmen:parityr": "E",
-                "carmen:rfromhn": "8",
-                "carmen:rtohn": "12",
+                "carmen:parityl": "E",
+                "carmen:lfromhn": "2",
+                "carmen:ltohn": "4",
+                "carmen:parityr": "O",
+                "carmen:rfromhn": "1",
+                "carmen:rtohn": "1",
                 "carmen:center": [
-                    -77.2106346487999,
-                    39.17712917725643
+                    -77.20934987068176,
+                    39.17688382701869
                 ],
                 "carmen:rangetype": "tiger"
             },
@@ -21,12 +21,16 @@
                 "type": "LineString",
                 "coordinates": [
                     [
-                        -77.21062123775481,
-                        39.17687343078357
+                        -77.21002042293549,
+                        39.17696283835544
                     ],
                     [
-                        -77.21064805984497,
-                        39.1773849237293
+                        -77.20934987068176,
+                        39.17688382701869
+                    ],
+                    [
+                        -77.20870077610016,
+                        39.177050166571725
                     ]
                 ]
             }
@@ -34,90 +38,60 @@
         {
             "type": "Feature",
             "properties": {
-                "address": "8",
+                "address": "2",
                 "street": "Battleridge Place",
                 "marker-symbol": "marker-stroked"
             },
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -77.21054881811142,
-                    39.1769482836422
+                    -77.20983803272247,
+                    39.17702937414912
                 ]
             }
         },
         {
             "type": "Feature",
             "properties": {
-                "address": "10",
+                "address": "4",
                 "street": "Battleridge Place",
                 "marker-symbol": "marker-stroked"
             },
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -77.21056759357452,
-                    39.17731007133552
+                    -77.20847547054291,
+                    39.177740471511456
                 ]
             }
         },
         {
             "type": "Feature",
             "properties": {
-                "address": "9",
+                "address": "1",
                 "street": "Battleridge Place",
                 "marker-symbol": "marker"
             },
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -77.2107258439064,
-                    39.176966996844406
+                    -77.20990777015686,
+                    39.17674659659119
                 ]
             }
         },
         {
             "type": "Feature",
             "properties": {
-                "address": "11",
+                "address": "3",
                 "street": "Battleridge Place",
                 "marker-symbol": "marker"
             },
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -77.21077680587769,
-                    39.177320467506085
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "address": "13",
-                "street": "Battleridge Place",
-                "marker-symbol": "marker"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -77.21078217029572,
-                    39.17767393639073
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "address": "12",
-                "street": "Battleridge Place",
-                "marker-symbol": "marker-stroked"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -77.21056491136551,
-                    39.17757413359157
+                    -77.20825552940369,
+                    39.1777238377372
                 ]
             }
         },
@@ -130,8 +104,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -77.21054881811142,
-                    39.1769482836422
+                    -77.20990777015686,
+                    39.17674659659119
                 ]
             }
         },
@@ -144,8 +118,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -77.21056491136551,
-                    39.17757413359157
+                    -77.20990777015686,
+                    39.17674659659119
                 ]
             }
         },
@@ -158,8 +132,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -77.2107258439064,
-                    39.176966996844406
+                    -77.20983803272247,
+                    39.17702937414912
                 ]
             }
         },
@@ -172,8 +146,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -77.21078217029572,
-                    39.17767393639073
+                    -77.20847547054291,
+                    39.177740471511456
                 ]
             }
         }
