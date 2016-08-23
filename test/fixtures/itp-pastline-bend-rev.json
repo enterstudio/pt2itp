@@ -1,0 +1,155 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "carmen:text": "Battleridge Place",
+                "carmen:parityl": "O",
+                "carmen:lfromhn": "1",
+                "carmen:ltohn": "1",
+                "carmen:parityr": "E",
+                "carmen:rfromhn": "4",
+                "carmen:rtohn": "2",
+                "carmen:center": [
+                    -77.20934987068176,
+                    39.17688382701869
+                ],
+                "carmen:rangetype": "tiger"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -77.20870077610016,
+                        39.177050166571725
+                    ],
+                    [
+                        -77.20934987068176,
+                        39.17688382701869
+                    ],
+                    [
+                        -77.21002042293549,
+                        39.17696283835544
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "address": "2",
+                "street": "Battleridge Place",
+                "marker-symbol": "marker-stroked"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.20983803272247,
+                    39.17702937414912
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "address": "4",
+                "street": "Battleridge Place",
+                "marker-symbol": "marker-stroked"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.20847547054291,
+                    39.177740471511456
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "address": "1",
+                "street": "Battleridge Place",
+                "marker-symbol": "marker"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.20990777015686,
+                    39.17674659659119
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "address": "3",
+                "street": "Battleridge Place",
+                "marker-symbol": "marker"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.20825552940369,
+                    39.1777238377372
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#b80e05",
+                "street": "Battleridge Place"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.20847547054291,
+                    39.177740471511456
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#b80e05",
+                "street": "Battleridge Place"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.20983803272247,
+                    39.17702937414912
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#00a70d",
+                "street": "Battleridge Place"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.20990777015686,
+                    39.17674659659119
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#00a70d",
+                "street": "Battleridge Place"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.20990777015686,
+                    39.17674659659119
+                ]
+            }
+        }
+    ]
+}
