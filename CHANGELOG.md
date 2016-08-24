@@ -8,6 +8,11 @@
 - :arrow_up: when upgrading dependencies
 - :tada: when adding new features
 
+### v3.1.1
+
+- :arrow_up: d3-queue@3.0.3
+- :arrow_up: eslint@3.3.1
+
 ### v3.1.0
 
 - :white_check_mark: add a bunch of tests for addresses that fall off the end of a LineString
