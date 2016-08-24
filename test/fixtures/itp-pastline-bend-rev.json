@@ -6,10 +6,10 @@
             "properties": {
                 "carmen:text": "Battleridge Place",
                 "carmen:parityl": "O",
-                "carmen:lfromhn": "1",
+                "carmen:lfromhn": "3",
                 "carmen:ltohn": "1",
                 "carmen:parityr": "E",
-                "carmen:rfromhn": "2",
+                "carmen:rfromhn": "4",
                 "carmen:rtohn": "2",
                 "carmen:center": [
                     -77.20934987068176,
@@ -104,8 +104,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -77.20983803272247,
-                    39.17702937414912
+                    -77.20847547054291,
+                    39.177740471511456
                 ]
             }
         },
@@ -132,8 +132,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -77.20990777015686,
-                    39.17674659659119
+                    -77.20825552940369,
+                    39.1777238377372
                 ]
             }
         },
