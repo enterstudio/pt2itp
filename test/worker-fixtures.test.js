@@ -7,27 +7,27 @@ var _ = require('lodash');
 var cover = require('tile-cover');
 
 //Set FIXTURE="string" and it will only run fixture(s) that match the string
-//this allows you to isolate a single test if one breaks and not have to 
+//this allows you to isolate a single test if one breaks and not have to
 //scroll through a million lines of output
 
 if (!process.env.FIXTURE) {
     test('worker - no addresses', function(t) {
         worker({
             Addresses: {
-                addresses: { 
+                addresses: {
                     features: []
                 }
             }
         }, [1,1,14], null, function(err, res) {
             t.equal(res.toString(), 'No address data in: 1,1,14');
-            t.end();    
+            t.end();
         });
     });
 
     test('worker - no streets', function(t) {
         worker({
             Addresses: {
-                addresses: { 
+                addresses: {
                     features: [ 'Fake Address' ]
                 }
             },
@@ -38,7 +38,7 @@ if (!process.env.FIXTURE) {
             }
         }, [1,1,14], null, function(err, res) {
             t.equal(res.toString(), 'No street data in: 1,1,14');
-            t.end();    
+            t.end();
         });
     });
 }
@@ -64,7 +64,7 @@ test('worker - fixtures', function(t) {
                         inputStreets[street_it].properties.street = inputStreets[street_it].properties['carmen:text'];
                     }
                     ['carmen:text', 'carmen:rangetype', 'carmen:center', 'carmen:parityr', 'carmen:parityl', 'carmen:lfromhn', 'carmen:ltohn', 'carmen:rfromhn', 'carmen:rtohn'].forEach(function(key){
-                        delete inputStreets[street_it].properties[key]; 
+                        delete inputStreets[street_it].properties[key];
                     });
                 });
 
@@ -106,7 +106,7 @@ test('worker - fixtures', function(t) {
 
                         if (!resPass) q.notok('ITP not match any output');
                     }
-                    q.end();    
+                    q.end();
                 });
             });
         })(fixture);

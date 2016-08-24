@@ -752,7 +752,7 @@
       "properties": {
         "carmen:text": "Stillwater Avenue",
         "carmen:parityl": "E",
-        "carmen:lfromhn": 84,
+        "carmen:lfromhn": 88,
         "carmen:ltohn": 48,
         "carmen:parityr": "O",
         "carmen:rfromhn": 79,
@@ -1381,8 +1381,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          114.6155333518982,
-          -28.676826985585173
+            114.61516857147217,
+            -28.67703406786974
         ]
       },
       "properties": {
