@@ -9,7 +9,7 @@
                 "carmen:lfromhn": "1",
                 "carmen:ltohn": "1",
                 "carmen:parityr": "E",
-                "carmen:rfromhn": "4",
+                "carmen:rfromhn": "2",
                 "carmen:rtohn": "2",
                 "carmen:center": [
                     -77.20934987068176,
@@ -104,8 +104,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -77.20847547054291,
-                    39.177740471511456
+                    -77.20983803272247,
+                    39.17702937414912
                 ]
             }
         },
