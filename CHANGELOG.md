@@ -8,10 +8,15 @@
 - :arrow_up: when upgrading dependencies
 - :tada: when adding new features
 
+### v3.1.0
+
+- :white_check_mark: add a bunch of tests for addresses that fall off the end of a LineString
+- :tada: Addresses that fall off the end of a linestring are now ordered differently than addresses on a LineString for more accurate matching.
+
 ### v3.0.2
 
-- Remove ENV vars from README
-- Update help documentation
+- :pencil2: Remove ENV vars from README
+- :pencil2: Update help documentation
 
 ### v3.0.1
 - :arrow_up: eslint@3.1.1
