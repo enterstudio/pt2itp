@@ -88,7 +88,6 @@ test('worker - fixtures', function(t) {
                     }
                 }, tile, null, function(err, res) {
                     q.error(err);
-                    console.error(JSON.stringify(res))
 
                     //Iterate through each input street and make sure it matches an output
                     for (var street_it = 0; street_it < streetFixtures.length; street_it++) {
