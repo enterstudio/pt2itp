@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v3.2.0
+
+- :white_check_mark: Add final buffer test to complete test coverage
+- :rocket: explode no longer drops circular ways if they are named
+
 ### v3.1.1
 
 - :arrow_up: d3-queue@3.0.3
