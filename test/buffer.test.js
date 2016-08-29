@@ -23,6 +23,18 @@ test('Feature Not LineString', function(t) {
     t.end();
 });
 
+test('Feature with no dist', function(t) {
+    t.throws(function () {
+        buffer({
+            type: 'Feature',
+            geometry: {
+                type: 'LineString'
+            }
+        }, null);
+    });
+    t.end();
+});
+
 test('Simple Buffer', function(t) {
     var res = buffer({
         type: 'LineString',
