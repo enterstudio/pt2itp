@@ -19,7 +19,7 @@ test('worker - dump raw addresses', function(t) {
         Streets: { streets: streets }
     }, [3789,2373,12], writeData, function(err, res) {
         delete global.mapOptions;
-        t.end();    
+        t.end();
     });
 
     function writeData(data) {
@@ -40,7 +40,7 @@ test('worker - dump raw streets', function(t) {
         Streets: { streets: streets }
     }, [3789,2373,12], writeData, function(err, res) {
         delete global.mapOptions;
-        t.end();    
+        t.end();
     });
 
     function writeData(data) {
