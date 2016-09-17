@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var help = require('./lib/help');
+var test = require('./lib/test');
 var map = require('./lib/map');
 var convert = require('./lib/convert');
 var settings = require('./package.json');
@@ -13,6 +14,8 @@ var argv = require('minimist')(process.argv, {
         "output",
         "in-network",
         "in-address",
+        "addresses",
+        "itp",
         "tokens",
         "map",
         "coords",
@@ -23,6 +26,7 @@ var argv = require('minimist')(process.argv, {
     boolean: ["help", "debug", "name"],
     alias: {
         "in-address": "in-addresses",
+        "address": "addresses",
         "version": "v",
         "output":  "o",
         "input":   "i",
@@ -56,6 +60,14 @@ switch (argv._[2]) {
     case ("name"):
     case ("map"):
         map(argv);
+        break;
+    case ("test"):
+        test(argv, function(err) {
+            if (err) {
+                console.error(err.toString());
+                process.exit(1);
+            }
+        });
         break;
     case ("convert"):
         convert(argv, function(err) {
