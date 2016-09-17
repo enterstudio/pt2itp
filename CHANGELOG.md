@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v4.0.0
+
+- :tada: Add `test` mode which runs the original raw addresses against the generated ITP lines (using carmen) to ensure complete coverage.
+- :rocket: Address number must now be a valid Integer. (Precents unit numbers from creating bad results)
+
 ### v3.2.0
 
 - :white_check_mark: Add final buffer test to complete test coverage
