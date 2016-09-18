@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v4.0.1
+
+- :pencil2: Update README with `-b 0` on tippecanoe commands to ensure vector tiles aren't buffered (this can cause overlap and strange results)
+
 ### v4.0.0
 
 - :tada: Add `test` mode which runs the original raw addresses against the generated ITP lines (using carmen) to ensure complete coverage.
