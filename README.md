@@ -25,7 +25,7 @@ If non-numeric input is detected in addresses, a fatal error will be thrown.
 ...
 ```
 
-`tippecanoe -z14 -Z14 -l addresses -n Addresses -pf -pk -r 0 -o addresses.mbtiles addresses.geojson`
+`tippecanoe -b 0 -z14 -Z14 -l addresses -n Addresses -pf -pk -r 0 -o addresses.mbtiles addresses.geojson`
 
 ### Street Vector tiles
 
@@ -39,7 +39,7 @@ Input line-delimited geojson features of lines. Each line should have a property
 ...
 ```
 
-`tippecanoe -z14 -Z14 -y street -l streets -n Streets -ps -pf -pk -o streets.mbtiles streets.geojson`
+`tippecanoe -b 0 -z14 -Z14 -y street -l streets -n Streets -ps -pf -pk -o streets.mbtiles streets.geojson`
 
 ## Generating Interpolation Network
 
