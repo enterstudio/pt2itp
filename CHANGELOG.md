@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v4.0.2
+
+- :bug: Apple can rot in hell for having a case insensitive file system (Also BSD grep is aweful)
+
 ### v4.0.1
 
 - :pencil2: Update README with `-b 0` on tippecanoe commands to ensure vector tiles aren't buffered (this can cause overlap and strange results)
