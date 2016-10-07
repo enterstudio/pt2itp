@@ -10,6 +10,10 @@
 
 ## Version History
 
+### branch
+
+- :arrow_up: eslint@3.7.1, mapnik@3.5.14, & carmen@16.2.3
+
 ### v4.0.3
 
 - :bug: Fix percent calculation for `test` mode
