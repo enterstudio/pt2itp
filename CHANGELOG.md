@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v4.0.3
+
+- :bug: Fix percent calculation for `test` mode
+- :rocket: Throw hard error if `--map` option does not point to a valid map function
+
 ### v4.0.2
 
 - :bug: Apple can rot in hell for having a case insensitive file system (Also BSD grep is aweful)
