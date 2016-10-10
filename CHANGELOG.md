@@ -10,7 +10,7 @@
 
 ## Version History
 
-### branch
+### v4.0.4
 
 - :arrow_up: eslint@3.7.1, mapnik@3.5.14, & carmen@17.0.0
 
