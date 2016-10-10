@@ -1,6 +1,6 @@
 var test = require('tape');
 var interpolize = require('../lib/interpolize');
-var turf = require('turf');
+var turf = require('@turf/turf');
 var fs = require('fs');
 
 test('LSB forward', function(t) {
