@@ -4,6 +4,8 @@ machine:
 
 test:
   override:
-    - sudo apt-get install -y libstdc++6
+    - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+    - sudo apt-get update
+    - sudo apt-get upgrade
     - npm run lint
     - npm run coverage
