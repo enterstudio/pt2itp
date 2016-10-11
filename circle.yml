@@ -2,6 +2,12 @@ machine:
   node:
     version: 4.4.2
 
+dependencies:
+     pre:
+         - sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
+         - sudo -E apt-get upgrade -y
+         - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install libstdc++-5-dev
+
 test:
   override:
     - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
