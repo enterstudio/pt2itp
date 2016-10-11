@@ -5,14 +5,12 @@ machine:
 dependencies:
      pre:
          - sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
+         - sudo apt-key update
          - sudo -E apt-get update -y
          - sudo -E apt-get upgrade -y
          - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install libstdc++-5-dev
 
 test:
   override:
-    - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-    - sudo apt-get update
-    - sudo apt-get upgrade
     - npm run lint
     - npm run coverage
