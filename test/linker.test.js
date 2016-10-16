@@ -1,7 +1,7 @@
 //INCOMPLETE!!!//
 
 var freq = require('../lib/freq');
-var turf = require('turf');
+var turf = require('@turf/turf');
 var test = require('tape');
 var linker = require('../lib/linker');
 var tokenize = require('../lib/tokenize');
