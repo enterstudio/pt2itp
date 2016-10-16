@@ -15,7 +15,7 @@
     "d3-queue": "3.0.3",
     "eslint": "3.7.1",
     "lodash": "^4.2.0",
-    "mapnik": "3.5.14",
+    "mapnik": "3.5.13",
     "minimist": "^1.2.0",
     "carmen": "17.0.0",
     "tile-cover": "^3.0.1",
