@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v4.0.5
+
+- :bug: new mapnik version was causing install issues - downgraded to mapnik@3.5.13 until they can be resolved
+- :arrow_up: upgrade turf modules to new `@turf` prefix where possible.
+
 ### v4.0.4
 
 - :arrow_up: eslint@3.7.1, mapnik@3.5.14, & carmen@17.0.0
