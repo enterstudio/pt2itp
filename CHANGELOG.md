@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v4.2.0
+
+- :tada: Added `fr` language tokens and README to `lib/tokens/`
+
 ### v4.1.0
 
 - :tada: Add single query mode to `test` mode (--query param)
