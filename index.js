@@ -19,6 +19,7 @@ var argv = require('minimist')(process.argv, {
         "tokens",
         "map",
         "coords",
+        "query",
         "xy",
         "raw"
     ],
