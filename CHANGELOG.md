@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v4.1.0
+
+- :tada: Add single query mode to `test` mode (--query param)
+
 ### v4.0.6
 
 - :rocket: Dedupe `test` module output for easier debugging
