@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v4.0.6
+
+- :rocket: Dedupe `test` module output for easier debugging
+
 ### v4.0.5
 
 - :bug: new mapnik version was causing install issues - downgraded to mapnik@3.5.13 until they can be resolved
