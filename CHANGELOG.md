@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v4.2.1
+
+- :bug: Remove unnecessary tile.toGeoJSON which caused a fatal error on empty tiles
+
 ### v4.2.0
 
 - :tada: Added `fr` language tokens and README to `lib/tokens/`
