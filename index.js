@@ -60,7 +60,12 @@ switch (argv._[2]) {
         break;
     case ("name"):
     case ("map"):
-        map(argv);
+        map(argv, function(err) {
+            if (err) {
+                console.error(err.toString());
+                process.exit(1);
+            }
+        });
         break;
     case ("test"):
         test(argv, function(err) {
