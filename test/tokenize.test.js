@@ -105,7 +105,7 @@ test('Uses replacement tokens', function(t) {
     t.deepEqual(tokenize('foo', null), ['foo'], 'handles null token replacer');
     t.deepEqual(tokenize('foo', {}), ['foo'], 'handles empty args');
     t.deepEqual(tokenize('foo', { tokens: [] }), ['foo'], 'handles empty tokens array');
-    t.deepEqual(tokenize('barter', { tokens: { 'barter': 'foo' }}), ['foo'], 'basic single replacement');
+    t.deepEqual(tokenize('barter', { 'barter': 'foo' }), ['foo'], 'basic single replacement');
     t.end();
 });
 
