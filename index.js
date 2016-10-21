@@ -6,11 +6,9 @@ var map = require('./lib/map');
 var convert = require('./lib/convert');
 var settings = require('./package.json');
 var util = require('./lib/util');
-var name = require('./lib/name');
 
 var argv = require('minimist')(process.argv, {
-    string: [ "version" ]
-    boolean: ["help"],
+    boolean: ["help", "version"],
     alias: { "version": "v" }
 });
 
