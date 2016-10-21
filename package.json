@@ -13,19 +13,17 @@
   "dependencies": {
     "@turf/turf": "3.5.2",
     "carmen": "17.0.0",
-    "cheap-ruler": "^2.4.1",
     "d3-queue": "3.0.3",
-    "eslint": "3.7.1",
     "lodash": "^4.2.0",
     "mapnik": "3.5.13",
     "minimist": "^1.2.0",
     "sqlite3": "^3.1.6",
-    "tile-reduce": "3.1.1",
     "tilebelt": "^1.0.1",
     "turf-line-slice-at-intersection": "^1.0.1"
   },
   "devDependencies": {
     "tape": "^4.2.0",
+    "eslint": "3.7.1",
     "coveralls": "^2.11.4",
     "istanbul": "^0.4.0"
   },
