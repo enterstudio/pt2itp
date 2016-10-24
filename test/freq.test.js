@@ -8,12 +8,7 @@ test('freq', function(t) {
         ['main', 'street', 'se'],
         ['main', 'street', 'sw'],
         ['stanley', 'road', 'ne']
-    ].map(function(street) {
-        return turf.point([0,0], {
-            street: street
-        });
-    })
-    var feats = turf.featureCollection(feats);
+    ];
 
     var res = freq(feats, feats);
 
