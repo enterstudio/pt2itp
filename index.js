@@ -26,7 +26,7 @@ switch (argv._[2]) {
     case ("map"):
         map(process.argv, function(err) {
             if (err) {
-                console.error(err.toString());
+                console.error(err.stack);
                 process.exit(1);
             }
         });
