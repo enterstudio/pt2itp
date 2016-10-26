@@ -29,6 +29,8 @@ switch (argv._[2]) {
                 console.error(err.stack);
                 process.exit(1);
             }
+            console.log('ok - processing complete');
+            process.exit(0);
         });
         break;
     case ("test"):
