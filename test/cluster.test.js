@@ -179,7 +179,68 @@ test('cluster.match', function(t) {
 });
 
 test('cluster.address', function(t) {
-    t.end();
+    var popQ = Queue(1);
+
+    //CREATE pt2itp TABLES
+    popQ.defer(function(done) {
+        pool.query(`
+            BEGIN;
+            CREATE TABLE address (id SERIAL, text TEXT, _text TEXT, number INT, geom GEOMETRY(POINT, 4326));
+            CREATE TABLE address_cluster (id SERIAL, text TEXT, _text TEXT, number TEXT, geom GEOMETRY(MULTIPOINT, 4326));
+            COMMIT;
+        `, function(err, res) {
+            t.error(err);
+            return done();
+        });
+    });
+
+    //POPULATE ADDRESS
+    popQ.defer(function(done) {
+        pool.query(`
+            BEGIN;
+            INSERT INTO address (id, text, _text, number, geom) VALUES (1, 'main st', 'Main Street', 10, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-66.97265625,43.96119063892024] }'), 4326));
+            INSERT INTO address (id, text, _text, number, geom) VALUES (2, 'main st', 'Main Street', 11, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-66.26953125,43.197167282501276] }'), 4326));
+            INSERT INTO address (id, text, _text, number, geom) VALUES (3, 'main st', 'Main Street', 13, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-105.46875,56.36525013685606] }'), 4326));
+            INSERT INTO address (id, text, _text, number, geom) VALUES (4, 'main st', 'Main Street', 15, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-104.765625,55.677584411089526] }'), 4326));
+            INSERT INTO address (id, text, _text, number, geom) VALUES (5, 'fake av', 'Fake Avenue', 10, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-85.25390625,52.908902047770255] }'), 4326));
+            COMMIT;
+        `, function(err, res) {
+            t.error(err);
+            return done();
+        });
+    });
+
+    popQ.defer(function(done) {
+        cluster.address('main st', pool, function(err) {
+            t.error(err);
+            return done();
+        });
+    });
+
+    popQ.defer(function(done) {
+        pool.query(`
+            SELECT id, text, ST_AsGeoJSON(geom) FROM address_cluster;
+        `, function(err, res) {
+            t.error(err);
+
+            t.equals(res.rows.length, 2);
+            return done();
+        });
+    });
+
+    popQ.await(function(err) {
+        t.error(err);
+
+        pool.query(`
+            BEGIN;
+            DROP TABLE address;
+            DROP TABLE address_cluster;
+            COMMIT;
+        `, function(err, res) {
+            t.error(err);
+            t.end();
+        });
+    });
 });
 
 test('cluster.network', function(t) {
