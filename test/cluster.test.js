@@ -1,5 +1,7 @@
-var test = require('tape');
 var cluster = require('../lib/cluster');
+var freq = require('../lib/freq');
+
+var test = require('tape');
 var fs = require('fs');
 var pg = require('pg');
 var Queue = require('d3-queue').queue;
@@ -97,7 +99,83 @@ test('cluster.name', function(t) {
 });
 
 test('cluster.match', function(t) {
-    t.end();
+    var popQ = Queue(1);
+
+    //CREATE pt2itp TABLES
+    popQ.defer(function(done) {
+        pool.query(`
+            BEGIN;
+            CREATE TABLE address_cluster (id SERIAL, text TEXT, _text TEXT, number TEXT, geom GEOMETRY(MULTIPOINT, 4326));
+            CREATE TABLE network_cluster (id SERIAL, text TEXT, _text TEXT, address INT, geom GEOMETRY(MULTILINESTRING, 4326));
+            COMMIT;
+        `, function(err, res) {
+            t.error(err);
+            return done();
+        });
+    });
+
+    //POPULATE NETWORK_CLUSTER
+    popQ.defer(function(done) {
+        pool.query(`
+            BEGIN;
+            INSERT INTO network_cluster (id, text, _text, geom) VALUES (1, 'main st', 'Main Street', ST_Multi(ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "LineString", "coordinates": [ [ -66.05180561542511, 45.26869136632906 ], [ -66.05007290840149, 45.268982070325656 ] ] }'), 4326)));
+            COMMIT;
+        `, function(err, res) {
+            t.error(err);
+            return done();
+        });
+    });
+
+    //POPULATE ADDRESS_CLUSTER
+    popQ.defer(function(done) {
+        pool.query(`
+            BEGIN;
+            INSERT INTO address_cluster (id, text, _text, number, geom) VALUES (1, 'main st', 'Main Street', 10, ST_Multi(ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [ -66.05154812335967, 45.26861208316249 ] }'), 4326)));
+            INSERT INTO address_cluster (id, text, _text, number, geom) VALUES (2, 'fake av', 'Fake Avenue', 12, ST_Multi(ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [ -66.05154812335967, 45.26861208316249 ] }'), 4326)));
+            COMMIT;
+        `, function(err, res) {
+            t.error(err);
+            return done();
+        });
+    });
+
+    popQ.defer(function(done) {
+        var calc = freq(['main st'], ['main st', 'fake av'])
+
+        cluster.match(1, calc, pool, function(err) {
+            t.error(err);
+            return done();
+        });
+    });
+
+    popQ.defer(function(done) {
+        pool.query(`
+            SELECT id, text, address FROM network_cluster;
+        `, function(err, res) {
+            t.error(err);
+
+            t.deepEquals(res.rows[0], {
+                id: 1,
+                text: 'main st',
+                address: 1
+            });
+            return done();
+        });
+    });
+
+    popQ.await(function(err) {
+        t.error(err);
+
+        pool.query(`
+            BEGIN;
+            DROP TABLE address_cluster;
+            DROP TABLE network_cluster;
+            COMMIT;
+        `, function(err, res) {
+            t.error(err);
+            t.end();
+        });
+    });
 });
 
 test('cluster.address', function(t) {
