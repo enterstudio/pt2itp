@@ -2,113 +2,21 @@ var worker = require('../lib/map');
 var test = require('tape');
 var path = require('path');
 var fs = require('fs');
-var _ = require('lodash');
 
-//Set FIXTURE="string" and it will only run fixture(s) that match the string
-//this allows you to isolate a single test if one breaks and not have to
-//scroll through a million lines of output
-
-if (!process.env.FIXTURE) {
-    test('map - no addresses', function(t) {
-        worker({
-            Addresses: {
-                addresses: {
-                    features: []
-                }
-            }
-        }, [1,1,14], null, function(err, res) {
-            t.equal(res.toString(), 'No address data in: 1,1,14');
-            t.end();
-        });
+test('map', function(t) {
+    worker({
+    }, function(err, res) {
+        t.equals(err.toString(), 'Error: --in-address=<FILE.geojson> argument required');
+        t.end();
     });
+});
 
-    test('map - no streets', function(t) {
-        worker({
-            Addresses: {
-                addresses: {
-                    features: [ 'Fake Address' ]
-                }
-            },
-            Streets: {
-                streets: {
-                    features: []
-                }
-            }
-        }, [1,1,14], null, function(err, res) {
-            t.equal(res.toString(), 'No street data in: 1,1,14');
-            t.end();
-        });
+test('map', function(t) {
+    worker({
+        'in-address': './test/workers/'
+    }, function(err, res) {
+        t.equals(err.toString(), 'Error: --in-address=<FILE.geojson> argument required');
+        t.end();
     });
-}
-
-test('worker - fixtures', function(t) {
-    var fixtures = fs.readdirSync(path.resolve(__dirname, '..', 'test/workers'));
-    fixtures.forEach(function(fixture) {
-        if (process.env.FIXTURE && fixture.indexOf(process.env.FIXTURE) === -1) return;
-
-        (function(fixture) {
-            t.test('./test/workers/'+fixture, function(q) {
-                var fixtures = require('./workers/' + fixture);
-
-                var streetFixtures = fixtures.features.filter(function(fixture) {
-                    if (fixture.geometry.type === 'LineString') return true;
-                    else return false;
-                });
-
-                var inputStreets = _.cloneDeep(streetFixtures);
-                inputStreets.forEach(function(street, street_it) {
-                    delete inputStreets[street_it].id;
-                    if (!inputStreets[street_it].properties.street) {
-                        inputStreets[street_it].properties.street = inputStreets[street_it].properties['carmen:text'];
-                    }
-                    ['carmen:text', 'carmen:rangetype', 'carmen:center', 'carmen:parityr', 'carmen:parityl', 'carmen:lfromhn', 'carmen:ltohn', 'carmen:rfromhn', 'carmen:rtohn'].forEach(function(key){
-                        delete inputStreets[street_it].properties[key];
-                    });
-                });
-
-                var addresses = fixtures.features.filter(function(fixture) {
-                    if (fixture.properties.address) return true;
-                    else return false;
-                }).map(function(fixture) {
-                    if (fixture.properties.address) fixture.properties.number = fixture.properties.address;
-                    return fixture;
-                });
-
-                //Assumes all geometry in test fixture is from the same tile
-                var tile = cover.tiles(inputStreets[0].geometry, {min_zoom: 12, max_zoom: 12})[0];
-
-                worker({
-                    Addresses: {
-                        addresses: turf.featureCollection(addresses)
-                    },
-                    Streets: {
-                        streets: turf.featureCollection(inputStreets)
-                    }
-                }, tile, null, function(err, res) {
-                    q.error(err);
-
-                    //Iterate through each input street and make sure it matches an output
-                    for (var street_it = 0; street_it < streetFixtures.length; street_it++) {
-                        resPass = false;
-
-                        for (var res_it = 0; res_it < res.length; res_it++) {
-                            if (
-                                res[res_it].properties['carmen:parityl'] === streetFixtures[street_it].properties['carmen:parityl'] &&
-                                res[res_it].properties['carmen:lfromhn'] === (streetFixtures[street_it].properties['carmen:lfromhn'] ? parseInt(streetFixtures[street_it].properties['carmen:lfromhn']) : null) &&
-                                res[res_it].properties['carmen:parityr'] === streetFixtures[street_it].properties['carmen:parityr'] &&
-                                res[res_it].properties['carmen:rfromhn'] === (streetFixtures[street_it].properties['carmen:rfromhn'] ? parseInt(streetFixtures[street_it].properties['carmen:rfromhn']) : null) &&
-                                res[res_it].properties['carmen:rtohn']   === (streetFixtures[street_it].properties['carmen:rtohn'] ? parseInt(streetFixtures[street_it].properties['carmen:rtohn']) : null) &&
-                                res[res_it].properties['carmen:ltohn']   === (streetFixtures[street_it].properties['carmen:ltohn'] ? parseInt(streetFixtures[street_it].properties['carmen:ltohn']) : null)
-                            ) resPass = true;
-                        }
-
-                        if (!resPass) q.notok('ITP not match any output');
-                    }
-                    q.end();
-                });
-            });
-        })(fixture);
-    });
-    t.end();
 });
 
