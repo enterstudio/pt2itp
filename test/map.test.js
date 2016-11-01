@@ -1,17 +1,15 @@
-var worker = require('../lib/worker');
+var worker = require('../lib/map');
 var test = require('tape');
-var turf = require('@turf/turf');
 var path = require('path');
 var fs = require('fs');
 var _ = require('lodash');
-var cover = require('tile-cover');
 
 //Set FIXTURE="string" and it will only run fixture(s) that match the string
 //this allows you to isolate a single test if one breaks and not have to
 //scroll through a million lines of output
 
 if (!process.env.FIXTURE) {
-    test('worker - no addresses', function(t) {
+    test('map - no addresses', function(t) {
         worker({
             Addresses: {
                 addresses: {
@@ -24,7 +22,7 @@ if (!process.env.FIXTURE) {
         });
     });
 
-    test('worker - no streets', function(t) {
+    test('map - no streets', function(t) {
         worker({
             Addresses: {
                 addresses: {
