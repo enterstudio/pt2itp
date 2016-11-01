@@ -219,11 +219,13 @@ test('cluster.address', function(t) {
 
     popQ.defer(function(done) {
         pool.query(`
-            SELECT id, text, ST_AsGeoJSON(geom) FROM address_cluster;
+            SELECT id, text, ST_AsGeoJSON(geom) AS geom FROM address_cluster;
         `, function(err, res) {
             t.error(err);
 
             t.equals(res.rows.length, 2);
+            t.deepEquals(res.rows[0], { geom: '{"type":"MultiPoint","coordinates":[[-66.97265625,43.9611906389202],[-66.97265625,43.9611906389202]]}', id: 1, text: 'main st' });
+            t.deepEquals(res.rows[1], { geom: '{"type":"MultiPoint","coordinates":[[-105.46875,56.3652501368561],[-105.46875,56.3652501368561]]}', id: 2, text: 'main st' });
             return done();
         });
     });
