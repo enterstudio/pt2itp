@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint index.js lib",
     "coverage": "istanbul cover tape test/*.js && coveralls < ./coverage/lcov.info",
-    "test": "npm run lint && tape test/*.test.js"
+    "test": "npm run lint && echo 'CREATE DATABASE pt_test;' | psql -U postgres && echo 'CREATE EXTENSION postgis' | psql -U postgres pt_test && tape test/*.test.js && echo 'DROP DATABASE pt_test' | psql -U postgres"
   },
   "author": "Nicholas Ingalls <nicholas.ingalls@gmail.com>",
   "license": "ISC",
