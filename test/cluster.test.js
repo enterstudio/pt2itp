@@ -199,9 +199,9 @@ test('cluster.address', function(t) {
         pool.query(`
             BEGIN;
             INSERT INTO address (id, text, _text, number, geom) VALUES (1, 'main st', 'Main Street', 10, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-66.97265625,43.96119063892024] }'), 4326));
-            INSERT INTO address (id, text, _text, number, geom) VALUES (2, 'main st', 'Main Street', 11, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-66.26953125,43.197167282501276] }'), 4326));
+            INSERT INTO address (id, text, _text, number, geom) VALUES (2, 'main st', 'Main Street', 10, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-66.97265625,43.96119063892024] }'), 4326));
             INSERT INTO address (id, text, _text, number, geom) VALUES (3, 'main st', 'Main Street', 13, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-105.46875,56.36525013685606] }'), 4326));
-            INSERT INTO address (id, text, _text, number, geom) VALUES (4, 'main st', 'Main Street', 15, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-104.765625,55.677584411089526] }'), 4326));
+            INSERT INTO address (id, text, _text, number, geom) VALUES (4, 'main st', 'Main Street', 13, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-105.46875,56.36525013685606] }'), 4326));
             INSERT INTO address (id, text, _text, number, geom) VALUES (5, 'fake av', 'Fake Avenue', 10, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-85.25390625,52.908902047770255] }'), 4326));
             COMMIT;
         `, function(err, res) {
