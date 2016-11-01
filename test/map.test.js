@@ -13,7 +13,7 @@ test('map', function(t) {
 
 test('map', function(t) {
     worker({
-        'in-address': './test/workers/'
+        'in-address': './test/fixtures/sg-address.geojson'
     }, function(err, res) {
         t.equals(err.toString(), 'Error: --in-address=<FILE.geojson> argument required');
         t.end();
