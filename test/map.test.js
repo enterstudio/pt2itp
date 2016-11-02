@@ -71,6 +71,7 @@ test('drop database', function(t) {
         COMMIT;
     `, function(err) {
         t.error(err);
+        pool.end();
         t.end();
     });
 });
