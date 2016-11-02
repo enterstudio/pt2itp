@@ -5,34 +5,10 @@ var test = require('./lib/test');
 var map = require('./lib/map');
 var convert = require('./lib/convert');
 var settings = require('./package.json');
-var util = require('./lib/util');
-var name = require('./lib/name');
 
 var argv = require('minimist')(process.argv, {
-    string: [
-        "input",
-        "output",
-        "in-network",
-        "in-address",
-        "addresses",
-        "itp",
-        "tokens",
-        "map",
-        "coords",
-        "query",
-        "xy",
-        "raw"
-    ],
-    integer: ["workers", "zoom"],
-    boolean: ["help", "debug", "name"],
-    alias: {
-        "in-address": "in-addresses",
-        "address": "addresses",
-        "version": "v",
-        "output":  "o",
-        "input":   "i",
-        "tokens": "token"
-    }
+    boolean: ["help", "version"],
+    alias: { "version": "v" }
 });
 
 if (argv.help) {
@@ -47,23 +23,18 @@ switch (argv._[2]) {
     case ("help"):
         help(argv);
         break;
-    case ("util"):
-        util(argv, function(err, res) {
+    case ("map"):
+        map(process.argv, function(err) {
             if (err) {
-                console.error(err.toString());
+                console.error(err.stack);
                 process.exit(1);
-            } else {
-                console.log(res);
-                process.exit(0);
             }
+            console.log('ok - processing complete');
+            process.exit(0);
         });
         break;
-    case ("name"):
-    case ("map"):
-        map(argv);
-        break;
     case ("test"):
-        test(argv, function(err) {
+        test(process.argv, function(err) {
             if (err) {
                 console.error(err.toString());
                 process.exit(1);
@@ -71,7 +42,7 @@ switch (argv._[2]) {
         });
         break;
     case ("convert"):
-        convert(argv, function(err) {
+        convert(process.argv, function(err) {
             if (err) {
                 console.error(err.toString());
                 process.exit(1);
