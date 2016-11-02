@@ -10,6 +10,15 @@
 
 ## Version History
 
+### v5.0.0
+
+- :rocket: Huge rewrite of backend to move from vector tiles to postgres backed data processing
+- :rocket: Input data is now raw geojson (line delimited). This is the same geojson that would have been fed into
+            tippecanoe so it should be a relatively minor change cli wise.
+- :rocket: add `--map-network` & `--map-address` options to have sparate map files for diffing input types.
+- :pencil2: Dropped `util` mode which did tile calculations
+- :pencil2: Dropped `name` mode. Now done automatically
+
 ### v4.2.1
 
 - :bug: Remove unnecessary tile.toGeoJSON which caused a fatal error on empty tiles
