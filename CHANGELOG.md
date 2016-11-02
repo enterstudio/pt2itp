@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v5.0.2
+
+- :bug: path.join => path.resolve to go to correct geojson file in --network/--address path
+
 ### v5.0.1
 
 - :bug: tile-cover and tilebelt are still needed for zxy calc
