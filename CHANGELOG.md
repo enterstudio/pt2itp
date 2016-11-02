@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v5.0.1
+
+- :bug: tile-cover and tilebelt are still needed for zxy calc
+
 ### v5.0.0
 
 - :rocket: Huge rewrite of backend to move from vector tiles to postgres backed data processing
