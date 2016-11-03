@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v5.1.0
+
+- :bug: Rework internals to never defer an entire id stack to avoid callback overflow on large sources
+
 ### v5.0.2
 
 - :bug: path.join => path.resolve to go to correct geojson file in --network/--address path
