@@ -8,7 +8,10 @@ var settings = require('./package.json');
 
 var argv = require('minimist')(process.argv, {
     boolean: ["help", "version"],
-    alias: { "version": "v" }
+    alias: {
+        "version": "v",
+        "help": "?"
+    }
 });
 
 if (argv.help) {

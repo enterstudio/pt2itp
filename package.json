@@ -12,21 +12,21 @@
   "author": "Nicholas Ingalls <nicholas.ingalls@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "@turf/turf": "3.5.2",
-    "carmen": "17.0.0",
-    "d3-queue": "3.0.3",
+    "@mapbox/carmen": "22.1.0",
+    "@mapbox/tile-cover": "^3.0.2",
+    "@mapbox/tilebelt": "^1.0.1",
+    "@turf/turf": "4.1.0",
+    "d3-queue": "3.0.5",
     "lodash": "^4.2.0",
     "minimist": "^1.2.0",
     "pg": "^6.1.0",
     "pg-cursor": "^1.0.1",
-    "tile-cover": "^3.0.1",
-    "tilebelt": "^1.0.1",
     "turf-line-slice-at-intersection": "^1.0.1",
     "wellknown": "^0.5.0"
   },
   "devDependencies": {
     "tape": "^4.2.0",
-    "eslint": "3.7.1",
+    "eslint": "3.19.0",
     "coveralls": "^2.11.4",
     "istanbul": "^0.4.0"
   },
@@ -66,7 +66,7 @@
     }
   },
   "engines": {
-    "node": "4.2.3"
+    "node": "6.x.x"
   },
   "repository": {
     "type": "git"
