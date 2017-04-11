@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
-var help = require('./lib/help');
-var test = require('./lib/test');
-var map = require('./lib/map');
-var convert = require('./lib/convert');
-var settings = require('./package.json');
+const help = require('./lib/help');
+const test = require('./lib/test');
+const map = require('./lib/map');
+const convert = require('./lib/convert');
+const settings = require('./package.json');
 
 var argv = require('minimist')(process.argv, {
-    boolean: ["help", "version"],
+    boolean: ['help', 'version'],
     alias: {
-        "version": "v",
-        "help": "?"
+        'version': 'v',
+        'help': '?'
     }
 });
 
@@ -23,10 +23,10 @@ if (argv.help) {
 }
 
 switch (argv._[2]) {
-    case ("help"):
+    case ('help'):
         help(argv);
         break;
-    case ("map"):
+    case ('map'):
         map(process.argv, function(err) {
             if (err) {
                 console.error(err.stack);
@@ -36,7 +36,7 @@ switch (argv._[2]) {
             process.exit(0);
         });
         break;
-    case ("test"):
+    case ('test'):
         test(process.argv, function(err) {
             if (err) {
                 console.error(err.toString());
@@ -44,7 +44,7 @@ switch (argv._[2]) {
             }
         });
         break;
-    case ("convert"):
+    case ('convert'):
         convert(process.argv, function(err) {
             if (err) {
                 console.error(err.toString());
