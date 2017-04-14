@@ -186,7 +186,6 @@ test('cluster.address', function(t) {
         pool.query(`
             BEGIN;
             CREATE TABLE address (id SERIAL, text TEXT, _text TEXT, number INT, geom GEOMETRY(POINT, 4326));
-            CREATE TABLE address_cluster (id SERIAL, text TEXT, _text TEXT, number TEXT, geom GEOMETRY(MULTIPOINT, 4326));
             COMMIT;
         `, function(err, res) {
             t.error(err);
@@ -211,7 +210,7 @@ test('cluster.address', function(t) {
     });
 
     popQ.defer(function(done) {
-        cluster.address('main st', pool, function(err) {
+        cluster.address(pool, function(err) {
             t.error(err);
             return done();
         });
@@ -219,13 +218,14 @@ test('cluster.address', function(t) {
 
     popQ.defer(function(done) {
         pool.query(`
-            SELECT id, text, ST_AsGeoJSON(geom) AS geom FROM address_cluster;
+            SELECT id, text, ST_AsGeoJSON(geom) AS geom FROM address_cluster ORDER BY text, id;
         `, function(err, res) {
             t.error(err);
 
-            t.equals(res.rows.length, 2);
-            t.deepEquals(res.rows[0], { geom: '{"type":"MultiPoint","coordinates":[[-66.97265625,43.9611906389202],[-66.97265625,43.9611906389202]]}', id: 1, text: 'main st' });
-            t.deepEquals(res.rows[1], { geom: '{"type":"MultiPoint","coordinates":[[-105.46875,56.3652501368561],[-105.46875,56.3652501368561]]}', id: 2, text: 'main st' });
+            t.equals(res.rows.length, 3);
+            t.deepEquals(res.rows[0], { geom: '{"type":"MultiPoint","coordinates":[[-85.25390625,52.9089020477703]]}', id: 1, text: 'fake av' }, 'fake av');
+            t.deepEquals(res.rows[1], { geom: '{"type":"MultiPoint","coordinates":[[-66.97265625,43.9611906389202],[-66.97265625,43.9611906389202]]}', id: 2, text: 'main st' });
+            t.deepEquals(res.rows[2], { geom: '{"type":"MultiPoint","coordinates":[[-105.46875,56.3652501368561],[-105.46875,56.3652501368561]]}', id: 3, text: 'main st' });
             return done();
         });
     });
@@ -253,7 +253,6 @@ test('cluster.network', function(t) {
         pool.query(`
             BEGIN;
             CREATE TABLE network (id SERIAL, text TEXT, _text TEXT, geom GEOMETRY(LINESTRING, 4326));
-            CREATE TABLE network_cluster (id SERIAL, text TEXT, _text TEXT, geom GEOMETRY(MULTILINESTRING, 4326));
             COMMIT;
         `, function(err, res) {
             t.error(err);
@@ -277,7 +276,7 @@ test('cluster.network', function(t) {
     });
 
     popQ.defer(function(done) {
-        cluster.network('main st', pool, function(err) {
+        cluster.network(pool, function(err) {
             t.error(err);
             return done();
         });
