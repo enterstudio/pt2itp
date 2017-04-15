@@ -1,12 +1,12 @@
-var cluster = require('../lib/cluster');
-var freq = require('../lib/freq');
+const cluster = require('../lib/cluster');
+const freq = require('../lib/freq');
 
-var test = require('tape');
-var fs = require('fs');
-var pg = require('pg');
-var Queue = require('d3-queue').queue;
+const test = require('tape');
+const fs = require('fs');
+const pg = require('pg');
+const Queue = require('d3-queue').queue;
 
-var pool = new pg.Pool({
+const pool = new pg.Pool({
     max: 10,
     user: 'postgres',
     database: 'pt_test',
@@ -14,7 +14,7 @@ var pool = new pg.Pool({
 });
 
 test('cluster.name', (t) => {
-    var popQ = Queue(1);
+    const popQ = Queue(1);
 
     //CREATE pt2itp TABLES
     popQ.defer((done) => {
@@ -99,7 +99,7 @@ test('cluster.name', (t) => {
 });
 
 test('cluster.match', (t) => {
-    var popQ = Queue(1);
+    const popQ = Queue(1);
 
     //CREATE pt2itp TABLES
     popQ.defer((done) => {
@@ -140,7 +140,7 @@ test('cluster.match', (t) => {
     });
 
     popQ.defer((done) => {
-        var calc = freq(['main st'], ['main st', 'fake av'])
+        let calc = freq(['main st'], ['main st', 'fake av'])
 
         cluster.match(1, calc, pool, (err) => {
             t.error(err);
@@ -179,7 +179,7 @@ test('cluster.match', (t) => {
 });
 
 test('cluster.address', (t) => {
-    var popQ = Queue(1);
+    const popQ = Queue(1);
 
     //CREATE pt2itp TABLES
     popQ.defer((done) => {
@@ -246,7 +246,7 @@ test('cluster.address', (t) => {
 });
 
 test('cluster.network', (t) => {
-    var popQ = Queue(1);
+    const popQ = Queue(1);
 
     //CREATE pt2itp TABLES
     popQ.defer((done) => {

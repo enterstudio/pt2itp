@@ -6,7 +6,7 @@ const map = require('./lib/map');
 const convert = require('./lib/convert');
 const settings = require('./package.json');
 
-var argv = require('minimist')(process.argv, {
+let argv = require('minimist')(process.argv, {
     boolean: ['help', 'version'],
     alias: {
         'version': 'v',
@@ -27,7 +27,7 @@ switch (argv._[2]) {
         help(argv);
         break;
     case ('map'):
-        map(process.argv, function(err) {
+        map(process.argv, (err) => {
             if (err) {
                 console.error(err.stack);
                 process.exit(1);
@@ -37,7 +37,7 @@ switch (argv._[2]) {
         });
         break;
     case ('test'):
-        test(process.argv, function(err) {
+        test(process.argv, (err) => {
             if (err) {
                 console.error(err.toString());
                 process.exit(1);
@@ -45,7 +45,7 @@ switch (argv._[2]) {
         });
         break;
     case ('convert'):
-        convert(process.argv, function(err) {
+        convert(process.argv, (err) => {
             if (err) {
                 console.error(err.toString());
                 process.exit(1);
