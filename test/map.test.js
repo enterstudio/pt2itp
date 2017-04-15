@@ -1,61 +1,61 @@
-var worker = require('../lib/map');
-var test = require('tape');
-var path = require('path');
-var fs = require('fs');
-var pg = require('pg');
+const worker = require('../lib/map');
+const test = require('tape');
+const path = require('path');
+const fs = require('fs');
+const pg = require('pg');
 
-test('map - in-address error', function(t) {
+test('map - in-address error', (t) => {
     worker({
-    }, function(err, res) {
+    }, (err, res) => {
         t.equals(err.toString(), 'Error: --in-address=<FILE.geojson> argument required');
         t.end();
     });
 });
 
-test('map - in-network error', function(t) {
+test('map - in-network error', (t) => {
     worker({
         'in-address': './test/fixtures/sg-address.geojson'
-    }, function(err, res) {
+    }, (err, res) => {
         t.equals(err.toString(), 'Error: --in-network=<FILE.geojson> argument required');
         t.end();
     });
 });
 
-test('map - output error', function(t) {
+test('map - output error', (t) => {
     worker({
         'in-address': './test/fixtures/sg-address.geojson',
         'in-network': './test/fixtures/sg-network.geojson'
-    }, function(err, res) {
+    }, (err, res) => {
         t.equals(err.toString(), 'Error: --output=<FILE.geojson> argument required');
         t.end();
     });
 });
 
-test('map - db error', function(t) {
+test('map - db error', (t) => {
     worker({
         'in-address': './test/fixtures/sg-address.geojson',
         'in-network': './test/fixtures/sg-network.geojson',
         'output': '/tmp/itp.geojson'
-    }, function(err, res) {
+    }, (err, res) => {
         t.equals(err.toString(), 'Error: --db=<DATABASE> argument required');
         t.end();
     });
 });
 
-test('map - output error', function(t) {
+test('map - output error', (t) => {
     worker({
         'in-address': './test/fixtures/sg-address.geojson',
         'in-network': './test/fixtures/sg-network.geojson',
         'output': '/tmp/itp.geojson',
         'db': 'pt_test'
-    }, function(err, res) {
+    }, (err, res) => {
         t.error(err);
         t.end();
     });
 });
 
-test('drop database', function(t) {
-    var pool = new pg.Pool({
+test('drop database', (t) => {
+    let pool = new pg.Pool({
         max: 10,
         user: 'postgres',
         database: 'pt_test',
@@ -69,7 +69,7 @@ test('drop database', function(t) {
         DROP TABLE network;
         DROP TABLE network_cluster;
         COMMIT;
-    `, function(err) {
+    `, (err) => {
         t.error(err);
         pool.end();
         t.end();
