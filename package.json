@@ -4,7 +4,7 @@
   "description": "Attach interpolation values given a road network and address points",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint index.js lib",
+    "lint": "eslint index.js test/* lib/*",
     "coverage": "istanbul cover tape test/*.js && coveralls < ./coverage/lcov.info",
     "test": "tape test/*.test.js",
     "pretest": "echo 'DROP DATABASE pt_test; CREATE DATABASE pt_test;' | psql -U postgres && echo 'CREATE EXTENSION postgis' | psql -U postgres pt_test"
@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "tape": "^4.2.0",
-    "eslint": "3.19.0",
+    "eslint": "^3.19.0",
     "coveralls": "^2.11.4",
     "istanbul": "^0.4.0"
   },
