@@ -1,8 +1,8 @@
-var tokenize = require('../lib/tokenize');
-var test = require('tape');
-var fs = require('fs');
+const tokenize = require('../lib/tokenize');
+const test = require('tape');
+const fs = require('fs');
 
-test('tokenizes basic strings', function(t) {
+test('tokenizes basic strings', (t) => {
     t.deepEqual(tokenize('foo'), ['foo']);
     t.deepEqual(tokenize('foo bar'), ['foo', 'bar']);
     t.deepEqual(tokenize('foo-bar'), ['foo', 'bar'], 'splits on - (non-numeric)');
@@ -30,7 +30,7 @@ test('tokenizes basic strings', function(t) {
     t.end();
 });
 
-test('Uses replacement tokens', function(t) {
+test('Uses replacement tokens', (t) => {
     t.deepEqual(tokenize('foo', null), ['foo'], 'handles null token replacer');
     t.deepEqual(tokenize('foo', {}), ['foo'], 'handles empty args');
     t.deepEqual(tokenize('foo', { tokens: [] }), ['foo'], 'handles empty tokens array');
@@ -38,7 +38,7 @@ test('Uses replacement tokens', function(t) {
     t.end();
 });
 
-test('edge cases - empty string', function(t) {
+test('edge cases - empty string', (t) => {
     t.deepEqual(tokenize(''), []);
     t.end();
 });

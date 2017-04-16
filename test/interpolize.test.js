@@ -1,10 +1,10 @@
-var test = require('tape');
-var interpolize = require('../lib/interpolize');
-var turf = require('@turf/turf');
-var fs = require('fs');
+const test = require('tape');
+const interpolize = require('../lib/interpolize');
+const turf = require('@turf/turf');
+const fs = require('fs');
 
-test('LSB forward', function(t) {
-    var LSB = interpolize.lsb(
+test('LSB forward', (t) => {
+    let LSB = interpolize.lsb(
         [-79.37625288963318,38.83449282408381],
         [-79.37467575073241,38.83594698648804]
     )
@@ -12,8 +12,8 @@ test('LSB forward', function(t) {
     t.end();
 });
 
-test('LSB reverse', function(t) {
-    var LSB = interpolize.lsb(
+test('LSB reverse', (t) => {
+    let LSB = interpolize.lsb(
         [-79.37467575073241,38.83594698648804],
         [-79.37625288963318,38.83449282408381]
     )
@@ -21,8 +21,8 @@ test('LSB reverse', function(t) {
     t.end();
 });
 
-test('segments', function(t) {
-    var seg = interpolize.segment(
+test('segments', (t) => {
+    let seg = interpolize.segment(
         {
             "type": "Feature",
             "properties": {},
@@ -38,22 +38,22 @@ test('segments', function(t) {
     t.end();
 });
 
-test('Interpolize - Missing args', function(t) {
-    t.throws(function() {
-        var res = interpolize(null, null, null);
+test('Interpolize - Missing args', (t) => {
+    t.throws(() => {
+        interpolize(null, null, null);
     }, /argv required/, 'did not throw with expected message');
     t.end();
 });
 
-test('Interpolize - Missing zoom', function(t) {
-    t.throws(function() {
-        var res = interpolize(null, null, {});
+test('Interpolize - Missing zoom', (t) => {
+    t.throws(() => {
+        interpolize(null, null, {});
     }, /argv\.zoom required/, 'did not throw with expected message');
     t.end();
 });
 
-test('Interpolize', function(t) {
-    var street = {
+test('Interpolize', (t) => {
+    let street = {
         type: "Feature",
         properties: { street: "Battleridge Place" },
         geometry: {
@@ -65,7 +65,7 @@ test('Interpolize', function(t) {
         }
     }
 
-    var address = {
+    let address = {
         type: "Feature",
         properties: {
             street: "Battleridge Place",
@@ -82,7 +82,7 @@ test('Interpolize', function(t) {
         }
     }
 
-    var res = interpolize(street, address, {zoom: 14});
+    let res = interpolize(street, address, {zoom: 14});
     t.deepEquals(res.properties, {
         'carmen:text': 'Battleridge Place',
         'carmen:center': [ -77.2106346487999, 39.17712917725643 ],
@@ -97,8 +97,8 @@ test('Interpolize', function(t) {
     t.end();
 });
 
-test('Interpolize - DEBUG', function(t) {
-    var street = {
+test('Interpolize - DEBUG', (t) => {
+    let street = {
         type: "Feature",
         properties: {
             street: ["Battleridge", "Place"],
@@ -113,7 +113,7 @@ test('Interpolize - DEBUG', function(t) {
         }
     }
 
-    var address = {
+    let address = {
         type: "Feature",
         properties: {
             street: ["Battleridge", "Place"],
@@ -130,9 +130,9 @@ test('Interpolize - DEBUG', function(t) {
         }
     }
 
-    var res = interpolize(street, address, { debug: true, zoom: 14 });
+    let res = interpolize(street, address, { debug: true, zoom: 14 });
 
-    res.features.forEach(function(sng_feat, sng_feat_it) {
+    res.features.forEach((sng_feat, sng_feat_it) => {
         if (!res.features[sng_feat_it].properties.address) {
             if (res.features[sng_feat_it].geometry.type === 'LineString') {
                 t.ok(res.features[sng_feat_it].id, sng_feat_it + ' has id field');
@@ -149,8 +149,8 @@ test('Interpolize - DEBUG', function(t) {
     t.end();
 });
 
-test('Interpolize - Addr past line end', function(t) {
-    var street = {
+test('Interpolize - Addr past line end', (t) => {
+    let street = {
         type: "Feature",
         properties: {
             street: ["Battleridge", "Place"],
@@ -165,7 +165,7 @@ test('Interpolize - Addr past line end', function(t) {
         }
     }
 
-    var address = {
+    let address = {
         type: "Feature",
         properties: {
             street: ["Battleridge", "Place"],
@@ -184,9 +184,9 @@ test('Interpolize - Addr past line end', function(t) {
         }
     }
 
-    var res = interpolize(street, address, { debug: true, zoom: 14 });
+    let res = interpolize(street, address, { debug: true, zoom: 14 });
 
-    res.features.forEach(function(sng_feat, sng_feat_it) {
+    res.features.forEach((sng_feat, sng_feat_it) => {
         if (!res.features[sng_feat_it].properties.address) {
             if (res.features[sng_feat_it].geometry.type === 'LineString') {
                 t.ok(res.features[sng_feat_it].id, sng_feat_it + ' has id field');
@@ -203,8 +203,8 @@ test('Interpolize - Addr past line end', function(t) {
     t.end();
 });
 
-test('Interpolize - Addr past line end - opposite', function(t) {
-    var street = {
+test('Interpolize - Addr past line end - opposite', (t) => {
+    let street = {
         type: "Feature",
         properties: {
             street: ["Battleridge", "Place"],
@@ -219,7 +219,7 @@ test('Interpolize - Addr past line end - opposite', function(t) {
         }
     }
 
-    var address = {
+    let address = {
         type: "Feature",
         properties: {
             street: ["Battleridge", "Place"],
@@ -238,9 +238,9 @@ test('Interpolize - Addr past line end - opposite', function(t) {
         }
     }
 
-    var res = interpolize(street, address, { debug: true, zoom: 14 });
+    let res = interpolize(street, address, { debug: true, zoom: 14 });
 
-    res.features.forEach(function(sng_feat, sng_feat_it) {
+    res.features.forEach((sng_feat, sng_feat_it) => {
         if (!res.features[sng_feat_it].properties.address) {
             if (res.features[sng_feat_it].geometry.type === 'LineString') {
                 t.ok(res.features[sng_feat_it].id, sng_feat_it + ' has id field');
@@ -257,8 +257,8 @@ test('Interpolize - Addr past line end - opposite', function(t) {
     t.end();
 });
 
-test('Interpolize - Addr past line end - bend', function(t) {
-    var street = {
+test('Interpolize - Addr past line end - bend', (t) => {
+    let street = {
         type: "Feature",
         properties: {
             street: ["Battleridge", "Place"],
@@ -274,7 +274,7 @@ test('Interpolize - Addr past line end - bend', function(t) {
         }
     }
 
-    var address = {
+    let address = {
         type: "Feature",
         properties: {
             street: ["Battleridge", "Place"],
@@ -291,9 +291,9 @@ test('Interpolize - Addr past line end - bend', function(t) {
         }
     }
 
-    var res = interpolize(street, address, { debug: true, zoom: 14 });
+    let res = interpolize(street, address, { debug: true, zoom: 14 });
 
-    res.features.forEach(function(sng_feat, sng_feat_it) {
+    res.features.forEach((sng_feat, sng_feat_it) => {
         if (!res.features[sng_feat_it].properties.address) {
             if (res.features[sng_feat_it].geometry.type === 'LineString') {
                 t.ok(res.features[sng_feat_it].id, sng_feat_it + ' has id field');
@@ -310,8 +310,8 @@ test('Interpolize - Addr past line end - bend', function(t) {
     t.end();
 });
 
-test('Interpolize - Addr past line end - bend - reverse', function(t) {
-    var street = {
+test('Interpolize - Addr past line end - bend - reverse', (t) => {
+    let street = {
         type: "Feature",
         properties: {
             street: ["Battleridge", "Place"],
@@ -327,7 +327,7 @@ test('Interpolize - Addr past line end - bend - reverse', function(t) {
         }
     }
 
-    var address = {
+    let address = {
         type: "Feature",
         properties: {
             street: ["Battleridge", "Place"],
@@ -344,9 +344,9 @@ test('Interpolize - Addr past line end - bend - reverse', function(t) {
         }
     }
 
-    var res = interpolize(street, address, { debug: true, zoom: 14 });
+    let res = interpolize(street, address, { debug: true, zoom: 14 });
 
-    res.features.forEach(function(sng_feat, sng_feat_it) {
+    res.features.forEach((sng_feat, sng_feat_it) => {
         if (!res.features[sng_feat_it].properties.address) {
             if (res.features[sng_feat_it].geometry.type === 'LineString') {
                 t.ok(res.features[sng_feat_it].id, sng_feat_it + ' has id field');
