@@ -10,6 +10,12 @@
 
 ## Version History
 
+### v7.0.0
+
+- :tada: Numbers are cheap eh?
+- Rewrite `test` mode to work on an entire index instead of indexing on the fly in memory for a single vector tile as this isn't possbile anymore
+- Rewite Map Mode with a lot of thought going towards optimizing queries and rewriting where possible. Singapore is 114x faster on 7.0 from 6.0
+
 ### v6.0.0
 
 - :rocket: Update to Node 6.x.x
