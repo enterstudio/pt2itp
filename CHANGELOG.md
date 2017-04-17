@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v7.1.0
+
+- :tada: `test` mode now bases pass/fail on distance
+- :tada: `test` mode now uses carmen `proximity` option when coordinates are given
+
 ### v7.0.0
 
 - :tada: Numbers are cheap eh?
