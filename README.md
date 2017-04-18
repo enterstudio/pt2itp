@@ -42,3 +42,13 @@ Input line-delimited geojson features of lines. Each line should have a property
 ```
 ./index.js map --in-network=<FILE.geojson> --in-address=<File.geojson> --output=<File.geojson> --tokens=./lib/tokens/en.json"
 ```
+
+## Version Numbers
+
+PT2ITP follows the [Semver](http://semver.org/) spec for it's **CLI interface**.
+
+This means that breaking changes to the CLI tools will result in a `MAJOR` release.
+New features will result in a `MINOR` release and bug fixes a `PATCH`.
+
+Internal functions may change in breaking ways with a `MINOR` release so long as they
+don't change/break the CLI interface.
