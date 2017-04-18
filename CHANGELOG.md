@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v7.2.0
+
+- :rocket: The purity of freq has been restored! It only accepts a single text array instead of an address/network array to concat.
+- :rocket: Pre-calculate cluster.match buffer value to force postgres to use GIST indexes
+
 ### v7.1.0
 
 - :tada: `test` mode now bases pass/fail on distance
