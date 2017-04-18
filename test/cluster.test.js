@@ -23,7 +23,7 @@ test('cluster.name', (t) => {
             CREATE TABLE address (id SERIAL, text TEXT, _text TEXT, number INT, geom GEOMETRY(POINT, 4326));
             CREATE TABLE address_cluster (id SERIAL, text TEXT, _text TEXT, number TEXT, geom GEOMETRY(MULTIPOINT, 4326));
             CREATE TABLE network (id SERIAL, text TEXT, _text TEXT, named BOOLEAN, geom GEOMETRY(LINESTRING, 4326));
-            CREATE TABLE network_cluster (id SERIAL, text TEXT, _text TEXT, address INT, geom GEOMETRY(MULTILINESTRING, 4326));
+            CREATE TABLE network_cluster (id SERIAL, text TEXT, _text TEXT, address INT, geom GEOMETRY(MULTILINESTRING, 4326), buffer GEOMETRY(POLYGON, 4326));
             COMMIT;
         `, (err, res) => {
             t.error(err);
@@ -106,7 +106,7 @@ test('cluster.match', (t) => {
         pool.query(`
             BEGIN;
             CREATE TABLE address_cluster (id SERIAL, text TEXT, _text TEXT, number TEXT, geom GEOMETRY(MULTIPOINT, 4326));
-            CREATE TABLE network_cluster (id SERIAL, text TEXT, _text TEXT, address INT, geom GEOMETRY(MULTILINESTRING, 4326));
+            CREATE TABLE network_cluster (id SERIAL, text TEXT, _text TEXT, address INT, geom GEOMETRY(MULTILINESTRING, 4326), buffer GEOMETRY(POLYGON, 4326));
             COMMIT;
         `, (err, res) => {
             t.error(err);
@@ -119,6 +119,7 @@ test('cluster.match', (t) => {
         pool.query(`
             BEGIN;
             INSERT INTO network_cluster (id, text, _text, geom) VALUES (1, 'main st', 'Main Street', ST_Multi(ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "LineString", "coordinates": [ [ -66.05180561542511, 45.26869136632906 ], [ -66.05007290840149, 45.268982070325656 ] ] }'), 4326)));
+            UPDATE network_cluster SET buffer = ST_Buffer(ST_Envelope(geom), 0.01);
             COMMIT;
         `, (err, res) => {
             t.error(err);
