@@ -1,7 +1,5 @@
 const freq = require('../lib/freq');
-const turf = require('@turf/turf');
 const test = require('tape');
-const _ = require('lodash');
 
 test('freq', (t) => {
 
@@ -11,9 +9,9 @@ test('freq', (t) => {
         'stanley road ne'
     ];
 
-    let res = freq(_.clone(feats), _.clone(feats));
+    let res = freq(feats);
 
-    t.deepEqual(res, { _max: 4, _min: 1, main: 1, ne: 2, road: 2, se: 2, stanley: 2, street: 1, sw: 2 }, 'test result');
+    t.deepEqual(res, { _max: 2, _min: 1, main: 1, ne: 2, road: 2, se: 2, stanley: 2, street: 1, sw: 2 }, 'test result');
     t.end();
 });
 
