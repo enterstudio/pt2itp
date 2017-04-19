@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v7.2.1
+
+- :bug: Add replacement token so comma removal wouldn't add `undefined` string.
+
 ### v7.2.0
 
 - :rocket: The purity of freq has been restored! It only accepts a single text array instead of an address/network array to concat.
