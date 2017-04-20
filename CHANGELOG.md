@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v8.1.1
+
+- :bug: fix edge case where strip-unit map could hard fail
+
 ### v8.1.0
 
 - :tada: add `strip-unit` map for ensuring all house numbers are integers
