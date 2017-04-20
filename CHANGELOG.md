@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v7.2.2
+
+- :tada: Add pt2itp bin command for global installs
+
 ### v7.2.1
 
 - :bug: Add replacement token so comma removal wouldn't add `undefined` string.
