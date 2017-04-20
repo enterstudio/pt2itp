@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v8.0.0
+
+- :rocket: `--tokens` flag now just takes a single country code instead of a path ie: `--tokens en`
+- :rocket: `--map-network`,`--map-address` flag now just takes a single module name instead of a path ie: `--map-network minjur`
+
 ### v7.2.2
 
 - :tada: Add pt2itp bin command for global installs
