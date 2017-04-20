@@ -3,6 +3,9 @@
   "version": "7.2.1",
   "description": "Attach interpolation values given a road network and address points",
   "main": "index.js",
+  "bin": {
+    "pt2itp": "./index.js"
+  },
   "scripts": {
     "lint": "eslint index.js test/* lib/*",
     "coverage": "istanbul cover tape test/*.js && coveralls < ./coverage/lcov.info",
