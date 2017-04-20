@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v8.1.0
+
+- :tada: add `strip-unit` map for ensuring all house numbers are integers
+
 ### v8.0.1
 
 - :bug: maps appended `__dirname` twice
