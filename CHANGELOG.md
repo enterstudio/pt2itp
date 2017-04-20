@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v8.0.1
+
+- :bug: maps appended `__dirname` twice
+
 ### v8.0.0
 
 - :rocket: `--tokens` flag now just takes a single country code instead of a path ie: `--tokens en`
