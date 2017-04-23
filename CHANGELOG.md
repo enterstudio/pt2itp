@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.0.1
+
+- :bug: Fix validity of output GeometryCollection
+
 ### v9.0.0
 
 - :rocket: Output final geometry as a Carmen Compatible GeometryCollection that contains both the network and the component addresses that went into making the interpolation.
