@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.1.0
+
+- :rocket: Concat multiple Point/LineString geoms into a single Multi within the geometry for simplicity
+
 ### v9.0.1
 
 - :bug: Fix validity of output GeometryCollection when Addresses are not matched
