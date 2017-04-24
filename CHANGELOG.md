@@ -12,6 +12,10 @@
 
 ### v9.0.1
 
+- :bug: Fix validity of output GeometryCollection when Addresses are not matched
+
+### v9.0.1
+
 - :bug: Fix validity of output GeometryCollection
 
 ### v9.0.0
