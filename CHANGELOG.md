@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.2.0
+
+- :rocket: Output orphaned Addresses (Those not matched with the network) as their own clustered `GeometryCollection`
+
 ### v9.1.0
 
 - :rocket: Concat multiple Point/LineString geoms into a single Multi within the geometry for simplicity
