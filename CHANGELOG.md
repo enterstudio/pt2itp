@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v9.3.1
+
+- :rocket: Calculate centre&ID for non-assigned addresses
+- :bug: double nest non-assigned addresses
+
 ### v9.3.0
 
 - :rocket: Support for unit numbers in final output
