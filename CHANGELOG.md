@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.3.0
+
+- :rocket: Support for unit numbers in final output
+
 ### v9.2.0
 
 - :rocket: Output orphaned Addresses (Those not matched with the network) as their own clustered `GeometryCollection`
