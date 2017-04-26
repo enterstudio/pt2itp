@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.4.0
+
+- :tada: Add tokens for `de en es fi fr he hk it jp kr nl no pt se` lang codes
+
 ### v9.3.4
 
 - :bug: `feat` scope
