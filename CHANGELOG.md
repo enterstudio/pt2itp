@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.3.2
+
+- :rocket: Add error handling for GeoJSON parsing - dump errors to tmp file
+
 ### v9.3.1
 
 - :rocket: Calculate centre&ID for non-assigned addresses
