@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.3.3
+
+- :bug: Error could lead to null feat
+
 ### v9.3.2
 
 - :rocket: Add error handling for GeoJSON parsing - dump errors to tmp file
