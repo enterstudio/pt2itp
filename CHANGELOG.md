@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.3.4
+
+- :bug: `feat` scope
+
 ### v9.3.3
 
 - :bug: Error could lead to null feat
