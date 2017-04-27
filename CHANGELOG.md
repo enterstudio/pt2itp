@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.5.1
+
+- :tada: Reintroduce explode module in ES6ify
+
 ### v9.5.0
 
 - :tada: Add support for multiple token files
