@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.5.0
+
+- :tada: Add support for multiple token files
+
 ### v9.4.0
 
 - :tada: Add tokens for `de en es fi fr he hk it jp kr nl no pt se` lang codes
