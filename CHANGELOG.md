@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.5.2
+
+- :rocket: More robust error handling as a single string/integer could be parsed as valid JSON
+
 ### v9.5.1
 
 - :tada: Reintroduce explode module in ES6ify
