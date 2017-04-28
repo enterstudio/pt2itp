@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v9.6.0
+
+- :tada: Streets are now run through `explode` in an attempt to join them into longer segments
+- :tada: Collections aggregated only if address pts within the cluster don't conflict with each other
+
 ### v9.5.2
 
 - :rocket: More robust error handling as a single string/integer could be parsed as valid JSON
