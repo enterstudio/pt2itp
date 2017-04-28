@@ -1,6 +1,6 @@
 {
   "name": "pt2itp",
-  "version": "9.5.2",
+  "version": "9.6.0",
   "description": "Attach interpolation values given a road network and address points",
   "main": "index.js",
   "bin": {
@@ -37,8 +37,14 @@
   },
   "eslintConfig": {
     "rules": {
-      "no-use-before-define": [ 2, "nofunc" ],
-      "space-before-function-paren": [ 2, "never" ],
+      "no-use-before-define": [
+        2,
+        "nofunc"
+      ],
+      "space-before-function-paren": [
+        2,
+        "never"
+      ],
       "space-in-parens": 2,
       "space-before-blocks": 2,
       "keyword-spacing": 2,
