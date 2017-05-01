@@ -43,12 +43,13 @@
     </div>
     <div id='map'></div>
     <script>
+        let $search = $('.search');
+        $search.val(window.location.hash.replace(/#/, ''));
+
         let empty = {
             "type": "FeatureCollection",
             "features": []
         }
-
-        let $search = $('.search');
 
         mapboxgl.accessToken = 'pk.eyJ1IjoiaW5nYWxscyIsImEiOiJjajI2Ymx4OWYwMGhtMzJxa3VyOTAzMXJjIn0.ci7utjVvmGzD8209TTFneA';
         var map = new mapboxgl.Map({
@@ -68,12 +69,13 @@
             });
 
             map.addLayer({
-                id: "addr",
-                source: "addr",
-                type: "circle",
+                id: 'itp-debug',
+                source: 'itp-debug',
+                type: 'line',
                 paint: {
-                    "circle-radius": 2,
-                    "circle-color": "#FE4042"
+                    'line-color': '#42B4E6',
+                    'line-dasharray': [1, 2],
+                    'line-width': 4
                 }
             });
 
@@ -83,7 +85,7 @@
                 type: "circle",
                 paint: {
                     "circle-radius": 10,
-                    "circle-color": "#0000FF"
+                    "circle-color": "#42B4E6"
                 }
             });
 
@@ -105,10 +107,27 @@
                     "line-cap": "round"
                 },
                 paint: {
-                    "line-color": "#FE4042",
+                    "line-color": {
+                        "property": "color",
+                        "type": "categorical",
+                        "stops": [
+                            [1, "#0074D9"],
+                            [2, "#7FDBFF"],
+                            [3, "#39CCCC"],
+                            [4, "#2ECC40"],
+                            [5, "#01FF70"],
+                            [6, "#FFDC00"],
+                            [7, "#F012BE"],
+                            [8, "#AAAAAA"],
+                            [9, "#B10DC9"],
+                            [10, "#FF851B"]
+                        ]
+                    },
                     "line-width": 12
                 }
             });
+
+            if ($search.val()) getID($search.val());
         });
 
         map.on('click', (e) => {
@@ -133,59 +152,80 @@
         $search.on('keyup', function(event) {
             if (event.keyCode === 13) {
                 clear();
-                var val = $search.val();
-
-                if (isNaN(Number(val))) {
-                    $search.val('');
-                    return alert('ID must be numeric');
-                }
-
-                $.get('/api/id/'+val, (res) => {
-                    if (!res) {
-                        $search.val('');
-                        return alert('Error fetching id!');
-                    }
-
-                    set(res, {
-                        fit: true
-                    });            
-                }).fail(() => {
-                    $search.val('');
-                    return alert('Error fetching id!');
-                });
+                getID($search.val());
             }
         });
 
+        function getID(val) {
+            if (isNaN(Number(val))) {
+                $search.val('');
+                return alert('ID must be numeric');
+            }
+
+            $.get('/api/id/'+val, (res) => {
+                if (!res) {
+                    $search.val('');
+                    return alert('Error fetching id!');
+                }
+
+                set(res, {
+                    fit: true
+                });            
+            }).fail(() => {
+                $search.val('');
+                return alert('Error fetching id!');
+            });
+        }
+
         function set(res, opts = {}) {
             $search.val(res.id);
+            window.location.hash = String(res.id);
 
             //Process ITP Geom
             map.getSource('itp').setData({
                 type: 'FeatureCollection',
-                features: [{
-                    type: 'Feature',
-                    properties: {
-                        lfromhn:    res.properties['carmen:lfromhn'][0],
-                        ltohn:      res.properties['carmen:ltohn'][0],
-                        rfromhn:    res.properties['carmen:rfromhn'][0],
-                        rtohn:      res.properties['carmen:rtohn'][0],
-                        parityl:    res.properties['carmen:parityl'][0],
-                        parityr:    res.properties['carmen:parityr'][0]
-                    },
-                    geometry: res.geometry.geometries[0]
-                }]
+                features: res.geometry.geometries[0].coordinates.map((line, it) => {
+                    return turf.lineString(line, {
+                        color: Math.floor(Math.random() * 11),
+                        lfromhn: res.properties['carmen:lfromhn'][0][it],
+                        ltohn: res.properties['carmen:ltohn'][0][it],
+                        rfromhn: res.properties['carmen:rfromhn'][0][it],
+                        rtohn: res.properties['carmen:rtohn'][0][it],
+                        parityl: res.properties['carmen:parityl'][0][it],
+                        parityr: res.properties['carmen:parityr'][0][it]
+                    })
+                })
             });
 
             if (res.debug) {
                 let debug = [];
-                res.debug.forEach((bug) => {
+                let line = [];
+
+                res.debug.forEach((bug, bug_it) => {
                     if (!bug) return;
-                    debug = debug.concat(bug.features);
+                    debug = debug.concat(bug.features.filter((feat, feat_it) => {
+                        if (feat) {
+                            if (feat.properties.start) {
+                                line.push(turf.lineString([feat.geometry.coordinates, res.geometry.geometries[0].coordinates[bug_it][0]]));
+                            } 
+                            if (feat.properties.end) {
+                                line.push(turf.lineString([feat.geometry.coordinates, res.geometry.geometries[0].coordinates[bug_it][res.geometry.geometries[0].coordinates[bug_it].length - 1]]))
+                            }
+
+                            return feat;
+                        }
+                        return false;
+                    }));
                 });
 
                 map.getSource('addr-debug').setData({
                     type: 'FeatureCollection',
                     features: debug
+                });
+
+                map.getSource('itp-debug').setData({
+                    type: 'FeatureCollection',
+                    features: line
                 });
             }
 
