@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>PT2ITP Debug</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <link href="https://api.mapbox.com/mapbox-assembly/v0.12.0/assembly.min.css" rel="stylesheet">
+    <script async defer src="https://api.mapbox.com/mapbox-assembly/v0.12.0/assembly.js"></script>
+
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet'/>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.0/mapbox-gl-geocoder.css' type='text/css' />
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+        #map {
+            position: absolute;
+            left: 0;
+            top: 60px;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="relative">
+    <div class='grid grid--gut12 p12 bg-purple'>
+        <div class="col col--8 col--6-mm col--4-ml pr12 z1 bg-purple">
+            <div class='col col--12 relative'>
+                <div class='absolute flex-parent flex-parent--center-cross flex-parent--center-main w36 h36'><svg class='icon'><use xlink:href='#icon-search'></use></svg></div>
+                <input class='search input bg-white px36' placeholder='Search By ID'>
+                <div class='action-search-clear cursor-pointer absolute top right flex-parent flex-parent--center-cross flex-parent--center-main w36 h36'><svg class='icon'><use xlink:href='#icon-close'></use></svg></div>
+            </div>
+        </div>
+    </div>
+    <div id='map'></div>
+    <script>
+        let empty = {
+            "type": "FeatureCollection",
+            "features": []
+        }
+
+        let $search = $('.search');
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoiaW5nYWxscyIsImEiOiJjajI2Ymx4OWYwMGhtMzJxa3VyOTAzMXJjIn0.ci7utjVvmGzD8209TTFneA';
+        var map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/mapbox/streets-v9' //stylesheet location
+        });
+        map.addControl(new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken
+        }));
+
+        map.on('style.load', function () {
+            ['addr', 'itp'].forEach((layer) =>  {
+                map.addSource(layer, {
+                    "type": "geojson",
+                    "data": empty
+                });
+            });
+
+            map.addLayer({
+                id: "addr",
+                source: "addr",
+                type: "circle",
+                paint: {
+                    "circle-radius": 10,
+                    "circle-color": "#FE4042"
+                }
+            });
+
+            map.addLayer({
+                id: "addr-sym",
+                source: "addr",
+                type: "symbol",
+                layout: {
+                    "text-field": "{number}"
+                }
+            });
+
+            map.addLayer({
+                id: "itp",
+                source: "itp",
+                type: "line",
+                layout: {
+                    "line-join": "round",
+                    "line-cap": "round"
+                },
+                paint: {
+                    "line-color": "#FE4042",
+                    "line-width": 12
+                }
+            });
+        });
+
+        map.on('click', (e) => {
+            $.get('/api/coords/'+e.lngLat.lng+','+e.lngLat.lat, (res) => {
+                if (!res) {
+                    $search.val('');
+                    return alert('No feature found!');
+                }
+
+                set(res);            
+            }).fail(() => {
+                $search.val('');
+                return alert('Error fetching clicked feature!');
+            });
+        });
+
+        $('.action-search-clear').on('click', (e) => {
+            $search.val('');
+            clear();
+        });
+
+        $search.on('keyup', function(event) {
+            if (event.keyCode === 13) {
+                clear();
+                var val = $search.val();
+
+                if (isNaN(Number(val))) {
+                    $search.val('');
+                    return alert('ID must be numeric');
+                }
+
+                $.get('/api/id/'+val, (res) => {
+                    if (!res) {
+                        $search.val('');
+                        return alert('Error fetching id!');
+                    }
+
+                    set(res, {
+                        fit: true
+                    });            
+                }).fail(() => {
+                    $search.val('');
+                    return alert('Error fetching id!');
+                });
+            }
+        });
+
+        function set(res, opts = {}) {
+            //Process ITP Geom
+            map.getSource('itp').setData({
+                type: 'FeatureCollection',
+                features: [{
+                    type: 'Feature',
+                    properties: {
+                        lfromhn:    res.properties['carmen:lfromhn'][0],
+                        ltohn:      res.properties['carmen:ltohn'][0],
+                        rfromhn:    res.properties['carmen:rfromhn'][0],
+                        rtohn:      res.properties['carmen:rtohn'][0],
+                        parityl:    res.properties['carmen:parityl'][0],
+                        parityr:    res.properties['carmen:parityr'][0]
+                    },
+                    geometry: res.geometry.geometries[0]
+                }]
+            });
+
+            if (res.geometry.geometries[1]) {
+                map.getSource('addr').setData({
+                    type: 'FeatureCollection',
+                    features: res.properties['carmen:addressnumber'][1].map((addr, it) => {
+                        return {
+                            type: 'Feature',
+                            properties: {
+                                number: addr
+                            },
+                            geometry: {
+                                type: 'Point',
+                                coordinates: res.geometry.geometries[1].coordinates[it]
+                            }
+                        }
+                    })
+                });
+            }
+
+            if (opts.fit) {
+                map.fitBounds(turf.bbox(res.geometry.geometries[0]), {
+                    padding: 20,
+                    linear: true
+                });
+            }
+        }
+
+        function clear() {
+            map.getSource('itp').setData(empty);
+            map.getSource('addr').setData(empty);
+        }
+    </script>
+</body>
+</html>
