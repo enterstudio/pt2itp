@@ -3,6 +3,7 @@
 const help = require('./lib/help');
 const test = require('./lib/test');
 const map = require('./lib/map');
+const debug = require('./lib/debug');
 const convert = require('./lib/convert');
 const settings = require('./package.json');
 
@@ -25,6 +26,16 @@ if (argv.help) {
 switch (argv._[2]) {
     case ('help'):
         help(argv);
+        break;
+    case ('debug'):
+        debug(process.argv, (err) => {
+            if (err) {
+                console.error(err.stack);
+                process.exit(1);
+            }
+            console.log('ok - debug complete');
+            process.exit(0);
+        });
         break;
     case ('map'):
         map(process.argv, (err) => {
@@ -55,4 +66,5 @@ switch (argv._[2]) {
     default:
         help(argv);
         break;
+
 }
