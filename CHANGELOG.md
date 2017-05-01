@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.7.0
+
+- :tada: Add `debug` interface and web backend
+
 ### v9.6.0
 
 - :tada: Streets are now run through `explode` in an attempt to join them into longer segments
