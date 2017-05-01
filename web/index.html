@@ -60,7 +60,7 @@
         }));
 
         map.on('style.load', function () {
-            ['addr', 'itp'].forEach((layer) =>  {
+            ['addr', 'itp', 'addr-debug', 'itp-debug'].forEach((layer) =>  {
                 map.addSource(layer, {
                     "type": "geojson",
                     "data": empty
@@ -72,8 +72,18 @@
                 source: "addr",
                 type: "circle",
                 paint: {
-                    "circle-radius": 10,
+                    "circle-radius": 2,
                     "circle-color": "#FE4042"
+                }
+            });
+
+            map.addLayer({
+                id: "addr-debug",
+                source: "addr-debug",
+                type: "circle",
+                paint: {
+                    "circle-radius": 10,
+                    "circle-color": "#0000FF"
                 }
             });
 
@@ -147,6 +157,8 @@
         });
 
         function set(res, opts = {}) {
+            $search.val(res.id);
+
             //Process ITP Geom
             map.getSource('itp').setData({
                 type: 'FeatureCollection',
@@ -163,6 +175,19 @@
                     geometry: res.geometry.geometries[0]
                 }]
             });
+
+            if (res.debug) {
+                let debug = [];
+                res.debug.forEach((bug) => {
+                    if (!bug) return;
+                    debug = debug.concat(bug.features);
+                });
+
+                map.getSource('addr-debug').setData({
+                    type: 'FeatureCollection',
+                    features: debug
+                });
+            }
 
             if (res.geometry.geometries[1]) {
                 map.getSource('addr').setData({
@@ -193,6 +218,8 @@
         function clear() {
             map.getSource('itp').setData(empty);
             map.getSource('addr').setData(empty);
+            map.getSource('addr-debug').setData(empty);
+            map.getSource('itp-debug').setData(empty);
         }
     </script>
 </body>
