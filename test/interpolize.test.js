@@ -83,58 +83,6 @@ test('Interpolize', (t) => {
     t.end();
 });
 
-test('Interpolize - DEBUG', (t) => {
-    let street = {
-        type: "Feature",
-        properties: {
-            street: ["Battleridge", "Place"],
-            'carmen:text': 'Battleridge Place'
-        },
-        geometry: {
-            type: "LineString",
-            coordinates: [
-                [-77.21062123775481,39.17687343078357],
-                [-77.21064805984497,39.1773849237293]
-            ]
-        }
-    }
-
-    let address = {
-        type: "Feature",
-        properties: {
-            street: ["Battleridge", "Place"],
-            numbers: ["8","10","9","11"]
-        },
-        geometry: {
-            type: "MultiPoint",
-            coordinates: [
-                [-77.21054881811142,39.1769482836422],
-                [-77.21056759357452,39.17731007133552],
-                [-77.2107258439064,39.176966996844406],
-                [-77.21077680587769,39.177320467506085]
-            ]
-        }
-    }
-
-    let res = interpolize(street, address, { debug: true });
-
-    res.features.forEach((sng_feat, sng_feat_it) => {
-        if (!res.features[sng_feat_it].properties.address) {
-            if (res.features[sng_feat_it].geometry.type === 'LineString') {
-                t.ok(res.features[sng_feat_it].id, sng_feat_it + ' has id field');
-                delete res.features[sng_feat_it].id;
-            }
-        }
-    });
-
-    if (process.env.UPDATE) {
-        fs.writeFileSync(__dirname + '/fixtures/itpdebug.json', JSON.stringify(res, null, 4));
-        t.fail('had to update fixture');
-    }
-    t.deepEquals(res, require('./fixtures/itpdebug.json'));
-    t.end();
-});
-
 test('Interpolize - Addr past line end', (t) => {
     let street = {
         type: "Feature",
@@ -171,15 +119,6 @@ test('Interpolize - Addr past line end', (t) => {
     }
 
     let res = interpolize(street, address, { debug: true });
-
-    res.features.forEach((sng_feat, sng_feat_it) => {
-        if (!res.features[sng_feat_it].properties.address) {
-            if (res.features[sng_feat_it].geometry.type === 'LineString') {
-                t.ok(res.features[sng_feat_it].id, sng_feat_it + ' has id field');
-                delete res.features[sng_feat_it].id;
-            }
-        }
-    });
 
     if (process.env.UPDATE) {
         fs.writeFileSync(__dirname + '/fixtures/itp-pastline.json', JSON.stringify(res, null, 4));
@@ -226,15 +165,6 @@ test('Interpolize - Addr past line end - opposite', (t) => {
 
     let res = interpolize(street, address, { debug: true });
 
-    res.features.forEach((sng_feat, sng_feat_it) => {
-        if (!res.features[sng_feat_it].properties.address) {
-            if (res.features[sng_feat_it].geometry.type === 'LineString') {
-                t.ok(res.features[sng_feat_it].id, sng_feat_it + ' has id field');
-                delete res.features[sng_feat_it].id;
-            }
-        }
-    });
-
     if (process.env.UPDATE) {
         fs.writeFileSync(__dirname + '/fixtures/itp-pastline-opp.json', JSON.stringify(res, null, 4));
         t.fail('had to update fixture');
@@ -279,15 +209,6 @@ test('Interpolize - Addr past line end - bend', (t) => {
 
     let res = interpolize(street, address, { debug: true });
 
-    res.features.forEach((sng_feat, sng_feat_it) => {
-        if (!res.features[sng_feat_it].properties.address) {
-            if (res.features[sng_feat_it].geometry.type === 'LineString') {
-                t.ok(res.features[sng_feat_it].id, sng_feat_it + ' has id field');
-                delete res.features[sng_feat_it].id;
-            }
-        }
-    });
-
     if (process.env.UPDATE) {
         fs.writeFileSync(__dirname + '/fixtures/itp-pastline-bend.json', JSON.stringify(res, null, 4));
         t.fail('had to update fixture');
@@ -331,15 +252,6 @@ test('Interpolize - Addr past line end - bend - reverse', (t) => {
     }
 
     let res = interpolize(street, address, { debug: true });
-
-    res.features.forEach((sng_feat, sng_feat_it) => {
-        if (!res.features[sng_feat_it].properties.address) {
-            if (res.features[sng_feat_it].geometry.type === 'LineString') {
-                t.ok(res.features[sng_feat_it].id, sng_feat_it + ' has id field');
-                delete res.features[sng_feat_it].id;
-            }
-        }
-    });
 
     if (process.env.UPDATE) {
         fs.writeFileSync(__dirname + '/fixtures/itp-pastline-bend-rev.json', JSON.stringify(res, null, 4));
