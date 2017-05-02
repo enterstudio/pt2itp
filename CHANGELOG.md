@@ -10,6 +10,12 @@
 
 ## Version History
 
+### v9.8.0
+
+- :rocket: `debug` mode of interpolation.js now writes to `.debug` property with a node for l/r start/end addresses with `left`, `right`, `start`, `end` boolean properties
+           this can optionally be consumed by `debug` mode (makes it farrr more useful than without `--debug` flag)
+- :bug: `explode` module was shirking its duty due to the fact that a `FeatureCollection` of `LineStrings` were being passing instead of `MultiLineStrings`. It's been talked to.
+
 ### v9.7.0
 
 - :tada: Add `debug` interface and web backend
