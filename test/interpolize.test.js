@@ -68,7 +68,7 @@ test('Interpolize', (t) => {
         }
     }
 
-    let res = interpolize(street, address, {zoom: 14});
+    let res = interpolize(street, address);
     t.deepEquals(res.properties, {
         'carmen:text': 'Battleridge Place',
         'carmen:center': [ -77.2106346487999, 39.17712917725643 ],
@@ -116,7 +116,7 @@ test('Interpolize - DEBUG', (t) => {
         }
     }
 
-    let res = interpolize(street, address, { debug: true, zoom: 14 });
+    let res = interpolize(street, address, { debug: true });
 
     res.features.forEach((sng_feat, sng_feat_it) => {
         if (!res.features[sng_feat_it].properties.address) {
@@ -170,7 +170,7 @@ test('Interpolize - Addr past line end', (t) => {
         }
     }
 
-    let res = interpolize(street, address, { debug: true, zoom: 14 });
+    let res = interpolize(street, address, { debug: true });
 
     res.features.forEach((sng_feat, sng_feat_it) => {
         if (!res.features[sng_feat_it].properties.address) {
@@ -224,7 +224,7 @@ test('Interpolize - Addr past line end - opposite', (t) => {
         }
     }
 
-    let res = interpolize(street, address, { debug: true, zoom: 14 });
+    let res = interpolize(street, address, { debug: true });
 
     res.features.forEach((sng_feat, sng_feat_it) => {
         if (!res.features[sng_feat_it].properties.address) {
@@ -277,7 +277,7 @@ test('Interpolize - Addr past line end - bend', (t) => {
         }
     }
 
-    let res = interpolize(street, address, { debug: true, zoom: 14 });
+    let res = interpolize(street, address, { debug: true });
 
     res.features.forEach((sng_feat, sng_feat_it) => {
         if (!res.features[sng_feat_it].properties.address) {
@@ -330,7 +330,7 @@ test('Interpolize - Addr past line end - bend - reverse', (t) => {
         }
     }
 
-    let res = interpolize(street, address, { debug: true, zoom: 14 });
+    let res = interpolize(street, address, { debug: true });
 
     res.features.forEach((sng_feat, sng_feat_it) => {
         if (!res.features[sng_feat_it].properties.address) {
