@@ -68,12 +68,29 @@
                 });
             });
 
+            commonColour = [
+                [1, "#0074D9"],
+                [2, "#7FDBFF"],
+                [3, "#39CCCC"],
+                [4, "#2ECC40"],
+                [5, "#01FF70"],
+                [6, "#FFDC00"],
+                [7, "#F012BE"],
+                [8, "#AAAAAA"],
+                [9, "#B10DC9"],
+                [10, "#FF851B"]
+            ]
+
             map.addLayer({
                 id: 'itp-debug',
                 source: 'itp-debug',
                 type: 'line',
                 paint: {
-                    'line-color': '#42B4E6',
+                    "line-color": {
+                        "property": "colour",
+                        "type": "categorical",
+                        "stops": commonColour
+                    },
                     'line-dasharray': [1, 2],
                     'line-width': 4
                 }
@@ -85,7 +102,11 @@
                 type: "circle",
                 paint: {
                     "circle-radius": 10,
-                    "circle-color": "#42B4E6"
+                    "circle-color": {
+                        "property": "colour",
+                        "type": "categorical",
+                        "stops": commonColour
+                    }
                 }
             });
 
@@ -108,20 +129,9 @@
                 },
                 paint: {
                     "line-color": {
-                        "property": "color",
+                        "property": "colour",
                         "type": "categorical",
-                        "stops": [
-                            [1, "#0074D9"],
-                            [2, "#7FDBFF"],
-                            [3, "#39CCCC"],
-                            [4, "#2ECC40"],
-                            [5, "#01FF70"],
-                            [6, "#FFDC00"],
-                            [7, "#F012BE"],
-                            [8, "#AAAAAA"],
-                            [9, "#B10DC9"],
-                            [10, "#FF851B"]
-                        ]
+                        "stops": commonColour
                     },
                     "line-width": 12
                 }
@@ -181,20 +191,22 @@
             $search.val(res.id);
             window.location.hash = String(res.id);
 
+            let segs = res.geometry.geometries[0].coordinates.map((line, it) => {
+                return turf.lineString(line, {
+                    colour: Math.floor(Math.random() * 11),
+                    lfromhn: res.properties['carmen:lfromhn'][0][it],
+                    ltohn: res.properties['carmen:ltohn'][0][it],
+                    rfromhn: res.properties['carmen:rfromhn'][0][it],
+                    rtohn: res.properties['carmen:rtohn'][0][it],
+                    parityl: res.properties['carmen:parityl'][0][it],
+                    parityr: res.properties['carmen:parityr'][0][it]
+                });
+            });
+
             //Process ITP Geom
             map.getSource('itp').setData({
                 type: 'FeatureCollection',
-                features: res.geometry.geometries[0].coordinates.map((line, it) => {
-                    return turf.lineString(line, {
-                        color: Math.floor(Math.random() * 11),
-                        lfromhn: res.properties['carmen:lfromhn'][0][it],
-                        ltohn: res.properties['carmen:ltohn'][0][it],
-                        rfromhn: res.properties['carmen:rfromhn'][0][it],
-                        rtohn: res.properties['carmen:rtohn'][0][it],
-                        parityl: res.properties['carmen:parityl'][0][it],
-                        parityr: res.properties['carmen:parityr'][0][it]
-                    })
-                })
+                features: segs
             });
 
             if (res.debug) {
@@ -206,12 +218,17 @@
                     debug = debug.concat(bug.features.filter((feat, feat_it) => {
                         if (feat) {
                             if (feat.properties.start) {
-                                line.push(turf.lineString([feat.geometry.coordinates, res.geometry.geometries[0].coordinates[bug_it][0]]));
+                                line.push(turf.lineString([feat.geometry.coordinates, res.geometry.geometries[0].coordinates[bug_it][0]], {
+                                    colour: segs[bug_it].properties.colour
+                                }));
                             } 
                             if (feat.properties.end) {
-                                line.push(turf.lineString([feat.geometry.coordinates, res.geometry.geometries[0].coordinates[bug_it][res.geometry.geometries[0].coordinates[bug_it].length - 1]]))
+                                line.push(turf.lineString([feat.geometry.coordinates, res.geometry.geometries[0].coordinates[bug_it][res.geometry.geometries[0].coordinates[bug_it].length - 1]], {
+                                    colour: segs[bug_it].properties.colour
+                                }));
                             }
 
+                            feat.properties.colour = segs[bug_it].properties.colour;
                             return feat;
                         }
                         return false;
