@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.9.0
+
+- :rocket: Change the way 1km distance thresh. is calculated in explode.js to be more uniform and avoid orphaned short segs inbetween longer 1km segs.
+
 ### v9.8.0
 
 - :rocket: `debug` mode of interpolation.js now writes to `.debug` property with a node for l/r start/end addresses with `left`, `right`, `start`, `end` boolean properties
