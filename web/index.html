@@ -43,12 +43,13 @@
     </div>
     <div id='map'></div>
     <script>
+        let $search = $('.search');
+        $search.val(window.location.hash.replace(/#/, ''));
+
         let empty = {
             "type": "FeatureCollection",
             "features": []
         }
-
-        let $search = $('.search');
 
         mapboxgl.accessToken = 'pk.eyJ1IjoiaW5nYWxscyIsImEiOiJjajI2Ymx4OWYwMGhtMzJxa3VyOTAzMXJjIn0.ci7utjVvmGzD8209TTFneA';
         var map = new mapboxgl.Map({
@@ -60,20 +61,52 @@
         }));
 
         map.on('style.load', function () {
-            ['addr', 'itp'].forEach((layer) =>  {
+            ['addr', 'itp', 'addr-debug', 'itp-debug'].forEach((layer) =>  {
                 map.addSource(layer, {
                     "type": "geojson",
                     "data": empty
                 });
             });
 
+            commonColour = [
+                [1, "#0074D9"],
+                [2, "#7FDBFF"],
+                [3, "#39CCCC"],
+                [4, "#2ECC40"],
+                [5, "#01FF70"],
+                [6, "#FFDC00"],
+                [7, "#F012BE"],
+                [8, "#AAAAAA"],
+                [9, "#B10DC9"],
+                [10, "#FF851B"]
+            ]
+
             map.addLayer({
-                id: "addr",
-                source: "addr",
+                id: 'itp-debug',
+                source: 'itp-debug',
+                type: 'line',
+                paint: {
+                    "line-color": {
+                        "property": "colour",
+                        "type": "categorical",
+                        "stops": commonColour
+                    },
+                    'line-dasharray': [1, 2],
+                    'line-width': 4
+                }
+            });
+
+            map.addLayer({
+                id: "addr-debug",
+                source: "addr-debug",
                 type: "circle",
                 paint: {
                     "circle-radius": 10,
-                    "circle-color": "#FE4042"
+                    "circle-color": {
+                        "property": "colour",
+                        "type": "categorical",
+                        "stops": commonColour
+                    }
                 }
             });
 
@@ -95,10 +128,16 @@
                     "line-cap": "round"
                 },
                 paint: {
-                    "line-color": "#FE4042",
+                    "line-color": {
+                        "property": "colour",
+                        "type": "categorical",
+                        "stops": commonColour
+                    },
                     "line-width": 12
                 }
             });
+
+            if ($search.val()) getID($search.val());
         });
 
         map.on('click', (e) => {
@@ -123,46 +162,89 @@
         $search.on('keyup', function(event) {
             if (event.keyCode === 13) {
                 clear();
-                var val = $search.val();
-
-                if (isNaN(Number(val))) {
-                    $search.val('');
-                    return alert('ID must be numeric');
-                }
-
-                $.get('/api/id/'+val, (res) => {
-                    if (!res) {
-                        $search.val('');
-                        return alert('Error fetching id!');
-                    }
-
-                    set(res, {
-                        fit: true
-                    });            
-                }).fail(() => {
-                    $search.val('');
-                    return alert('Error fetching id!');
-                });
+                getID($search.val());
             }
         });
 
+        function getID(val) {
+            if (isNaN(Number(val))) {
+                $search.val('');
+                return alert('ID must be numeric');
+            }
+
+            $.get('/api/id/'+val, (res) => {
+                if (!res) {
+                    $search.val('');
+                    return alert('Error fetching id!');
+                }
+
+                set(res, {
+                    fit: true
+                });            
+            }).fail(() => {
+                $search.val('');
+                return alert('Error fetching id!');
+            });
+        }
+
         function set(res, opts = {}) {
+            $search.val(res.id);
+            window.location.hash = String(res.id);
+
+            let segs = res.geometry.geometries[0].coordinates.map((line, it) => {
+                return turf.lineString(line, {
+                    colour: Math.floor(Math.random() * 11),
+                    lfromhn: res.properties['carmen:lfromhn'][0][it],
+                    ltohn: res.properties['carmen:ltohn'][0][it],
+                    rfromhn: res.properties['carmen:rfromhn'][0][it],
+                    rtohn: res.properties['carmen:rtohn'][0][it],
+                    parityl: res.properties['carmen:parityl'][0][it],
+                    parityr: res.properties['carmen:parityr'][0][it]
+                });
+            });
+
             //Process ITP Geom
             map.getSource('itp').setData({
                 type: 'FeatureCollection',
-                features: [{
-                    type: 'Feature',
-                    properties: {
-                        lfromhn:    res.properties['carmen:lfromhn'][0],
-                        ltohn:      res.properties['carmen:ltohn'][0],
-                        rfromhn:    res.properties['carmen:rfromhn'][0],
-                        rtohn:      res.properties['carmen:rtohn'][0],
-                        parityl:    res.properties['carmen:parityl'][0],
-                        parityr:    res.properties['carmen:parityr'][0]
-                    },
-                    geometry: res.geometry.geometries[0]
-                }]
+                features: segs
             });
+
+            if (res.debug) {
+                let debug = [];
+                let line = [];
+
+                res.debug.forEach((bug, bug_it) => {
+                    if (!bug) return;
+                    debug = debug.concat(bug.features.filter((feat, feat_it) => {
+                        if (feat) {
+                            if (feat.properties.start) {
+                                line.push(turf.lineString([feat.geometry.coordinates, res.geometry.geometries[0].coordinates[bug_it][0]], {
+                                    colour: segs[bug_it].properties.colour
+                                }));
+                            } 
+                            if (feat.properties.end) {
+                                line.push(turf.lineString([feat.geometry.coordinates, res.geometry.geometries[0].coordinates[bug_it][res.geometry.geometries[0].coordinates[bug_it].length - 1]], {
+                                    colour: segs[bug_it].properties.colour
+                                }));
+                            }
+
+                            feat.properties.colour = segs[bug_it].properties.colour;
+                            return feat;
+                        }
+                        return false;
+                    }));
+                });
+
+                map.getSource('addr-debug').setData({
+                    type: 'FeatureCollection',
+                    features: debug
+                });
+
+                map.getSource('itp-debug').setData({
+                    type: 'FeatureCollection',
+                    features: line
+                });
+            }
 
             if (res.geometry.geometries[1]) {
                 map.getSource('addr').setData({
@@ -193,6 +275,8 @@
         function clear() {
             map.getSource('itp').setData(empty);
             map.getSource('addr').setData(empty);
+            map.getSource('addr-debug').setData(empty);
+            map.getSource('itp-debug').setData(empty);
         }
     </script>
 </body>
