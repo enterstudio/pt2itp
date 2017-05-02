@@ -38,20 +38,6 @@ test('segments', (t) => {
     t.end();
 });
 
-test('Interpolize - Missing args', (t) => {
-    t.throws(() => {
-        interpolize(null, null, null);
-    }, /argv required/, 'did not throw with expected message');
-    t.end();
-});
-
-test('Interpolize - Missing zoom', (t) => {
-    t.throws(() => {
-        interpolize(null, null, {});
-    }, /argv\.zoom required/, 'did not throw with expected message');
-    t.end();
-});
-
 test('Interpolize', (t) => {
     let street = {
         type: "Feature",
