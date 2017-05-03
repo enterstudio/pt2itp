@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.10.0
+
+- :tada: add `stat` module for calculating useful numbers from generated ITP files
+
 ### v9.9.0
 
 - :rocket: Change the way 1km distance thresh. is calculated in explode.js to be more uniform and avoid orphaned short segs inbetween longer 1km segs.
