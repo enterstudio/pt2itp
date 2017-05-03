@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.10.1
+
+- :arrow_up: Update `carmen@22.1.3` and `turf@4.2.0`
+
 ### v9.10.0
 
 - :tada: add `stat` module for calculating useful numbers from generated ITP files
