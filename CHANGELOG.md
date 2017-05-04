@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.12.0
+
+- :tada: `map` module now exposes `--error` flag which will print a reason (and the feature) that was dropped/couldn't be processed
+
 ### v9.11.0
 
 - `strip-unit` also strips out addresses with invalid coords (OA Australia)
