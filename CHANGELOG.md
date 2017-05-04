@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.12.1
+
+- :bug: Missed a merge conflict which node really didn't appreciate
+
 ### v9.12.0
 
 - :tada: `map` module now exposes `--error` flag which will print a reason (and the feature) that was dropped/couldn't be processed
