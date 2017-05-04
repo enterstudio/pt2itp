@@ -1,10 +1,6 @@
 #!/usr/bin/env node
 
 const help = require('./lib/help');
-const test = require('./lib/test');
-const map = require('./lib/map');
-const debug = require('./lib/debug');
-const convert = require('./lib/convert');
 const settings = require('./package.json');
 
 let argv = require('minimist')(process.argv, {
@@ -28,7 +24,7 @@ switch (argv._[2]) {
         help(argv);
         break;
     case ('debug'):
-        debug(process.argv, (err) => {
+        require('./lib/debug')(process.argv, (err) => {
             if (err) {
                 console.error(err.stack);
                 process.exit(1);
@@ -36,7 +32,7 @@ switch (argv._[2]) {
         });
         break;
     case ('map'):
-        map(process.argv, (err) => {
+        require('./lib/map')(process.argv, (err) => {
             if (err) {
                 console.error(err.stack);
                 process.exit(1);
@@ -46,7 +42,7 @@ switch (argv._[2]) {
         });
         break;
     case ('test'):
-        test(process.argv, (err) => {
+        require('./lib/test')(process.argv, (err) => {
             if (err) {
                 console.error(err.toString());
                 process.exit(1);
@@ -54,7 +50,7 @@ switch (argv._[2]) {
         });
         break;
     case ('convert'):
-        convert(process.argv, (err) => {
+        require('./lib/convert')(process.argv, (err) => {
             if (err) {
                 console.error(err.toString());
                 process.exit(1);
