@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.12.2
+
+- :bug: Fix coord that could become `NaN`
+
 ### v9.12.1
 
 - :bug: Missed a merge conflict which node really didn't appreciate
