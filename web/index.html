@@ -40,7 +40,7 @@
         }
     </style>
 </head>
-<body class="relative">
+<body class='relative'>
     <div class='grid grid--gut12 p12 bg-purple'>
         <div class='col col--8 col--4-mm relative'>
             <div class='absolute flex-parent flex-parent--center-cross flex-parent--center-main w36 h36'><svg class='icon'><use xlink:href='#icon-search'></use></svg></div>
@@ -54,8 +54,8 @@
     </div>
 
     <!-- JSON Response -->
-    <div id='json' class='left-pane w-full w480-mm none bg-white quiet'>
-        <p>Select a feature on the map to see the geoJSON</p>
+    <div id='json' class='left-pane w-full w480-mm none bg-white prose'>
+        Select a feature on the map to see the geoJSON
     </div>
 
     <div id='map'></div>
@@ -163,9 +163,7 @@
                     $search.val('');
                     return alert('No feature found!');
                 }
-
                 set(res);
-                showJson(res);
             }).fail(() => {
                 $search.val('');
                 return alert('Error fetching clicked feature!');
@@ -198,7 +196,7 @@
 
                 set(res, {
                     fit: true
-                });            
+                });
             }).fail(() => {
                 $search.val('');
                 return alert('Error fetching id!');
@@ -206,6 +204,7 @@
         }
 
         function set(res, opts = {}) {
+            showJson(res);
             $search.val(res.id);
             window.location.hash = String(res.id);
 
@@ -295,6 +294,7 @@
             map.getSource('addr').setData(empty);
             map.getSource('addr-debug').setData(empty);
             map.getSource('itp-debug').setData(empty);
+            $('#json').html('<pre>' + prettyResult + '</pre>');
         }
 
         //JSON Dialogue
@@ -302,10 +302,7 @@
             if ($(this).hasClass('bg-purple')) {
                 $(this).addClass('bg-purple-dark');
                 $(this).removeClass('bg-purple');
-                $('#settingsButton').addClass('bg-purple');
-                $('#settingsButton').removeClass('bg-purple-dark');
                 $('#json').removeClass('none');
-                $('#settings').addClass('none');
             } else {
                 $(this).removeClass('bg-purple-dark');
                 $(this).addClass('bg-purple');
@@ -314,7 +311,6 @@
         });
 
         function showJson(result) {
-            console.log('showing!');
             let prettyResult = JSON.stringify(result, null, 2);
             $('#json').html('<pre>' + prettyResult + '</pre>');
         }
