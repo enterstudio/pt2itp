@@ -29,6 +29,15 @@
             bottom: 0;
             width: 100%;
         }
+
+        .left-pane {
+            position: absolute;
+            right: 0;
+            top: 60px;
+            height: calc(100% - 60px);
+            overflow: scroll;
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="relative">
@@ -42,6 +51,11 @@
         <div class='col col--4 col--8-mm'>
             <button id='jsonButton' class='fr btn h36 round bg-purple transition bg-purple-dark-on-hover'><svg class='icon'><use xlink:href='#icon-code'/></svg></button>
         </div>
+    </div>
+
+    <!-- JSON Response -->
+    <div id='json' class='left-pane w-full w480-mm none bg-white quiet'>
+        <p>Select a feature on the map to see the geoJSON</p>
     </div>
 
     <div id='map'></div>
@@ -150,7 +164,8 @@
                     return alert('No feature found!');
                 }
 
-                set(res);            
+                set(res);
+                showJson(res);
             }).fail(() => {
                 $search.val('');
                 return alert('Error fetching clicked feature!');
@@ -281,6 +296,29 @@
             map.getSource('addr-debug').setData(empty);
             map.getSource('itp-debug').setData(empty);
         }
+
+        //JSON Dialogue
+        $('#jsonButton').on('click', function(event) {
+            if ($(this).hasClass('bg-purple')) {
+                $(this).addClass('bg-purple-dark');
+                $(this).removeClass('bg-purple');
+                $('#settingsButton').addClass('bg-purple');
+                $('#settingsButton').removeClass('bg-purple-dark');
+                $('#json').removeClass('none');
+                $('#settings').addClass('none');
+            } else {
+                $(this).removeClass('bg-purple-dark');
+                $(this).addClass('bg-purple');
+                $('#json').addClass('none');
+            }
+        });
+
+        function showJson(result) {
+            console.log('showing!');
+            let prettyResult = JSON.stringify(result, null, 2);
+            $('#json').html('<pre>' + prettyResult + '</pre>');
+        }
+
     </script>
 </body>
 </html>
