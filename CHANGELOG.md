@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.13.0
+
+- :tada: Add geojson viewer to the visual debugger
+
 ### v9.12.2
 
 - :bug: Fix coord that could become `NaN`
