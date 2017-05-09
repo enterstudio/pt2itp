@@ -20,7 +20,7 @@
     "@mapbox/tile-cover": "^3.0.2",
     "@mapbox/tilebelt": "^1.0.1",
     "@turf/turf": "^4.2.0",
-    "d3-queue": "3.0.5",
+    "d3-queue": "^3.0.7",
     "express": "^4.15.2",
     "lodash": "^4.2.0",
     "minimist": "^1.2.0",
