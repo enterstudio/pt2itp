@@ -10,6 +10,15 @@
 
 ## Version History
 
+### v9.14.0
+
+- :rocket: Improved testing mode using database as source for matched addresses
+- :rocket: Queue addresses to allow control of # of requests against carmen
+- :rocket: Better token support
+- :tada: Add `meta` table to allow subsequent modes to access initial metadata
+- :arrow_up: Update carmen & d3-queue to latest versions
+- :tada: Add large number of new `id` tokens
+
 ### v9.13.0
 
 - :tada: Add geojson viewer to the visual debugger
