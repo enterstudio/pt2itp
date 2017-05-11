@@ -1,5 +1,4 @@
 const Cluster = require('../lib/cluster');
-const freq = require('../lib/freq');
 
 const test = require('tape');
 const fs = require('fs');
@@ -143,9 +142,7 @@ test('cluster.match', (t) => {
     });
 
     popQ.defer((done) => {
-        let calc = freq(['main st'], ['main st', 'fake av'])
-
-        cluster.match(1, calc, (err) => {
+        cluster.match(1, (err) => {
             t.error(err);
             return done();
         });
