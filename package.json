@@ -22,6 +22,7 @@
     "@turf/turf": "^4.2.0",
     "d3-queue": "^3.0.7",
     "express": "^4.15.2",
+    "fast-levenshtein": "^2.0.6",
     "lodash": "^4.2.0",
     "minimist": "^1.2.0",
     "pg": "^6.1.0",
