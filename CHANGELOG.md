@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.16.1
+
+- :bug: Fix bug where assignment wouldn't happen even if score > .4
+
 ### v9.16.0
 
 - :bug: Allow `debug` mode from any relative path - use to break as `./web` was hardcoded as static dir
