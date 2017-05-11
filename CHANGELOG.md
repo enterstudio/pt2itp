@@ -10,6 +10,14 @@
 
 ## Version History
 
+### v9.16.0
+
+- :bug: Allow `debug` mode from any relative path - use to break as `./web` was hardcoded as static dir
+- :tada: remove all `freq` calculations and replace with a much more accurate Liechtenstein distance percent.
+  - This change is pretty large and will drastically affect matches in all countries.
+  - Before matches were calculated by sorting potentials with the calculated frequency of token matches. This worked well if everything was spelled correctly and helped ensure `st` vs `av` errors still lead to a match. It did however also allow things like `Margaret St` and `Shepherd St` to match on the `ST` token alone.
+  - This uses lev. dist to generate a percent with a hard cutoff on if the match can take place or not. From a lot of groking the results 40% matches and above seem like a good first start.
+
 ### v9.15.0
 
 - :rocket: Show unmatched addresses in `test` output - these are all bugs/data problems
