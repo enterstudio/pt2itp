@@ -10,6 +10,13 @@
 
 ## Version History
 
+### v9.15.0
+
+- :rocket: Show unmatched addresses in `test` output - these are all bugs/data problems
+- :tada: Title case all `street` props
+- :rocket: Allow named `highway=service` features in minjur map module.
+- :rocket: Use proto to avoid having to pass pool in each time
+
 ### v9.14.0
 
 - :rocket: Improved testing mode using database as source for matched addresses
