@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.17.0
+
+- :rocket: Moves token management to a central shared repo
+
 ### v9.16.1
 
 - :bug: Fix bug where assignment wouldn't happen even if score > .4
