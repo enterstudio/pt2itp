@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v19.17.1
+
+- :bug: Don't alter `_text` value with tokens as it is displayed to the user
+- :pencil2: Fix `test` mode docs with new options
+
 ### v9.17.0
 
 - :rocket: Moves token management to a central shared repo
