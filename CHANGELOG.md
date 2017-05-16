@@ -10,6 +10,13 @@
 
 ## Version History
 
+### v19.18.0
+
+- :tada: Add diacritic handling to both the test mode & std. `street` field
+- rocket: Use `address._text` as definitive name and add `network._text` as syn when they differ
+- :bug: Make `psv` files in `lib/copy` have unique names so pt2itp can run in parallel
+- :rocket: `test` mode now outputs when network and address text differ as an error
+
 ### v19.17.1
 
 - :bug: Don't alter `_text` value with tokens as it is displayed to the user
