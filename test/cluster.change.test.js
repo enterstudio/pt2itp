@@ -23,6 +23,8 @@ test('Populate and cluster address points', (t) => {
             BEGIN;
             CREATE TABLE address (id SERIAL, text TEXT, _text TEXT, number INT, geom GEOMETRY(POINT, 4326));
             CREATE TABLE address_cluster (id SERIAL, text TEXT, _text TEXT, number TEXT, geom GEOMETRY(MULTIPOINT, 4326));
+            CREATE TABLE network (id SERIAL, text TEXT, _text TEXT, named BOOLEAN, geom GEOMETRY(LINESTRING, 4326));
+            CREATE TABLE network_cluster (id SERIAL, text TEXT, _text TEXT, address INT, geom GEOMETRY(MULTILINESTRING, 4326), buffer GEOMETRY(POLYGON, 4326));
             COMMIT;
         `, (err, res) => {
             t.error(err);
@@ -34,8 +36,8 @@ test('Populate and cluster address points', (t) => {
     popQ.defer((done) => {
         pool.query(`
             BEGIN;
-            INSERT INTO address (id, text, _text, number, geom) VALUES (1, 'main st', 'Main Street', 10, ST_SetSRID(ST_GeomFromGeoJSON('{"type": "Feature", "properties": {}, "geometry": {"type": "Point","coordinates": [9.51413869857788,47.132724392963944]}}'), 4326));
-            INSERT INTO address (id, text, _text, number, geom) VALUES (2, 'main st', 'Main Street', 10, ST_SetSRID(ST_GeomFromGeoJSON('{"type": "Feature","properties": {},"geometry": {"type": "Point","coordinates": [9.516541957855225,47.132724392963944]}}'), 4326));
+            INSERT INTO address (id, text, _text, number, geom) VALUES (1, 'main st', 'Main Street', 10, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point","coordinates": [ 9.51413869857788,47.132724392963944 ] }'), 4326));
+            INSERT INTO address (id, text, _text, number, geom) VALUES (2, 'main st', 'Main Street', 10, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point","coordinates": [ 9.516541957855225,47.132724392963944 ] }'), 4326));
             COMMIT;
         `, (err, res) => {
             t.error(err);
@@ -57,6 +59,8 @@ test('Populate and cluster address points', (t) => {
             BEGIN;
             DROP TABLE address;
             DROP TABLE address_cluster;
+            DROP TABLE network;
+            DROP TABLE network_cluster;
             COMMIT;
         `, (err, res) => {
             t.error(err);
