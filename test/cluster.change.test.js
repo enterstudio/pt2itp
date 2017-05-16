@@ -21,6 +21,10 @@ test('Populate and cluster address points', (t) => {
     popQ.defer((done) => {
         pool.query(`
             BEGIN;
+            DROP TABLE IF EXISTS address;
+            DROP TABLE IF EXISTS address_cluster;
+            DROP TABLE IF EXISTS network;
+            DROP TABLE IF EXISTS network_cluster;
             CREATE TABLE address (id SERIAL, text TEXT, _text TEXT, number INT, geom GEOMETRY(POINT, 4326));
             CREATE TABLE address_cluster (id SERIAL, text TEXT, _text TEXT, number TEXT, geom GEOMETRY(MULTIPOINT, 4326));
             CREATE TABLE network (id SERIAL, text TEXT, _text TEXT, named BOOLEAN, geom GEOMETRY(LINESTRING, 4326));
@@ -46,7 +50,7 @@ test('Populate and cluster address points', (t) => {
     });
 
     popQ.defer((done) => {
-        cluster.name(1, (err) => {
+        cluster.address((err) => {
             t.error(err);
             return done();
         });
@@ -57,8 +61,6 @@ test('Populate and cluster address points', (t) => {
 
         pool.query(`
             BEGIN;
-            DROP TABLE address;
-            DROP TABLE address_cluster;
             DROP TABLE network;
             DROP TABLE network_cluster;
             COMMIT;
