@@ -22,8 +22,10 @@ const cluster = new Cluster(pool);
 */
 function createClusteredGeojsons(jsonFixture){
     const popQ = Queue(1);
+    const q1 = Queue(2);
 
     //CREATE pt2itp TABLES
+
     popQ.defer((done) => {
         pool.query(`
             BEGIN;
@@ -47,8 +49,8 @@ function createClusteredGeojsons(jsonFixture){
         popQ.defer((done) => {
             pool.query(`
                 BEGIN;
-                INSERT INTO address (id, text, _text, number, geom) VALUES (1, 'main st', 'Main Street', 10, ST_SetSRID(ST_GeomFromGeoJSON(i[0]), 4326));
-                INSERT INTO address (id, text, _text, number, geom) VALUES (2, 'main st', 'Main Street', 10, ST_SetSRID(ST_GeomFromGeoJSON(i[1]), 4326));
+                INSERT INTO address (id, text, _text, number, geom) VALUES (1, 'main st', 'Main Street', 10, ST_SetSRID('`ST_GeomFromGeoJSON(i[0]), 4326)`');
+                INSERT INTO address (id, text, _text, number, geom) VALUES (2, 'main st', 'Main Street', 10, ST_SetSRID('`ST_GeomFromGeoJSON(i[1]), 4326)`');
                 COMMIT;
             `, (err, res) => {
                 if (err) console.log(err);
