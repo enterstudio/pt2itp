@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.21.0
+- :rocket: Reduced the value of the distance in ST_clusterWithin used for network and address clusters, to prevent roads and points far away from each other from being clustered together
+- :white_check_mark: added tests to make sure this behaviour is followed 
+
 ### v9.20.0
 
 - :white_check_mark: Add tests for hooked roads
