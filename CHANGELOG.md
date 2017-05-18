@@ -10,14 +10,27 @@
 
 ## Version History
 
-### v19.18.0
+### v9.19.1
+
+- :rocket: Clean up strip-unit (dup code)
+- :rocket: Add in memory number limits
+
+### v9.19.0
+
+- :rocket: Limit precision of coordinates to avoid `NUMERIC` overflows
+- :rocket: `number` (civic address) are only allowed to be 10 chars long to reduce bad data - can bump in the future if needed
+- :rocket: Unnamed large streets are allowed
+- :tada: Add CONTRIBUTING doc to ensure versions are bumped
+- :bug: Ensure output of test is prefixed to working dir
+
+### v9.18.0
 
 - :tada: Add diacritic handling to both the test mode & std. `street` field
 - rocket: Use `address._text` as definitive name and add `network._text` as syn when they differ
 - :bug: Make `psv` files in `lib/copy` have unique names so pt2itp can run in parallel
 - :rocket: `test` mode now outputs when network and address text differ as an error
 
-### v19.17.1
+### v9.17.1
 
 - :bug: Don't alter `_text` value with tokens as it is displayed to the user
 - :pencil2: Fix `test` mode docs with new options
