@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v9.20.0
+
+- :white_check_mark: Add tests for hooked roads
+- :rocket: Take highest/lowest number off end of road into consideration when generating ITP
+
 ### v9.19.1
 
 - :rocket: Clean up strip-unit (dup code)
