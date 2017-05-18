@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v9.19.1
+
+- :rocket: Clean up strip-unit (dup code)
+- :rocket: Add in memory number limits
+
 ### v9.19.0
 
 - :rocket: Limit precision of coordinates to avoid `NUMERIC` overflows
