@@ -25,9 +25,6 @@ test('Points far away shouldn\'t be clustered', (t) => {
             DROP TABLE IF EXISTS network;
             DROP TABLE IF EXISTS network_cluster;
             CREATE TABLE address (id SERIAL, text TEXT, _text TEXT, number INT, geom GEOMETRY(POINT, 4326));
-            CREATE TABLE address_cluster (id SERIAL, text TEXT, _text TEXT, number TEXT, geom GEOMETRY(MULTIPOINT, 4326));
-            CREATE TABLE network (id SERIAL, text TEXT, _text TEXT, named BOOLEAN, geom GEOMETRY(LINESTRING, 4326));
-            CREATE TABLE network_cluster (id SERIAL, text TEXT, _text TEXT, address INT, geom GEOMETRY(MULTILINESTRING, 4326), buffer GEOMETRY(POLYGON, 4326));
             COMMIT;
         `, (err, res) => {
             t.error(err);
@@ -62,8 +59,6 @@ test('Points far away shouldn\'t be clustered', (t) => {
             BEGIN;
             SELECT ST_AsGeoJSON(geom) FROM address_cluster;
             DROP TABLE address;
-            DROP TABLE network;
-            DROP TABLE network_cluster;
             DROP TABLE address_cluster;
             COMMIT;
         `, (err, res) => {
@@ -83,12 +78,7 @@ test('Points nearby should be clustered', (t) => {
             BEGIN;
             DROP TABLE IF EXISTS address;
             DROP TABLE IF EXISTS address_cluster;
-            DROP TABLE IF EXISTS network;
-            DROP TABLE IF EXISTS network_cluster;
             CREATE TABLE address (id SERIAL, text TEXT, _text TEXT, number INT, geom GEOMETRY(POINT, 4326));
-            CREATE TABLE address_cluster (id SERIAL, text TEXT, _text TEXT, number TEXT, geom GEOMETRY(MULTIPOINT, 4326));
-            CREATE TABLE network (id SERIAL, text TEXT, _text TEXT, named BOOLEAN, geom GEOMETRY(LINESTRING, 4326));
-            CREATE TABLE network_cluster (id SERIAL, text TEXT, _text TEXT, address INT, geom GEOMETRY(MULTILINESTRING, 4326), buffer GEOMETRY(POLYGON, 4326));
             COMMIT;
         `, (err, res) => {
             t.error(err);
@@ -123,8 +113,6 @@ test('Points nearby should be clustered', (t) => {
             BEGIN;
             SELECT ST_AsGeoJSON(geom) FROM address_cluster;
             DROP TABLE address;
-            DROP TABLE network;
-            DROP TABLE network_cluster;
             DROP TABLE address_cluster;
             COMMIT;
         `, (err, res) => {
@@ -136,21 +124,15 @@ test('Points nearby should be clustered', (t) => {
 });
 
 
-test('LinesStrings nearby away shouldn be clustered', (t) => {
+test('LinesStrings far away should not be clustered', (t) => {
     const popQ = Queue(1);
 
     //CREATE pt2itp TABLES
     popQ.defer((done) => {
         pool.query(`
             BEGIN;
-            DROP TABLE IF EXISTS address;
-            DROP TABLE IF EXISTS address_cluster;
             DROP TABLE IF EXISTS network;
-            DROP TABLE IF EXISTS network_cluster;
-            CREATE TABLE address (id SERIAL, text TEXT, _text TEXT, number INT, geom GEOMETRY(POINT, 4326));
-            CREATE TABLE address_cluster (id SERIAL, text TEXT, _text TEXT, number TEXT, geom GEOMETRY(MULTIPOINT, 4326));
             CREATE TABLE network (id SERIAL, text TEXT, _text TEXT, named BOOLEAN, geom GEOMETRY(LINESTRING, 4326));
-            CREATE TABLE network_cluster (id SERIAL, text TEXT, _text TEXT, address INT, geom GEOMETRY(MULTILINESTRING, 4326), buffer GEOMETRY(POLYGON, 4326));
             COMMIT;
         `, (err, res) => {
             t.error(err);
@@ -184,20 +166,16 @@ test('LinesStrings nearby away shouldn be clustered', (t) => {
         pool.query(`
             BEGIN;
             SELECT ST_AsGeoJSON(geom) FROM network_cluster;
-            DROP TABLE network;
-            DROP TABLE address;
-            DROP TABLE network_cluster;
-            DROP TABLE address_cluster;
             COMMIT;
         `, (err, res) => {
             t.error(err);
-            t.equals(res.rows[0].st_asgeojson.toString(), '{"type":"MultiLineString","coordinates":[[[9.50514793395996,47.1302719219553],[9.50094223022461,47.1302719219553]],[[9.52342987060547,47.1308412556617],[9.52707767486572,47.1309142467218]]]}', 'ok network clustered');
+            t.equals(res.rows[0].st_asgeojson.toString(), '{"type":"MultiLineString","coordinates":[[[9.50514793395996,47.1302719219553],[9.50094223022461,47.1302719219553]]]}', 'ok network is not clustered');
             t.end();
         });
     });
 });
 
-test('LinesStrings faraway should not be clustered', (t) => {
+test('LinesStrings should be clustered', (t) => {
     const popQ = Queue(1);
 
     //CREATE pt2itp TABLES
@@ -252,7 +230,7 @@ test('LinesStrings faraway should not be clustered', (t) => {
             COMMIT;
         `, (err, res) => {
             t.error(err);
-            t.equals(res.rows[0].st_asgeojson.toString(), '{"type":"MultiLineString","coordinates":[[[9.5167350769043,47.1327681860613],[9.51982498168945,47.132870369815]],[[9.51399922370911,47.1326951975457],[9.51251864433289,47.1326951975457]]]}', 'ok network is not clustered');
+            t.equals(res.rows[0].st_asgeojson.toString(), '{"type":"MultiLineString","coordinates":[[[9.5167350769043,47.1327681860613],[9.51982498168945,47.132870369815]],[[9.51399922370911,47.1326951975457],[9.51251864433289,47.1326951975457]]]}', 'ok network is clustered');
             t.end();
         });
     });
