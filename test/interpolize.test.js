@@ -315,8 +315,6 @@ test('Interpolize - Hooked Road', (t) => {
         t.fail('had to update fixture');
     }
 
-    console.error(JSON.stringify(res))
-
     t.deepEquals(res, require('./fixtures/left-hook.json'));
     t.end();
 });
