@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.21.1
+
+- :bug: bugfix for zero-distance results in `test.js` mode
+
 ### v9.21.0
 - :rocket: Reduced the value of the distance in ST_clusterWithin used for network and address clusters, to prevent roads and points far away from each other from being clustered together
 - :white_check_mark: added tests to make sure this behaviour is followed 
