@@ -46,7 +46,7 @@
     <div class='grid grid--gut12 p12 bg-purple'>
         <div class='col col--8 col--4-mm relative'>
             <div class='absolute flex-parent flex-parent--center-cross flex-parent--center-main w36 h36'><svg class='icon'><use xlink:href='#icon-search'></use></svg></div>
-            <input class='search input bg-white px36' placeholder='Search By ID'>
+            <input class='search input bg-white px36' placeholder='Search By ID or Coordinates'>
             <div class='action-search-clear cursor-pointer absolute top right flex-parent flex-parent--center-cross flex-parent--center-main w36 h36'><svg class='icon'><use xlink:href='#icon-close'></use></svg></div>
         </div>
 
@@ -165,16 +165,7 @@
         });
 
         map.on('click', (e) => {
-            $.get('/api/coords/'+e.lngLat.lng+','+e.lngLat.lat, (res) => {
-                if (!res) {
-                    $search.val('');
-                    return alert('No feature found!');
-                }
-                set(res);
-            }).fail(() => {
-                $search.val('');
-                return alert('Error fetching clicked feature!');
-            });
+            getCoords([e.lngLat.lng, e.lngLat.lat]);
         });
 
         $('.action-search-clear').on('click', (e) => {
@@ -185,9 +176,29 @@
         $search.on('keyup', function(event) {
             if (event.keyCode === 13) {
                 clear();
-                getID($search.val());
+
+                if ($search.val().split(',').length === 2) {
+                    getCoords($search.val().split(','), {
+                        fit: true
+                    });
+                } else {
+                    getID($search.val());
+                }
             }
         });
+
+        function getCoords(coords, opts) {
+            $.get('/api/coords/'+coords[0]+','+coords[1], (res) => {
+                if (!res) {
+                    $search.val('');
+                    return alert('No feature found!');
+                }
+                set(res, opts);
+            }).fail(() => {
+                $search.val('');
+                return alert('Error fetching clicked feature!');
+            });
+        }
 
         function getID(val) {
             if (isNaN(Number(val))) {
@@ -212,8 +223,9 @@
 
         function set(res, opts = {}) {
             showJson(res);
-            $search.val(res.id);
             window.location.hash = String(res.id);
+
+            $search.val(res.properties['carmen:text']);
 
             let segs = res.geometry.geometries[0].coordinates.map((line, it) => {
                 return turf.lineString(line, {
