@@ -223,8 +223,9 @@
 
         function set(res, opts = {}) {
             showJson(res);
-            $search.val(res.id);
             window.location.hash = String(res.id);
+
+            $search.val(res.properties['carmen:text']);
 
             let segs = res.geometry.geometries[0].coordinates.map((line, it) => {
                 return turf.lineString(line, {
