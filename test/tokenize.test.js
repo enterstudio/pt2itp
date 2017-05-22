@@ -43,3 +43,21 @@ test('edge cases - empty string', (t) => {
     t.end();
 });
 
+test('test for global tokens', (t) => {
+    let tokens = {'\\b(.+)(strasse|str|straße)\\b': "$1 str"};
+    let query = 'talstrasse';
+    let tokensRegex = tokenize.createGlobalReplacer(tokens);
+    let replace = tokenize.replaceToken(tokensRegex, query);
+    t.deepEqual('tal str', replace, 'handles global tokens - Strasse');
+    t.end();
+});
+
+
+test('test for global tokens', (t) => {
+    let tokens = {'\\bPost Office\\b': "Po"};
+    let query = 'Post Office 25';
+    let tokensRegex = tokenize.createGlobalReplacer(tokens);
+    let replace = tokenize.replaceToken(tokensRegex, query);
+    t.deepEqual('Po 25', replace, 'handles global tokens - Post Office');
+    t.end();
+});
