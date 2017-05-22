@@ -10,13 +10,18 @@
 
 ## Version History
 
+### v9.22.0
+
+- :rocket: Show street name of viewed feature
+- :rocket: Allow searching by lat/lng in search box
+
 ### v9.21.1
 
 - :bug: bugfix for zero-distance results in `test.js` mode
 
 ### v9.21.0
 - :rocket: Reduced the value of the distance in ST_clusterWithin used for network and address clusters, to prevent roads and points far away from each other from being clustered together
-- :white_check_mark: added tests to make sure this behaviour is followed 
+- :white_check_mark: added tests to make sure this behaviour is followed
 
 ### v9.20.0
 
