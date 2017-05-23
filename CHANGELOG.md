@@ -10,6 +10,14 @@
 
 ## Version History
 
+### v9.23.0
+- :tada: Added support for global tokens, for e.g. talstrasse -> tal str, tal strasse 
+- :white_check_mark: Added tests to make sure this behaviour is followed
+
+### v9.22.1
+
+- :rocket: Remove outdated getNames() call
+
 ### v9.22.0
 
 - :rocket: Show street name of viewed feature
