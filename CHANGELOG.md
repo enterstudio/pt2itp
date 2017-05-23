@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.22.1
+
+- :rocket: Remove outdated getNames() call
+
 ### v9.22.0
 
 - :rocket: Show street name of viewed feature
