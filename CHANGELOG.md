@@ -10,7 +10,7 @@
 
 ## Version History
 
-### unreleased / proposed merge
+### v9.24.0
 
 - :rocket: adds a `lib/geocode.js` that takes `lib/test.js`-like set of parameters to geocode a single query
 - :rocket: modularizes geocoding capability too
