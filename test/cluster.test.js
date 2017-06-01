@@ -141,7 +141,7 @@ test('cluster.address', (t) => {
 
     popQ.defer((done) => {
         pool.query(`
-            SELECT id, text, text_tokenless, ST_AsGeoJSON(geom)::JSON AS geom FROM address_cluster ORDER BY text, id;
+            SELECT id, text, text_tokenless, ST_AsGeoJSON(geom)::JSON AS geom FROM address_cluster;
         `, (err, res) => {
             t.error(err);
 
