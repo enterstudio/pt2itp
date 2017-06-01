@@ -14,6 +14,21 @@ const pool = new pg.Pool({
 
 const cluster = new Cluster(pool);
 
+test('Drop tables if exist', (t) => {
+    pool.query(`
+        BEGIN;
+        DROP TABLE IF EXISTS network_cluster;
+        DROP TABLE IF EXISTS address_cluster;
+        DROP TABLE IF EXISTS network;
+        DROP TABLE IF EXISTS address;
+        DROP TABLE IF EXISTS segments;
+        COMMIT;
+    `, (err, res) => {
+        t.error(err);
+        t.end();
+    });
+});
+
 test('cluster.name', (t) => {
     const popQ = Queue(1);
 
@@ -122,6 +137,7 @@ test('cluster.address', (t) => {
             BEGIN;
             INSERT INTO address (id, segment, text, text_tokenless, _text, number, geom) VALUES (1, 1, 'main st', 'main', 'Main Street', 10, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-66.97265625,43.96119063892024, 1] }'), 4326));
             INSERT INTO address (id, segment, text, text_tokenless, _text, number, geom) VALUES (2, 1, 'main st', 'main', 'Main Street', 10, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-66.97265625,43.96119063892024, 2] }'), 4326));
+            INSERT INTO address (id, segment, text, text_tokenless, _text, number, geom) VALUES (6, 1, 'main st', 'main', 'Main Street', 10, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-66.97265625,43.96119063892024, 6] }'), 4326));
             INSERT INTO address (id, segment, text, text_tokenless, _text, number, geom) VALUES (3, 1, 'main st', 'main', 'Main Street', 13, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-105.46875,56.36525013685606, 3] }'), 4326));
             INSERT INTO address (id, segment, text, text_tokenless, _text, number, geom) VALUES (4, 1, 'main st', 'main', 'Main Street', 13, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-105.46875,56.36525013685606, 4] }'), 4326));
             INSERT INTO address (id, segment, text, text_tokenless, _text, number, geom) VALUES (5, 1, 'fake av', 'fake', 'Fake Avenue', 10, ST_SetSRID(ST_GeomFromGeoJSON('{ "type": "Point", "coordinates": [-85.25390625,52.908902047770255, 5] }'), 4326));
@@ -141,14 +157,14 @@ test('cluster.address', (t) => {
 
     popQ.defer((done) => {
         pool.query(`
-            SELECT id, text, text_tokenless, ST_AsGeoJSON(geom)::JSON AS geom FROM address_cluster;
+            SELECT text, text_tokenless, ST_AsGeoJSON(geom)::JSON AS geom FROM address_cluster ORDER BY ST_NumGeometries(geom);
         `, (err, res) => {
             t.error(err);
 
             t.equals(res.rows.length, 3);
-            t.deepEquals(res.rows[0], { geom: {"type":"MultiPoint","coordinates":[[-85.25390625,52.9089020477703,5]]}, id: 1, text: 'fake av', text_tokenless: 'fake' }, 'fake av');
-            t.deepEquals(res.rows[1], { geom: {"type":"MultiPoint","coordinates":[[-66.97265625,43.9611906389202,1],[-66.97265625,43.9611906389202,2]]}, id: 2, text: 'main st', text_tokenless: 'main' });
-            t.deepEquals(res.rows[2], { geom: {"type":"MultiPoint","coordinates":[[-105.46875,56.3652501368561,3],[-105.46875,56.3652501368561,4]]}, id: 3, text: 'main st', text_tokenless: 'main' });
+            t.deepEquals(res.rows[0], { geom: {"type":"MultiPoint","coordinates":[[-85.25390625,52.9089020477703,5]]}, text: 'fake av', text_tokenless: 'fake' }, 'fake av');
+            t.deepEquals(res.rows[1], { geom: {"type":"MultiPoint","coordinates":[[-105.46875,56.3652501368561,3],[-105.46875,56.3652501368561,4]]}, text: 'main st', text_tokenless: 'main' });
+            t.deepEquals(res.rows[2], { geom: { coordinates: [ [ -66.97265625, 43.9611906389202, 1 ], [ -66.97265625, 43.9611906389202, 2 ], [ -66.97265625, 43.9611906389202, 6 ] ], type: 'MultiPoint' }, text: 'main st', text_tokenless: 'main' });
             return done();
         });
     });
