@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.24.2
+
+- :bug: Reintroduce accidently dropped support for global tokens
+
 ### v9.24.1
 
 - :bug: Change `test` mode to new tokenize fxn - previsouly caused test mode to fatally err.
