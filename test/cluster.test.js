@@ -141,14 +141,14 @@ test('cluster.address', (t) => {
 
     popQ.defer((done) => {
         pool.query(`
-            SELECT id, text, text_tokenless, ST_AsGeoJSON(geom) AS geom FROM address_cluster ORDER BY text, id;
+            SELECT id, text, text_tokenless, ST_AsGeoJSON(geom)::JSON AS geom FROM address_cluster ORDER BY text, id;
         `, (err, res) => {
             t.error(err);
 
             t.equals(res.rows.length, 3);
-            t.deepEquals(res.rows[0], { geom: '{"type":"MultiPoint","coordinates":[[-85.25390625,52.9089020477703,5]]}', id: 1, text: 'fake av', text_tokenless: 'fake' }, 'fake av');
-            t.deepEquals(res.rows[1], { geom: '{"type":"MultiPoint","coordinates":[[-66.97265625,43.9611906389202,1],[-66.97265625,43.9611906389202,2]]}', id: 2, text: 'main st', text_tokenless: 'main' });
-            t.deepEquals(res.rows[2], { geom: '{"type":"MultiPoint","coordinates":[[-105.46875,56.3652501368561,3],[-105.46875,56.3652501368561,4]]}', id: 3, text: 'main st', text_tokenless: 'main' });
+            t.deepEquals(res.rows[0], { geom: {"type":"MultiPoint","coordinates":[[-85.25390625,52.9089020477703,5]]}, id: 1, text: 'fake av', text_tokenless: 'fake' }, 'fake av');
+            t.deepEquals(res.rows[1], { geom: {"type":"MultiPoint","coordinates":[[-66.97265625,43.9611906389202,1],[-66.97265625,43.9611906389202,2]]}, id: 2, text: 'main st', text_tokenless: 'main' });
+            t.deepEquals(res.rows[2], { geom: {"type":"MultiPoint","coordinates":[[-105.46875,56.3652501368561,3],[-105.46875,56.3652501368561,4]]}, id: 3, text: 'main st', text_tokenless: 'main' });
             return done();
         });
     });
