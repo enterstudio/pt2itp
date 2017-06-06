@@ -45,11 +45,11 @@ test('Passing Linker Matches', (t) => {
     'short names, tokens deweighted');
 
     t.deepEquals(
-        linker({ text: 'ave st', text_tokenless: '' }, [
-            { id: 1, text: 'ave', text_tokenless: ''},
+        linker({ text: 'ave st', text_tokenless: '', _text: 'Avenue Street' }, [
+            { id: 1, text: 'ave', text_tokenless: '', _text: 'Avenue'},
             { id: 2, text: 'avenida', text_tokenless: 'avenida'}
         ]),
-        { id: 1, text: 'ave', text_tokenless: ''},
+        { id: 1, text: 'ave', text_tokenless: '', _text: 'Avenue'},
     'all-token scenario (e.g. avenue street)');
 
     t.end();
