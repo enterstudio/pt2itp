@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v9.25.0
+
+- :rocket: exposes _text fields for comparison (linker)
+- :rocket: removes diacritics & lcases (linker)
+
 ### v9.24.2
 
 - :bug: Reintroduce accidently dropped support for global tokens
