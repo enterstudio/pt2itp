@@ -34,6 +34,7 @@ switch (argv._[2]) {
     case ('map'):
         require('./lib/map')(process.argv, (err) => {
             if (err) {
+                console.error(err);
                 console.error(err.stack);
                 process.exit(1);
             }
