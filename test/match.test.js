@@ -62,7 +62,7 @@ test('Match', (t) => {
                 idleTimeoutMillis: 30000
             }
         });
-        done();
+        return done();
     });
 
     popQ.defer((done) => {
@@ -106,5 +106,6 @@ test('Match', (t) => {
 
 test('end connection', (t) => {
     pool.end();
+    match.kill();
     t.end();
 });
