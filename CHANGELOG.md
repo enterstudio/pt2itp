@@ -10,6 +10,12 @@
 
 ## Version History
 
+### v9.27.0
+
+- :rocket: More random & evenly distributed ID generation
+- :rocket: Replace ID generation with centralized `misc.id` fxn
+- :white_check_mark: Add `misc.id` tests
+
 ### v9.26.0
 
 - :tada: Massive rewrite of cross matching function to run in parallel
