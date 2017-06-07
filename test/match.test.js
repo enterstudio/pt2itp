@@ -62,6 +62,7 @@ test('Match', (t) => {
                 idleTimeoutMillis: 30000
             }
         });
+        done();
     });
 
     popQ.defer((done) => {
