@@ -15,3 +15,31 @@ test('misc.sign', (t) => {
     t.equal(misc.sign(0), 0);
     t.end();
 });
+
+
+test('misc.id', (t) => {
+    let id = misc.id({
+        properties: {
+            'carmen:center': [123.463215, 63.763234351]
+        }
+    });
+
+    t.equals(id.id, 6321534351);
+
+    id = misc.id({
+        properties: {
+            'carmen:center': [15, 51]
+        }
+    });
+
+    t.equals(id.id, 1551);
+
+    id = misc.id({
+        properties: {
+            'carmen:center': [-15, 51]
+        }
+    });
+
+    t.equals(id.id, 1551);
+    t.end();
+});
