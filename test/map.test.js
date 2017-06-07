@@ -42,7 +42,7 @@ test('map - db error', (t) => {
     });
 });
 
-test('map - output error', (t) => {
+test('map - good run', (t) => {
     worker({
         'in-address': './test/fixtures/sg-address.geojson',
         'in-network': './test/fixtures/sg-network.geojson',
