@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.26.0
+
+- :tada: Massive rewrite of cross matching function to run in parallel
+
 ### v9.25.0
 
 - :rocket: exposes _text fields for comparison (linker)
