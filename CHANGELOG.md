@@ -10,6 +10,12 @@
 
 ## Version History
 
+### v9.28.0
+
+- :tada: Massive rewrite of index.copy to distribute accross child processes
+- :rocket: segment in queue to allow some parallel Postgres queries
+- :rocket: optimize in queue to allow some parallel Postgres queries
+
 ### v9.27.0
 
 - :rocket: More random & evenly distributed ID generation
