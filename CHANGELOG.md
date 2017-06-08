@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v9.29.1
+
+- :bug: Switch to id calc based on bounds as some geoms have the same centre as houses on the block can have an address
+        for two streets and it just happened they were both used for the centre calc.
+
 ### v9.29.0
 
 - :rocket: Use parallel fxns for segmentation
