@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v9.29.0
+
+- :rocket: Use parallel fxns for segmentation
+- :tada: Rewrite `split` function to run in a child process greatly speeding up the last interpolation step.
+
 ### v9.28.0
 
 - :tada: Massive rewrite of index.copy to distribute accross child processes
