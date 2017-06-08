@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.29.2
+
+- :bug: Retain fallback random `id` to ensure all feats are id'd
+
 ### v9.29.1
 
 - :bug: Switch to id calc based on bounds as some geoms have the same centre as houses on the block can have an address
