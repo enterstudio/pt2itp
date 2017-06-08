@@ -19,24 +19,39 @@ test('misc.sign', (t) => {
 
 test('misc.id', (t) => {
     let id = misc.id({
+        type: 'Feature',
         properties: {
             'carmen:center': [123.463215, 63.763234351]
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [123.463215, 63.763234351]
         }
     });
 
     t.equals(id.id, 6321534351);
 
     id = misc.id({
+        type: 'Feature',
         properties: {
             'carmen:center': [15, 51]
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [15,51]
         }
     });
 
     t.equals(id.id, 1551);
 
     id = misc.id({
+        type: 'Feature',
         properties: {
             'carmen:center': [-15, 51]
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-15,51]
         }
     });
 
