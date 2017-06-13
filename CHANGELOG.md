@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v9.30.0
+
+- :tada: Generic ID fxn
+- :white_check_mark: Fix tests around linker bug
+
 ### v9.29.3
 
 - :arrow_up: Update ESLint to 4.x version
