@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.30.1
+
+- :bug: Fix reverse lookup of ITP in `debug` mode
+
 ### v9.30.0
 
 - :tada: Generic ID fxn
