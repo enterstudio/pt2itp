@@ -227,8 +227,9 @@
 
             $search.val(res.properties['carmen:text']);
 
+            let segs;
             if (res.properties['carmen:lfromhn']) {
-                let segs = res.geometry.geometries[0].coordinates.map((line, it) => {
+                segs = res.geometry.geometries[0].coordinates.map((line, it) => {
                     return turf.lineString(line, {
                     colour: Math.floor(Math.random() * 11),
                     lfromhn: res.properties['carmen:lfromhn'][0][it],
