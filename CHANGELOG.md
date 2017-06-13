@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v9.29.3
+
+- :arrow_up: Update ESLint to 4.x version
+
 ### v9.29.2
 
 - :bug: Retain fallback random `id` to ensure all feats are id'd
