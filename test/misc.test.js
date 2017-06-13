@@ -29,7 +29,7 @@ test('misc.id', (t) => {
         }
     });
 
-    t.equals(id.id, 6321534351);
+    t.ok(id.id);
 
     id = misc.id({
         type: 'Feature',
@@ -42,7 +42,7 @@ test('misc.id', (t) => {
         }
     });
 
-    t.equals(id.id, 1551);
+    t.ok(id.id);
 
     id = misc.id({
         type: 'Feature',
@@ -55,6 +55,6 @@ test('misc.id', (t) => {
         }
     });
 
-    t.equals(id.id, 1551);
+    t.ok(id.id);
     t.end();
 });
