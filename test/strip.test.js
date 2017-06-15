@@ -10,7 +10,7 @@ test('Strip - no args', (t) => {
     });
 });
 
-test('Strip - No Address Points', (t) => {
+test('Strip - Address Points', (t) => {
     strip({
         input: path.resolve(__dirname, 'fixtures/convert.FeatureCollection'),
         output: path.resolve(os.tmpdir(), 'convert.FeatureCollection.json')
