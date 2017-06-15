@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v10.0.1
+
+- :bug: `strip` mode - Don't ouput geometry if it was only points - empty array
+
 ### v10.0.0
 
 - :bug: Fix arg parsing in `convert` module that would allow process array to be used instead of minimist parsed object.
