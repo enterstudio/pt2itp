@@ -59,6 +59,14 @@ switch (argv._[2]) {
             }
         });
         break;
+    case ('strip'):
+        require('./lib/strip')(process.argv, (err) => {
+            if (err) {
+                console.error(err.toString());
+                process.exit(1);
+            }
+        });
+        break;
     case ('convert'):
         require('./lib/convert')(process.argv, (err) => {
             if (err) {
