@@ -12,18 +12,17 @@ test('Strip - no args', (t) => {
 
 test('Strip - Address Points', (t) => {
     strip({
-        input: path.resolve(__dirname, 'fixtures/convert.FeatureCollection'),
-        output: path.resolve(os.tmpdir(), 'convert.FeatureCollection.json')
+        input: path.resolve(__dirname, 'fixtures/strip'),
+        output: path.resolve(os.tmpdir(), 'strip-test.json')
     }, (err) => {
         t.error(err);
 
-        let res = require(path.resolve(os.tmpdir(), 'convert.FeatureCollection.json'));
+        let res = require(path.resolve(os.tmpdir(), 'strip-test.json'));
 
-        t.equals(res.type, 'FeatureCollection');
-        t.equals(res.features.length, 24);
+        t.equals(res.type, 'Feature');
 
-        res.features.forEach((feat) => {
-            t.equals(feat.type, 'Feature');
+        res.geometry.geometries.forEach((geom) => {
+            t.equals(geom.type, 'MultiLineString');
         });
 
         t.end();
