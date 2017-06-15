@@ -1,5 +1,6 @@
 const convert = require('../lib/convert');
 const test = require('tape');
+const path = require('path');
 const os = require('os');
 
 test('Convert - no args', (t) => {
@@ -11,12 +12,12 @@ test('Convert - no args', (t) => {
 
 test('Convert - FeatureCollection', (t) => {
     convert({
-        input: __dirname + '/fixtures/convert.FeatureCollection',
-        output: os.tmpdir() + '/' + 'convert.FeatureCollection.json'
+        input: path.resolve(__dirname, 'fixtures/convert.FeatureCollection'),
+        output: path.resolve(os.tmpdir(), 'convert.FeatureCollection.json')
     }, (err) => {
         t.error(err);
 
-        let res = require(os.tmpdir() + '/' + 'convert.FeatureCollection.json');
+        let res = require(path.resolve(os.tmpdir(), 'convert.FeatureCollection.json'));
 
         t.equals(res.type, 'FeatureCollection');
         t.equals(res.features.length, 24);
@@ -31,12 +32,12 @@ test('Convert - FeatureCollection', (t) => {
 
 test('Convert - Feature', (t) => {
     convert({
-        input: __dirname + '/fixtures/convert.Feature',
-        output: os.tmpdir() + '/' + 'convert.Feature.json'
+        input: path.resolve(__dirname, 'fixtures/convert.Feature'),
+        output: path.resolve(os.tmpdir(), 'convert.Feature.json')
     }, (err) => {
         t.error(err);
 
-        let res = require(os.tmpdir() + '/' + 'convert.Feature.json');
+        let res = require(path.resolve(os.tmpdir(), 'convert.Feature.json'));
 
         t.equals(res.type, 'FeatureCollection');
         t.equals(res.features.length, 10);
@@ -51,8 +52,8 @@ test('Convert - Feature', (t) => {
 
 test('Convert - Raw', (t) => {
     convert({
-        input: __dirname + '/fixtures/convert.Raw',
-        output: os.tmpdir() + '/' + 'convert.Raw.json'
+        input: path.resolve(__dirname, 'fixtures/convert.Raw'),
+        output: path.resolve(os.tmpdir(), 'convert.Raw.json')
     }, (err) => {
         t.error(err);
 
