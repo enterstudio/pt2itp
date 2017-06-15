@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v10.0.0
+
+- :bug: Fix arg parsing in `convert` module that would allow process array to be used instead of minimist parsed object.
+- :tada: Add `strip` mode to remove address points for testing or obtaining ITP only results
+
 ### v9.30.1
 
 - :bug: Fix reverse lookup of ITP in `debug` mode
