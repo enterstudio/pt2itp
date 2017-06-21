@@ -195,41 +195,38 @@ test('Interpolize', (t) => {
 });
 
 test('Interpolize - Addr past line end', (t) => {
-    let street = {
-        type: "Feature",
-        properties: {
-            street: ["Battleridge", "Place"],
-            'carmen:text': 'Battleridge Place'
+    let segs = [{
+        network: {
+            type: "Feature",
+            properties: { },
+            geometry: {
+                type: "LineString",
+                coordinates: [
+                    [-77.21062123775481,39.17687343078357],
+                    [-77.21064805984497,39.1773849237293]
+                ]
+            }
         },
-        geometry: {
-            type: "LineString",
-            coordinates: [
-                [-77.21062123775481,39.17687343078357],
-                [-77.21064805984497,39.1773849237293]
-            ]
-        }
-    }
-
-    let address = {
-        type: "Feature",
-        properties: {
-            street: ["Battleridge", "Place"],
-            numbers: ["8","10","9","11","13","12"]
+        address: {
+            type: "Feature",
+            properties: { },
+            geometry: {
+                type: "MultiPoint",
+                coordinates: [
+                    [-77.21054881811142,39.1769482836422],
+                    [-77.21056759357452,39.17731007133552],
+                    [-77.2107258439064,39.176966996844406],
+                    [-77.21077680587769,39.177320467506085],
+                    [ -77.21077412366867,39.17755334132392],
+                    [ -77.21056491136551,39.17757413359157 ]
+                ]
+            }
         },
-        geometry: {
-            type: "MultiPoint",
-            coordinates: [
-                [-77.21054881811142,39.1769482836422],
-                [-77.21056759357452,39.17731007133552],
-                [-77.2107258439064,39.176966996844406],
-                [-77.21077680587769,39.177320467506085],
-                [ -77.21077412366867,39.17755334132392],
-                [ -77.21056491136551,39.17757413359157 ]
-            ]
-        }
-    }
+        number: ["8","10","9","11","13","12"]
+    }];
 
-    let res = interpolize(street, address, { debug: true });
+
+    let res = interpolize('Battleridge Place', segs, { debug: true });
 
     if (process.env.UPDATE) {
         fs.writeFileSync(__dirname + '/fixtures/itp-pastline.json', JSON.stringify(res, null, 4));
