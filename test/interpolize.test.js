@@ -27,6 +27,30 @@ test('Drop Low', (t) => {
     t.end();
 });
 
+test('Raise High', (t) => {
+    let d;
+
+    d = interpolize.diff(22, 96);
+    t.equals(interpolize.raiseHigh(96, d), 100);
+
+    d = interpolize.diff(22, 10044);
+    t.equals(interpolize.raiseHigh(10044, d), 20000);
+
+    d = interpolize.diff(22, 246432642);
+    t.equals(interpolize.raiseHigh(246432642, d), 300000000);
+
+    d = interpolize.diff(105, 109);
+    t.equals(interpolize.raiseHigh(109, d), 111);
+
+    d = interpolize.diff(1246, 1948);
+    t.equals(interpolize.raiseHigh(1948, d), 2000);
+
+    d = interpolize.diff(1246, 42354264);
+    t.equals(interpolize.raiseHigh(42354264, d), 100000000);
+
+    t.end();
+});
+
 test('ITP Sort', (t) => {
     t.test('ITP Sort: Basic', (q) => {
         let feats = [
