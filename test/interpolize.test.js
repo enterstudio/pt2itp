@@ -171,12 +171,12 @@ test('Interpolize', (t) => {
             'carmen:text': 'Battleridge Place',
             'carmen:center':[-77.2106346487999,39.17712917725643],
             'carmen:rangetype':'tiger',
-            'carmen:parityl':['O',null],
-            'carmen:lfromhn':['9',null],
-            'carmen:ltohn':['11',null],
-            'carmen:parityr':['E',null],
-            'carmen:rfromhn':['8',null],
-            'carmen:rtohn':['10',null],
+            'carmen:parityl':['O', null],
+            'carmen:lfromhn':[ 1 , null],
+            'carmen:ltohn':  [ 21, null],
+            'carmen:parityr':['E', null],
+            'carmen:rfromhn':[ 0, null],
+            'carmen:rtohn':  [ 20 ,null],
             'addressnumber':[null,['8','10','9','11']]
         },
         'geometry':{
