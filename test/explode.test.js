@@ -242,7 +242,7 @@ test('explode', (t) => {
             }
         }]
     });
-    t.deepEquals(res.features.length, 3);
+    t.deepEquals(res.features.length, 2);
 
     t.end();
 });
