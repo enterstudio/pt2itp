@@ -3,21 +3,66 @@ const interpolize = require('../lib/interpolize');
 const turf = require('@turf/turf');
 const fs = require('fs');
 
-test('LSB forward', (t) => {
-    let LSB = interpolize.lsb(
-        [-79.37625288963318,38.83449282408381],
-        [-79.37467575073241,38.83594698648804]
-    )
-    t.equal(LSB, 1);
-    t.end();
+test('ITP Sort', (t) => {
+    t.test('ITP Sort: Basic', (q) => {
+        let feats = [
+            { id: 2, properties: { 'carmen:lfromhn': 22 } },
+            { id: 4, properties: { 'carmen:lfromhn': 1423 } },
+            { id: 1, properties: { 'carmen:lfromhn': 3 } },
+            { id: 5, properties: { 'carmen:lfromhn': 4362 } },
+            { id: 3, properties: { 'carmen:lfromhn': 43 } }
+        ]
+
+        feats.sort(interpolize.itpSort);
+
+        q.equals(feats[0].id, 1);
+        q.equals(feats[1].id, 2);
+        q.equals(feats[2].id, 3);
+        q.equals(feats[3].id, 4);
+        q.equals(feats[4].id, 5);
+
+        q.end();
+    });
+
+    t.test('ITP Sort: Nulls Last', (q) => {
+        let feats = [
+            { id: 1, properties: { 'carmen:lfromhn': 22 } },
+            { id: 2, properties: { 'carmen:lfromhn': 1423 } },
+            { id: 5, properties: { } },
+            { id: 3, properties: { 'carmen:lfromhn': 4362 } },
+            { id: 4, properties: { } }
+        ]
+
+        feats.sort(interpolize.itpSort);
+
+        q.equals(feats[0].id, 1);
+        q.equals(feats[1].id, 2);
+        q.equals(feats[2].id, 3);
+        q.equals(feats[3].id, 4);
+        q.equals(feats[4].id, 5);
+
+        q.end();
+    });
 });
 
-test('LSB reverse', (t) => {
-    let LSB = interpolize.lsb(
-        [-79.37467575073241,38.83594698648804],
-        [-79.37625288963318,38.83449282408381]
-    )
-    t.equal(LSB, 1);
+test('LSB', (t) => {
+    t.test('LSB forward', (q) => {
+        let LSB = interpolize.lsb(
+            [-79.37625288963318,38.83449282408381],
+            [-79.37467575073241,38.83594698648804]
+        )
+        q.equal(LSB, 1);
+        q.end();
+    });
+
+    t.test('LSB reverse', (q) => {
+        let LSB = interpolize.lsb(
+            [-79.37467575073241,38.83594698648804],
+            [-79.37625288963318,38.83449282408381]
+        )
+        q.equal(LSB, 1);
+        q.end();
+    });
     t.end();
 });
 
