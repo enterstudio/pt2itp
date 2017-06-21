@@ -132,47 +132,65 @@ test('segments', (t) => {
 });
 
 test('Interpolize', (t) => {
-    let street = {
-        type: "Feature",
-        properties: { street: "Battleridge Place" },
-        geometry: {
-            type: "LineString",
-            coordinates: [
-                [-77.21062123775481,39.17687343078357],
-                [-77.21064805984497,39.1773849237293]
-            ]
-        }
-    }
-
-    let address = {
-        type: "Feature",
-        properties: {
-            street: "Battleridge Place",
-            numbers: ["8","10","9","11"]
+    let segs = [{
+        network: {
+            type: "Feature",
+            properties: { },
+            geometry: {
+                type: "LineString",
+                coordinates: [
+                    [-77.21062123775481,39.17687343078357],
+                    [-77.21064805984497,39.1773849237293]
+                ]
+            }
         },
-        geometry: {
-            type: "MultiPoint",
-            coordinates: [
-                [-77.21054881811142,39.1769482836422],
-                [-77.21056759357452,39.17731007133552],
-                [-77.2107258439064,39.176966996844406],
-                [-77.21077680587769,39.177320467506085]
-            ]
-        }
-    }
+        address: {
+            type: "Feature",
+            properties: { },
+            geometry: {
+                type: "MultiPoint",
+                coordinates: [
+                    [-77.21054881811142,39.1769482836422],
+                    [-77.21056759357452,39.17731007133552],
+                    [-77.2107258439064,39.176966996844406],
+                    [-77.21077680587769,39.177320467506085]
+                ]
+            }
+        },
+        number:  ["8","10","9","11"]
+    }];
 
-    let res = interpolize(street, address);
-    t.deepEquals(res.properties, {
-        'carmen:text': 'Battleridge Place',
-        'carmen:center': [ -77.2106346487999, 39.17712917725643 ],
-        'carmen:rangetype': 'tiger',
-        'carmen:parityl': 'O',
-        'carmen:lfromhn': '9',
-        'carmen:ltohn': '11',
-        'carmen:parityr': 'E',
-        'carmen:rfromhn': '8',
-        'carmen:rtohn': '10'
-    }, 'has expected properties');
+    let res = interpolize('Battleridge Place', segs);
+
+    t.ok(Array.isArray(res));
+    t.equals(res.length, 1);
+
+    t.deepEquals(res[0], {
+        type: 'Feature',
+        properties: {
+            'carmen:text': 'Battleridge Place',
+            'carmen:center':[-77.2106346487999,39.17712917725643],
+            'carmen:rangetype':'tiger',
+            'carmen:parityl':['O',null],
+            'carmen:lfromhn':['9',null],
+            'carmen:ltohn':['11',null],
+            'carmen:parityr':['E',null],
+            'carmen:rfromhn':['8',null],
+            'carmen:rtohn':['10',null],
+            'addressnumber':[null,['8','10','9','11']]
+        },
+        'geometry':{
+            'type':'GeometryCollection',
+            'geometries':[{
+                'type':'LineString',
+                'coordinates':[[-77.21062123775481,39.17687343078357],[-77.21064805984497,39.1773849237293]]
+            },{
+                'type':'MultiPoint',
+                'coordinates':[[-77.21054881811142,39.1769482836422],[-77.21056759357452,39.17731007133552],[-77.2107258439064,39.176966996844406],[-77.21077680587769,39.177320467506085]]
+            }]
+        }
+    }, 'has expected props');
+
     t.end();
 });
 
