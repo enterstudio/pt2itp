@@ -3,6 +3,30 @@ const interpolize = require('../lib/interpolize');
 const turf = require('@turf/turf');
 const fs = require('fs');
 
+test('Drop Low', (t) => {
+    let d;
+
+    d = interpolize.diff(22, 96);
+    t.equals(interpolize.dropLow(22, d), 0);
+
+    d = interpolize.diff(22, 10044);
+    t.equals(interpolize.dropLow(22, d), 0);
+
+    d = interpolize.diff(22, 246432642);
+    t.equals(interpolize.dropLow(22, d), 0);
+
+    d = interpolize.diff(105, 109);
+    t.equals(interpolize.dropLow(105, d), 101);
+
+    d = interpolize.diff(1246, 1948);
+    t.equals(interpolize.dropLow(1246, d), 1000);
+
+    d = interpolize.diff(1246, 42354264);
+    t.equals(interpolize.dropLow(1246, d), 0);
+
+    t.end();
+});
+
 test('ITP Sort', (t) => {
     t.test('ITP Sort: Basic', (q) => {
         let feats = [
