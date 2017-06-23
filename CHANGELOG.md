@@ -10,6 +10,12 @@
 
 ## Version History
 
+### v11.0.0
+
+- :rocket: ITP segments are now allowed to exceeds the min/max addresses at the calculated start/end points to get a better range
+    - IE: `22 => 96` would potentially become `0 => 100`.
+    - Although this doesn't change the output format or cli options the data is drastically different from the 10x series - hence the major version
+
 ### v10.0.1
 
 - :bug: `strip` mode - Don't ouput geometry if it was only points - empty array
