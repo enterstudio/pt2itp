@@ -162,9 +162,6 @@ test('Interpolize', (t) => {
 
     let res = interpolize('Battleridge Place', segs);
 
-    t.ok(Array.isArray(res));
-    t.equals(res.length, 1);
-
     t.deepEquals(res[0], {
         type: 'Feature',
         properties: {
