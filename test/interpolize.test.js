@@ -162,7 +162,7 @@ test('Interpolize', (t) => {
 
     let res = interpolize('Battleridge Place', segs);
 
-    t.deepEquals(res[0], {
+    t.deepEquals(res, {
         type: 'Feature',
         properties: {
             'carmen:text': 'Battleridge Place',
