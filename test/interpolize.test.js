@@ -228,6 +228,8 @@ test('Interpolize - Addr past line end', (t) => {
 
     let res = interpolize('Battleridge Place', segs, { debug: true });
 
+    delete res.id;
+
     if (process.env.UPDATE) {
         fs.writeFileSync(__dirname + '/fixtures/itp-pastline.json', JSON.stringify(res, null, 4));
         t.fail('had to update fixture');
@@ -269,6 +271,8 @@ test('Interpolize - Addr past line end - opposite', (t) => {
 
     let res = interpolize('Battleridge Place', segs, { debug: true });
 
+    delete res.id;
+
     if (process.env.UPDATE) {
         fs.writeFileSync(__dirname + '/fixtures/itp-pastline-opp.json', JSON.stringify(res, null, 4));
         t.fail('had to update fixture');
@@ -309,6 +313,8 @@ test('Interpolize - Addr past line end - bend', (t) => {
 
     let res = interpolize('Battleridge Place', segs, { debug: true });
 
+    delete res.id;
+
     if (process.env.UPDATE) {
         fs.writeFileSync(__dirname + '/fixtures/itp-pastline-bend.json', JSON.stringify(res, null, 4));
         t.fail('had to update fixture');
@@ -348,6 +354,8 @@ test('Interpolize - Addr past line end - bend - reverse', (t) => {
     }];
 
     let res = interpolize('Battleridge Place', segs, { debug: true });
+
+    delete res.id;
 
     if (process.env.UPDATE) {
         fs.writeFileSync(__dirname + '/fixtures/itp-pastline-bend-rev.json', JSON.stringify(res, null, 4));
@@ -402,6 +410,8 @@ test('Interpolize - Hooked Road', (t) => {
     }];
 
     let res = interpolize('Tommy Bell Pl', segs, { debug: true });
+
+    delete res.id;
 
     if (process.env.UPDATE) {
         fs.writeFileSync(__dirname + '/fixtures/left-hook.json', JSON.stringify(res, null, 4));
