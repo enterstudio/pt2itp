@@ -162,25 +162,27 @@ test('Interpolize', (t) => {
 
     let res = interpolize('Battleridge Place', segs);
 
+    delete res.id;
+
     t.deepEquals(res, {
         type: 'Feature',
         properties: {
             'carmen:text': 'Battleridge Place',
             'carmen:center':[-77.2106346487999,39.17712917725643],
             'carmen:rangetype':'tiger',
-            'carmen:parityl':['O', null],
-            'carmen:lfromhn':[ 1 , null],
-            'carmen:ltohn':  [ 21, null],
-            'carmen:parityr':['E', null],
-            'carmen:rfromhn':[ 0, null],
-            'carmen:rtohn':  [ 20 ,null],
-            'addressnumber':[null,['8','10','9','11']]
+            'carmen:parityl':[ ['O'], null],
+            'carmen:lfromhn':[ [1] , null],
+            'carmen:ltohn':  [ [21], null],
+            'carmen:parityr':[['E'], null],
+            'carmen:rfromhn':[ [0], null],
+            'carmen:rtohn':  [ [20] ,null],
+            'carmen:addressnumber':[null,['8','10','9','11']]
         },
         'geometry':{
             'type':'GeometryCollection',
             'geometries':[{
-                'type':'LineString',
-                'coordinates':[[-77.21062123775481,39.17687343078357],[-77.21064805984497,39.1773849237293]]
+                'type':'MultiLineString',
+                'coordinates':[[[-77.21062123775481,39.17687343078357],[-77.21064805984497,39.1773849237293]]]
             },{
                 'type':'MultiPoint',
                 'coordinates':[[-77.21054881811142,39.1769482836422],[-77.21056759357452,39.17731007133552],[-77.2107258439064,39.176966996844406],[-77.21077680587769,39.177320467506085]]
