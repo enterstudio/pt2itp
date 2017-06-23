@@ -2,93 +2,99 @@
     "type": "Feature",
     "properties": {
         "carmen:text": "Battleridge Place",
-        "carmen:parityl": "O",
-        "carmen:lfromhn": "3",
-        "carmen:ltohn": "1",
-        "carmen:parityr": "E",
-        "carmen:rfromhn": "4",
-        "carmen:rtohn": "2",
         "carmen:center": [
             -77.20934987068176,
             39.17688382701869
         ],
-        "carmen:rangetype": "tiger"
-    },
-    "geometry": {
-        "type": "LineString",
-        "coordinates": [
+        "carmen:addressnumber": [
+            null,
             [
-                -77.20870077610016,
-                39.177050166571725
-            ],
-            [
-                -77.20934987068176,
-                39.17688382701869
-            ],
-            [
-                -77.21002042293549,
-                39.17696283835544
+                "2",
+                "4",
+                "1",
+                "3"
             ]
+        ],
+        "carmen:rangetype": "tiger",
+        "carmen:parityl": [
+            [
+                "O"
+            ],
+            null
+        ],
+        "carmen:lfromhn": [
+            [
+                11
+            ],
+            null
+        ],
+        "carmen:ltohn": [
+            [
+                1
+            ],
+            null
+        ],
+        "carmen:parityr": [
+            [
+                "E"
+            ],
+            null
+        ],
+        "carmen:rfromhn": [
+            [
+                10
+            ],
+            null
+        ],
+        "carmen:rtohn": [
+            [
+                0
+            ],
+            null
         ]
     },
-    "debug": {
-        "type": "FeatureCollection",
-        "features": [
+    "geometry": {
+        "type": "GeometryCollection",
+        "geometries": [
             {
-                "type": "Feature",
-                "properties": {
-                    "start": true,
-                    "left": true
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
+                "type": "MultiLineString",
+                "coordinates": [
+                    [
+                        [
+                            -77.20870077610016,
+                            39.177050166571725
+                        ],
+                        [
+                            -77.20934987068176,
+                            39.17688382701869
+                        ],
+                        [
+                            -77.21002042293549,
+                            39.17696283835544
+                        ]
+                    ]
+                ]
+            },
+            {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        -77.20983803272247,
+                        39.17702937414912
+                    ],
+                    [
+                        -77.20847547054291,
+                        39.177740471511456
+                    ],
+                    [
+                        -77.20990777015686,
+                        39.17674659659119
+                    ],
+                    [
                         -77.20825552940369,
                         39.1777238377372
                     ]
-                }
-            },
-            {
-                "type": "Feature",
-                "properties": {
-                    "end": true,
-                    "left": true
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        -77.20990777015686,
-                        39.17674659659119
-                    ]
-                }
-            },
-            {
-                "type": "Feature",
-                "properties": {
-                    "start": true,
-                    "right": true
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        -77.20847547054291,
-                        39.177740471511456
-                    ]
-                }
-            },
-            {
-                "type": "Feature",
-                "properties": {
-                    "end": true,
-                    "right": true
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        -77.20983803272247,
-                        39.17702937414912
-                    ]
-                }
+                ]
             }
         ]
     }
