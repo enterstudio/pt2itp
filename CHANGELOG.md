@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v11.3.0
+
+- :tada: Add adpotion module which grabs address clusters that were too far apart from another to be joined along a single ultralong network cluster
+
 ### v11.2.0
 
 - :rocket: Zoom to map bounds on first open of debug
