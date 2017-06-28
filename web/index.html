@@ -161,7 +161,13 @@
                 }
             });
 
-            if ($search.val()) getID($search.val());
+            if ($search.val()) {
+                getID($search.val());
+            } else {
+                $.get('/api/bounds', (res) => {
+                    map.fitBounds(res);
+                }); 
+            }
         });
 
         map.on('click', (e) => {
