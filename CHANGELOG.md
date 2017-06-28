@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v11.2.0
+
+- :rocket: Zoom to map bounds on first open of debug
+
 ### v11.1.0
 
 - :rocket: uses the callback functionality of `process.stdout.write` to throttle writing so that it only occurs after the previous write is flushed. I don't think this helps but it's not a bad idea.
