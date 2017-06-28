@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v11.1.0
+
+- :rocket: uses the callback functionality of `process.stdout.write` to throttle writing so that it only occurs after the previous write is flushed. I don't think this helps but it's not a bad idea.
+- :rocket: uses the `split` module in the parent/orchestrating process to (hopefully) only write whole-line chunks to the output file
+
 ### v11.0.0
 
 - :rocket: ITP segments are now allowed to exceeds the min/max addresses at the calculated start/end points to get a better range
