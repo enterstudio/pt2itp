@@ -250,15 +250,15 @@ test('cluster.network', (t) => {
     });
 });
 
-test('cluster.adoption', (t) => {
+test('cluster.prune', (t) => {
     const popQ = Queue(1);
 
     //CREATE pt2itp TABLES
     popQ.defer((done) => {
         pool.query(`
             BEGIN;
-            CREATE TABLE network_cluster (address BIGINT, geom GEOMETRY(LINESTRING, 4326), buffer GEOMETRY(GEOMETRY, 4326));
-            CREATE TABLE address_cluster (id BIGINT, _text TEXT, geom GEOMETRY(GEOMETRY, 4326));
+            CREATE TABLE network_cluster (id BIGINT, address BIGINT, text TEXT, text_tokenless TEXT);
+            CREATE TABLE address_cluster (id BIGINT, text TEXT, text_tokenless TEXT);
             COMMIT;
         `, (err, res) => {
             t.error(err);
@@ -270,10 +270,16 @@ test('cluster.adoption', (t) => {
     popQ.defer((done) => {
         pool.query(`
             BEGIN;
-            INSERT INTO network_cluster (address, geom) VALUES (1, ST_SetSRID(ST_GeomFromGeoJSON('{"type":"LineString","coordinates":[[-77.06428527832031,38.87018642754998],[-77.08488464355469,38.84131208727261],[-77.1240234375,38.826870521380634],[-77.13844299316406,38.817241182948266],[-77.16316223144531,38.80440003947544],[-77.178955078125,38.788880569497124],[-77.18513488769531,38.76853959726423],[-77.18719482421874,38.74337300148123],[-77.22633361816405,38.710160941206645]]}'), 4326));
-            UPDATE network_cluster SET buffer=ST_Buffer(ST_Envelope(geom), 0.01);
-            INSERT INTO address_cluster (id, _text, geom) VALUES (1, 'Pollard St', ST_SetSRID(ST_GeomFromGeoJSON('{"type":"MultiPoint","coordinates":[[-77.06468224525452,38.87007783654626],[-77.06486463546752,38.86984394766712],[-77.06496119499207,38.86961005801844]]}'), 4326));
-            INSERT INTO address_cluster (id, _text, geom) VALUES (2, 'Pollard St', ST_SetSRID(ST_GeomFromGeoJSON('{"type":"MultiPoint","coordinates":[[-77.22588300704956,38.710068850025856],[-77.22571134567261,38.710269776085525],[-77.22553968429565,38.710504189108065]]}'), 4326));
+	    INSERT INTO address_cluster (id, text, text_tokenless) VALUES (1, 'Main St', 'Main');
+	    INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (1, 1, 'Main St', 'Main');
+	    INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (2, 1, 'Moin St', 'Main');
+
+	    INSERT INTO address_cluster (id, text, text_tokenless) VALUES (2, 'Pollard Rd', 'Pollard');
+	    INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (3, 2, 'Pollard St', 'Pollard');
+
+	    INSERT INTO address_cluster (id, text, text_tokenless) VALUES (3, 'First St', 'First');
+	    INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (4, 3, 'First St', 'First');
+	    INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (5, 3, 'Second St', 'Second');
             COMMIT;
         `, (err, res) => {
             t.error(err);
@@ -282,7 +288,7 @@ test('cluster.adoption', (t) => {
     });
 
     popQ.defer((done) => {
-        cluster.adoption((err) => {
+        cluster.prune((err) => {
             t.error(err);
             return done();
         });
@@ -290,12 +296,30 @@ test('cluster.adoption', (t) => {
 
     popQ.defer((done) => {
         pool.query(`
-            SELECT id, _text, ST_NPoints(geom) AS npoints FROM address_cluster;
+            SELECT * FROM address_cluster ORDER BY id ASC;
         `, (err, res) => {
             t.error(err);
+	    if (process.env.UPDATE) {
+		fs.writeFileSync(__dirname + '/fixtures/cluster.prune-address.expected.json', JSON.stringify(res.rows, null, 2))
+		t.fail();
+	    }
+	    else
+		t.deepEquals(res.rows, require(__dirname + '/fixtures/cluster.prune-address.expected.json'));
+            return done();
+        });
+    });
 
-            t.equals(res.rows.length, 1);
-            t.deepEquals(res.rows[0], { id: '1', _text: 'Pollard St', npoints: 6 });
+    popQ.defer((done) => {
+        pool.query(`
+            SELECT * FROM network_cluster ORDER BY id ASC;
+        `, (err, res) => {
+            t.error(err);
+	    if (process.env.UPDATE) {
+		fs.writeFileSync(__dirname + '/fixtures/cluster.prune-network.expected.json', JSON.stringify(res.rows, null, 2))
+		t.fail();
+	    }
+	    else
+		t.deepEquals(res.rows, require(__dirname + '/fixtures/cluster.prune-network.expected.json'));
             return done();
         });
     });

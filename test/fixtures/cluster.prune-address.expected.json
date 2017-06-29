@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1",
+    "text": "Main St",
+    "text_tokenless": "Main"
+  },
+  {
+    "id": "2",
+    "text": "Pollard Rd",
+    "text_tokenless": "Pollard"
+  },
+  {
+    "id": "3",
+    "text": "First St",
+    "text_tokenless": "First"
+  }
+]
