@@ -315,6 +315,96 @@ test('cluster.adoption', (t) => {
     });
 });
 
+
+test('cluster.prune', (t) => {
+    const popQ = Queue(1);
+
+    //CREATE pt2itp TABLES
+    popQ.defer((done) => {
+        pool.query(`
+            BEGIN;
+            CREATE TABLE network_cluster (id BIGINT, address BIGINT, text TEXT, text_tokenless TEXT);
+            CREATE TABLE address_cluster (id BIGINT, text TEXT, text_tokenless TEXT);
+            COMMIT;
+        `, (err, res) => {
+            t.error(err);
+            return done();
+        });
+    });
+
+    //POPULATE NETWORK
+    popQ.defer((done) => {
+        pool.query(`
+            BEGIN;
+	    INSERT INTO address_cluster (id, text, text_tokenless) VALUES (1, 'Main St', 'Main');
+	    INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (1, 1, 'Main St', 'Main');
+	    INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (2, 1, 'Moin St', 'Main');
+
+	    INSERT INTO address_cluster (id, text, text_tokenless) VALUES (2, 'Pollard Rd', 'Pollard');
+	    INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (3, 2, 'Pollard St', 'Pollard');
+
+	    INSERT INTO address_cluster (id, text, text_tokenless) VALUES (3, 'First St', 'First');
+	    INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (4, 3, 'First St', 'First');
+	    INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (5, 3, 'Second St', 'Second');
+            COMMIT;
+        `, (err, res) => {
+            t.error(err);
+            return done();
+        });
+    });
+
+    popQ.defer((done) => {
+        cluster.prune((err) => {
+            t.error(err);
+            return done();
+        });
+    });
+
+    popQ.defer((done) => {
+        pool.query(`
+            SELECT * FROM address_cluster ORDER BY id ASC;
+        `, (err, res) => {
+            t.error(err);
+	    if (process.env.UPDATE) {
+		fs.writeFileSync(__dirname + '/fixtures/cluster.prune-address.expected.json', JSON.stringify(res.rows, null, 2))
+		t.fail();
+	    }
+	    else
+		t.deepEquals(res.rows, require(__dirname + '/fixtures/cluster.prune-address.expected.json'));
+            return done();
+        });
+    });
+
+    popQ.defer((done) => {
+        pool.query(`
+            SELECT * FROM network_cluster ORDER BY id ASC;
+        `, (err, res) => {
+            t.error(err);
+	    if (process.env.UPDATE) {
+		fs.writeFileSync(__dirname + '/fixtures/cluster.prune-network.expected.json', JSON.stringify(res.rows, null, 2))
+		t.fail();
+	    }
+	    else
+		t.deepEquals(res.rows, require(__dirname + '/fixtures/cluster.prune-network.expected.json'));
+            return done();
+        });
+    });
+
+    popQ.await((err) => {
+        t.error(err);
+
+        pool.query(`
+            BEGIN;
+            DROP TABLE address_cluster;
+            DROP TABLE network_cluster;
+            COMMIT;
+        `, (err, res) => {
+            t.error(err);
+            t.end();
+        });
+    });
+});
+
 test('end connection', (t) => {
     pool.end();
     t.end();
