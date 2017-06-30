@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v11.5.0
+
+- :tada: :white_check_mark: added pruning to ensure only 1 network_cluster is matched to a given address_cluster.
+- :rocket: adjusted linker constraints to improve matches.
+
 ### v11.4.1
 
 - :rocket: optimized adoption query
