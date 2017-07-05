@@ -10,6 +10,13 @@
 
 ## Version History
 
+### v11.6.2
+
+- :white_check_mark: tests for copy.js
+- :bug: correctly populate text_tokenless in `address_cluster` & `address` tables
+- :bug: handle all-token case properly in `cluster.prune()`
+- :rocket: move token replacer creation code into `tokenize.js`
+
 ### v11.6.1
 
 - :arrow_up: Update to latest `carmen` and `geocoder-abbreviations`
