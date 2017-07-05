@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v11.6.1
+
+- :arrow_up: Update to latest `carmen` and `geocoder-abbreviations`
+
 ### v11.6.0
 
 - :rocket: Add address deduping to `strip` module as they aren't desireable in our output
