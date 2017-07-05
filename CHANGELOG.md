@@ -10,6 +10,15 @@
 
 ## Version History
 
+### v11.6.1
+
+- :arrow_up: Update to latest `carmen` and `geocoder-abbreviations`
+
+### v11.6.0
+
+- :rocket: Add address deduping to `strip` module as they aren't desireable in our output
+- :tada: Add `--name` option to test mode to allow more flexibility in text comparison pass/fail criteria
+
 ### v11.5.0
 
 - :tada: :white_check_mark: added pruning to ensure only 1 network_cluster is matched to a given address_cluster.
