@@ -39,7 +39,8 @@
     "coveralls": "^2.11.4",
     "eslint": "^4.0.0",
     "istanbul": "^0.4.0",
-    "tape": "^4.2.0"
+    "tape": "^4.2.0",
+    "tmp": "0.0.31"
   },
   "eslintConfig": {
     "rules": {
