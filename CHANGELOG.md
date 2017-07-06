@@ -10,6 +10,11 @@
 
 ## Version History
 
+### v11.7.0
+
+- :white_check_mark: Comprehensive tests for strip-unit
+- :tada: support `123 B` => `123B` Address conversions (Common in Canada Data)
+
 ### v11.6.2
 
 - :white_check_mark: tests for copy.js
