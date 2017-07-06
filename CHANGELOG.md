@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v11.7.1
+
+- :bug: Restore `debug` property on `map` module output when `--debug` is passed
+
 ### v11.7.0
 
 - :white_check_mark: Comprehensive tests for strip-unit
