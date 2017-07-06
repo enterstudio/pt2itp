@@ -103,5 +103,68 @@
                 ]
             }
         ]
-    }
+    },
+    "debug": [
+        {
+            "type": "featurecollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "start": true,
+                        "left": true
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -77.2107258439064,
+                            39.176966996844406
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "end": true,
+                        "left": true
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -77.21078217029572,
+                            39.17767393639073
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "start": true,
+                        "right": true
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -77.21054881811142,
+                            39.1769482836422
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "end": true,
+                        "right": true
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -77.21056491136551,
+                            39.17757413359157
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
 }
