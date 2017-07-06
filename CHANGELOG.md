@@ -10,6 +10,12 @@
 
 ## Version History
 
+### v11.8.0
+
+- :rocket: Better readability of `TEXT FAIL` mismatch when in `test` mode
+- :arrow_up: Update to latest geocoder-abbr version (1.7.0)
+- :rocket: Remove tabs from `test` and fix indentation
+
 ### v11.7.1
 
 - :bug: Restore `debug` property on `map` module output when `--debug` is passed
