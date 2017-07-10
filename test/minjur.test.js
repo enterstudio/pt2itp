@@ -63,6 +63,30 @@ test('Minjur', (t) => {
         }), { geometry: { type: 'LineString' }, properties: { street: 'Test' }, type: 'Feature' }, `${type} is accepted w/ name`);
     }
 
+    t.deepEquals(map({
+        type: 'Feature',
+        properties: {
+            highway: 'motorway',
+            name: 'name',
+            loc_name: 'loc_name',
+            alt_name: 'alt_name'
+        },
+        geometry: {
+            type: 'LineString'
+        }
+    }), { geometry: { type: 'LineString' }, properties: { street: [ 'name', 'loc_name', 'alt_name' ] }, type: 'Feature' }, 'AltNames');
+
+    t.deepEquals(map({
+        type: 'Feature',
+        properties: {
+            highway: 'motorway',
+            name: '1 Name;2 Name;3 Name'
+        },
+        geometry: {
+            type: 'LineString'
+        }
+    }), { geometry: { type: 'LineString' }, properties: { street: [ '1 Name', '2 Name', '3 Name' ] }, type: 'Feature' }, 'OSM ; AltNames');
+
     t.end();
 });
 
