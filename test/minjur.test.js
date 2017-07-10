@@ -24,6 +24,17 @@ test('Minjur', (t) => {
         }
     }), false, 'Feat must have Highway');
 
+    t.equals(map({
+        type: 'Feature',
+        properties: {
+            name: 'Test',
+            highway: 'fake'
+        },
+        geometry: {
+            type: 'LineString'
+        }
+    }), false, 'Feat must valid Highway');
+
     //Streets allowed to be missing names
     for (let type of ['motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'residential', 'unclassified', 'living_street', 'pedestrian', 'road']) {
         t.deepEquals(map({
@@ -86,6 +97,17 @@ test('Minjur', (t) => {
             type: 'LineString'
         }
     }), { geometry: { type: 'LineString' }, properties: { street: [ '1 Name', '2 Name', '3 Name' ] }, type: 'Feature' }, 'OSM ; AltNames');
+
+    t.deepEquals(map({
+        type: 'Feature',
+        properties: {
+            highway: 'motorway',
+            name: '1 Name; '
+        },
+        geometry: {
+            type: 'LineString'
+        }
+    }), { geometry: { type: 'LineString' }, properties: { street: '1 Name' }, type: 'Feature' }, 'OSM ; AltNames null');
 
     t.end();
 });
