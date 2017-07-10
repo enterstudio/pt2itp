@@ -38,6 +38,17 @@ test('Strip-Unit', (t) => {
         type: 'Feature',
         properties: {
             number: 1,
+            street: '   '
+        },
+        geometry: {
+            type: 'Point'
+        }
+    }).toString(), 'Error: Feat must have non-empty street property', 'Feat must have non-empty street property');
+
+    t.equals(map({
+        type: 'Feature',
+        properties: {
+            number: 1,
             street: 'Main St'
         },
         geometry: {
