@@ -81,7 +81,9 @@ test('map - good run', (t) => {
         });
 
         function checkFixture(res, fixture) {
-            fs.writeFileSync(path.resolve(__dirname, `./fixtures/sg-${fixture}`), JSON.stringify(res, null, 4));
+            t.ok(res.id);
+            delete res.id;
+
             let known = JSON.parse(fs.readFileSync(path.resolve(__dirname, `./fixtures/sg-${fixture}`)));
 
             t.deepEquals(res, known);
