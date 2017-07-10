@@ -1,0 +1,55 @@
+{
+    "type": "Feature",
+    "properties": {
+        "carmen:text": "Lorong 21a Geylang",
+        "carmen:center": [
+            103.880167,
+            1.315412
+        ],
+        "carmen:addressnumber": [
+            [
+                22,
+                20,
+                15,
+                11,
+                9,
+                22
+            ]
+        ]
+    },
+    "geometry": {
+        "type": "GeometryCollection",
+        "geometries": [
+            {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        103.880618,
+                        1.315785
+                    ],
+                    [
+                        103.880615,
+                        1.315577
+                    ],
+                    [
+                        103.880085,
+                        1.315582
+                    ],
+                    [
+                        103.880167,
+                        1.315412
+                    ],
+                    [
+                        103.880285,
+                        1.315166
+                    ],
+                    [
+                        103.880375,
+                        1.315717
+                    ]
+                ]
+            }
+        ]
+    },
+    "id": 538047698
+}

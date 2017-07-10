@@ -1,0 +1,87 @@
+{
+    "type": "Feature",
+    "properties": {
+        "carmen:text": "Muscat Street",
+        "carmen:center": [
+            103.859099,
+            1.301846
+        ],
+        "carmen:addressnumber": [
+            null,
+            [
+                3
+            ]
+        ],
+        "carmen:rangetype": "tiger",
+        "carmen:parityl": [
+            [
+                "O"
+            ],
+            null
+        ],
+        "carmen:lfromhn": [
+            [
+                3
+            ],
+            null
+        ],
+        "carmen:ltohn": [
+            [
+                null
+            ],
+            null
+        ],
+        "carmen:parityr": [
+            [
+                null
+            ],
+            null
+        ],
+        "carmen:rfromhn": [
+            [
+                null
+            ],
+            null
+        ],
+        "carmen:rtohn": [
+            [
+                null
+            ],
+            null
+        ]
+    },
+    "geometry": {
+        "type": "GeometryCollection",
+        "geometries": [
+            {
+                "type": "MultiLineString",
+                "coordinates": [
+                    [
+                        [
+                            103.858846,
+                            1.30161
+                        ],
+                        [
+                            103.859099,
+                            1.301846
+                        ],
+                        [
+                            103.859625,
+                            1.301155
+                        ]
+                    ]
+                ]
+            },
+            {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        103.859365,
+                        1.302539
+                    ]
+                ]
+            }
+        ]
+    },
+    "id": 902788546
+}
