@@ -35,6 +35,7 @@ test('Uses replacement tokens', (t) => {
     t.deepEqual(tokenize.main('foo', {}), ['foo'], 'handles empty args');
     t.deepEqual(tokenize.main('foo', { tokens: [] }), ['foo'], 'handles empty tokens array');
     t.deepEqual(tokenize.main('barter', { 'barter': 'foo' }), ['foo'], 'basic single replacement');
+    t.deepEqual(tokenize.main('abc 234 def', { '(?<number>2\\d+)': '###${number}###' }), ['abc', '234', 'def'], 'named replacement');
     t.end();
 });
 
