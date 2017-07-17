@@ -53,7 +53,7 @@
         2,
         "never"
       ],
-      "no-tabs": 0,
+      "no-tabs": 2,
       "space-in-parens": 2,
       "space-before-blocks": 2,
       "keyword-spacing": 2,
