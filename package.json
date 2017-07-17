@@ -15,7 +15,7 @@
   "author": "Nicholas Ingalls <nicholas.ingalls@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "@mapbox/carmen": "^22.4.2",
+    "@mapbox/carmen": "^22.4.3",
     "@mapbox/geocoder-abbreviations": "^1.7.0",
     "@mapbox/mbtiles": "^0.9.0",
     "@mapbox/tile-cover": "^3.0.2",
@@ -27,7 +27,7 @@
     "fast-levenshtein": "^2.0.6",
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
-    "pg": "^6.4.0",
+    "pg": "^6.4.1",
     "pg-cursor": "^1.2.0",
     "progress": "^2.0.0",
     "split": "^1.0.0",
@@ -37,10 +37,10 @@
   },
   "devDependencies": {
     "coveralls": "^2.11.4",
-    "eslint": "^4.1.1",
+    "eslint": "^4.2.0",
     "istanbul": "^0.4.0",
-    "tmp": "0.0.31",
-    "tape": "^4.7.0"
+    "tape": "^4.7.0",
+    "tmp": "0.0.31"
   },
   "eslintConfig": {
     "rules": {

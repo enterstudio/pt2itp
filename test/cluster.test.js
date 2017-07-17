@@ -365,12 +365,12 @@ test('cluster.prune', (t) => {
             SELECT * FROM address_cluster ORDER BY id ASC;
         `, (err, res) => {
             t.error(err);
-	    if (process.env.UPDATE) {
-		fs.writeFileSync(__dirname + '/fixtures/cluster.prune-address.expected.json', JSON.stringify(res.rows, null, 2))
-		t.fail();
-	    }
-	    else
-		t.deepEquals(res.rows, require(__dirname + '/fixtures/cluster.prune-address.expected.json'));
+            if (process.env.UPDATE) {
+                fs.writeFileSync(__dirname + '/fixtures/cluster.prune-address.expected.json', JSON.stringify(res.rows, null, 2))
+                t.fail();
+            } else {
+                t.deepEquals(res.rows, require(__dirname + '/fixtures/cluster.prune-address.expected.json'));
+            }
             return done();
         });
     });
@@ -380,12 +380,12 @@ test('cluster.prune', (t) => {
             SELECT * FROM network_cluster ORDER BY id ASC;
         `, (err, res) => {
             t.error(err);
-	    if (process.env.UPDATE) {
-		fs.writeFileSync(__dirname + '/fixtures/cluster.prune-network.expected.json', JSON.stringify(res.rows, null, 2))
-		t.fail();
-	    }
-	    else
-		t.deepEquals(res.rows, require(__dirname + '/fixtures/cluster.prune-network.expected.json'));
+            if (process.env.UPDATE) {
+                fs.writeFileSync(__dirname + '/fixtures/cluster.prune-network.expected.json', JSON.stringify(res.rows, null, 2))
+                t.fail();
+            } else {
+                t.deepEquals(res.rows, require(__dirname + '/fixtures/cluster.prune-network.expected.json'));
+            }
             return done();
         });
     });

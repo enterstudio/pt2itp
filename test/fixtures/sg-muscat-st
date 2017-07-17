@@ -1,18 +1,15 @@
 {
     "type": "Feature",
     "properties": {
-        "carmen:text": "Battleridge Place",
+        "carmen:text": "Muscat Street",
         "carmen:center": [
-            -77.20934987068176,
-            39.17688382701869
+            103.859099,
+            1.301846
         ],
         "carmen:addressnumber": [
             null,
             [
-                "1",
-                "2",
-                "3",
-                "4"
+                3
             ]
         ],
         "carmen:rangetype": "tiger",
@@ -24,31 +21,31 @@
         ],
         "carmen:lfromhn": [
             [
-                11
+                3
             ],
             null
         ],
         "carmen:ltohn": [
             [
-                1
+                null
             ],
             null
         ],
         "carmen:parityr": [
             [
-                "E"
+                null
             ],
             null
         ],
         "carmen:rfromhn": [
             [
-                10
+                null
             ],
             null
         ],
         "carmen:rtohn": [
             [
-                0
+                null
             ],
             null
         ]
@@ -61,16 +58,16 @@
                 "coordinates": [
                     [
                         [
-                            -77.20870077610016,
-                            39.177050166571725
+                            103.858846,
+                            1.30161
                         ],
                         [
-                            -77.20934987068176,
-                            39.17688382701869
+                            103.859099,
+                            1.301846
                         ],
                         [
-                            -77.21002042293549,
-                            39.17696283835544
+                            103.859625,
+                            1.301155
                         ]
                     ]
                 ]
@@ -79,20 +76,8 @@
                 "type": "MultiPoint",
                 "coordinates": [
                     [
-                        -77.20990777015686,
-                        39.17674659659119
-                    ],
-                    [
-                        -77.20983803272247,
-                        39.17702937414912
-                    ],
-                    [
-                        -77.20825552940369,
-                        39.1777238377372
-                    ],
-                    [
-                        -77.20847547054291,
-                        39.177740471511456
+                        103.859004,
+                        1.302238
                     ]
                 ]
             }
@@ -111,8 +96,8 @@
                     "geometry": {
                         "type": "Point",
                         "coordinates": [
-                            -77.20825552940369,
-                            39.1777238377372
+                            103.859004,
+                            1.302238
                         ]
                     }
                 },
@@ -125,36 +110,8 @@
                     "geometry": {
                         "type": "Point",
                         "coordinates": [
-                            -77.20990777015686,
-                            39.17674659659119
-                        ]
-                    }
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "start": true,
-                        "right": true
-                    },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                            -77.20847547054291,
-                            39.177740471511456
-                        ]
-                    }
-                },
-                {
-                    "type": "Feature",
-                    "properties": {
-                        "end": true,
-                        "right": true
-                    },
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
-                            -77.20983803272247,
-                            39.17702937414912
+                            103.859004,
+                            1.302238
                         ]
                     }
                 }
