@@ -261,3 +261,62 @@ test('explode#hasIntersect', (t) => {
     t.end();
 });
 
+test('explode#sortStreets', (t) => {
+    t.test('explode#sortStreets - Basic - NonMultiFirst', (q) => {
+        let strs = [
+            { id: 1, "type": "Feature", "properties": {}, "geometry": { "type": "LineString", "coordinates": [ [ -46.7578125, 37.71859032558816 ], [ -31.289062500000004, 37.71859032558816 ] ] } },
+            { id: 2, "type": "Feature", "properties": {}, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -74.1796875, 22.268764039073968 ], [ 65.7421875, 24.5271348225978 ] ] ] } }
+        ];
+
+        strs.sort(explode.sortStreets);
+
+        q.equals(strs[0].id, 1);
+        q.equals(strs[1].id, 2);
+
+        q.end();
+    });
+
+    t.test('explode#sortStreets - Basic - NonMultiFirst', (q) => {
+        let strs = [
+            { id: 1, "type": "Feature", "properties": {}, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -74.1796875, 22.268764039073968 ], [ 65.7421875, 24.5271348225978 ] ] ] } },
+            { id: 2, "type": "Feature", "properties": {}, "geometry": { "type": "LineString", "coordinates": [ [ -46.7578125, 37.71859032558816 ], [ -31.289062500000004, 37.71859032558816 ] ] } }
+        ];
+
+        strs.sort(explode.sortStreets);
+
+        q.equals(strs[0].id, 2);
+        q.equals(strs[1].id, 1);
+
+        q.end();
+    });
+
+    t.test('explode#sortStreets - Basic', (q) => {
+        let strs = [
+            { id: 1, "type": "Feature", "properties": {}, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -46.7578125, 37.71859032558816 ], [ -31.289062500000004, 37.71859032558816 ] ] ] } }, //Shorter Line
+            { id: 2, "type": "Feature", "properties": {}, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -74.1796875, 22.268764039073968 ], [ 65.7421875, 24.5271348225978 ] ] ] } } //Longer Line
+        ];
+
+        strs.sort(explode.sortStreets);
+
+        q.equals(strs[0].id, 2);
+        q.equals(strs[1].id, 1);
+
+        q.end();
+    });
+
+    t.test('explode#sortStreets - Basic - allready sorted', (q) => {
+        let strs = [
+            { id: 1, "type": "Feature", "properties": {}, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -74.1796875, 22.268764039073968 ], [ 65.7421875, 24.5271348225978 ] ] ] } }, //Longer Line
+            { id: 2, "type": "Feature", "properties": {}, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -46.7578125, 37.71859032558816 ], [ -31.289062500000004, 37.71859032558816 ] ] ] } } //Shorter Line
+        ];
+
+        strs.sort(explode.sortStreets);
+
+        q.equals(strs[0].id, 1);
+        q.equals(strs[1].id, 2);
+
+        q.end();
+    });
+
+    t.end();
+});
