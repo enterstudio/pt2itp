@@ -31,6 +31,7 @@
     "pg-cursor": "^1.2.0",
     "progress": "^2.0.0",
     "split": "^1.0.0",
+    "title-case-minors": "^1.0.0",
     "to-title-case": "^1.0.0",
     "turf-line-slice-at-intersection": "^1.0.1",
     "wellknown": "^0.5.0"
@@ -52,6 +53,7 @@
         2,
         "never"
       ],
+      "no-tabs": 2,
       "space-in-parens": 2,
       "space-before-blocks": 2,
       "keyword-spacing": 2,
