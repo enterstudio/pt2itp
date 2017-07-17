@@ -3,8 +3,8 @@
     "properties": {
         "carmen:text": "Jalan Kelempong",
         "carmen:center": [
-            103.96733,
-            1.362341
+            103.967773,
+            1.362657
         ],
         "carmen:addressnumber": [
             null,
@@ -43,22 +43,22 @@
         "carmen:rangetype": "tiger",
         "carmen:parityl": [
             [
-                "O",
-                "E"
+                "E",
+                "O"
             ],
             null
         ],
         "carmen:lfromhn": [
             [
-                1,
-                4
+                0,
+                25
             ],
             null
         ],
         "carmen:ltohn": [
             [
-                47,
-                100
+                20,
+                101
             ],
             null
         ],
@@ -72,13 +72,13 @@
         "carmen:rfromhn": [
             [
                 0,
-                2
+                26
             ],
             null
         ],
         "carmen:rtohn": [
             [
-                34,
+                20,
                 100
             ],
             null
@@ -90,6 +90,20 @@
             {
                 "type": "MultiLineString",
                 "coordinates": [
+                    [
+                        [
+                            103.968193,
+                            1.362253
+                        ],
+                        [
+                            103.967773,
+                            1.362657
+                        ],
+                        [
+                            103.96749,
+                            1.362929
+                        ]
+                    ],
                     [
                         [
                             103.967773,
@@ -122,20 +136,6 @@
                         [
                             103.966866,
                             1.362624
-                        ]
-                    ],
-                    [
-                        [
-                            103.968193,
-                            1.362253
-                        ],
-                        [
-                            103.967773,
-                            1.362657
-                        ],
-                        [
-                            103.96749,
-                            1.362929
                         ]
                     ]
                 ]
