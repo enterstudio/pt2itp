@@ -10,6 +10,14 @@
 
 ## Version History
 
+### v11.10.0
+
+- :bug: fix titlecase behavior (remove external dep)
+- :white_check_mark: titlecase tests
+- :tada: add pluggable system for selecting output label
+- :rocket: whitespace fixes & eslint rule
+- :rocket: make informed guess about which data source has more/better capitalization info
+
 ### v11.9.0
 
 - :arrow_up: Upgrade all deps to latest versions
