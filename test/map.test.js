@@ -47,8 +47,9 @@ test('map - good run', (t) => {
     worker({
         'in-address': './test/fixtures/sg-address.geojson',
         'in-network': './test/fixtures/sg-network.geojson',
-        'output': '/tmp/itp.geojson',
-        'db': 'pt_test'
+        output: '/tmp/itp.geojson',
+        debug: true,
+        db: 'pt_test'
     }, (err, res) => {
         t.error(err);
 
