@@ -10,6 +10,13 @@
 
 ## Version History
 
+### v11.9.0
+
+- :arrow_up: Upgrade all deps to latest versions
+- :white_check_mark: :bug: Complete tests for `minjur` and `strip-unit` map files & fixed a couple assoc. bugs
+- :rocket: :white_check_mark: Added concept of post scripts and assoc. tests
+- :rocket: Added cardinality post script ie: `S Main St` => `S Main St,Main  ST S`
+
 ### v11.8.0
 
 - :rocket: Better readability of `TEXT FAIL` mismatch when in `test` mode
