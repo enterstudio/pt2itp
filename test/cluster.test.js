@@ -336,16 +336,16 @@ test('cluster.prune', (t) => {
     popQ.defer((done) => {
         pool.query(`
             BEGIN;
-	    INSERT INTO address_cluster (id, text, text_tokenless) VALUES (1, 'Main St', 'Main');
-	    INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (1, 1, 'Main St', 'Main');
-	    INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (2, 1, 'Moin St', 'Main');
+            INSERT INTO address_cluster (id, text, text_tokenless) VALUES (1, 'Main St', 'Main');
+            INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (1, 1, 'Main St', 'Main');
+            INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (2, 1, 'Moin St', 'Main');
 
-	    INSERT INTO address_cluster (id, text, text_tokenless) VALUES (2, 'Pollard Rd', 'Pollard');
-	    INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (3, 2, 'Pollard St', 'Pollard');
+            INSERT INTO address_cluster (id, text, text_tokenless) VALUES (2, 'Pollard Rd', 'Pollard');
+            INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (3, 2, 'Pollard St', 'Pollard');
 
-	    INSERT INTO address_cluster (id, text, text_tokenless) VALUES (3, 'First St', 'First');
-	    INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (4, 3, 'First St', 'First');
-	    INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (5, 3, 'Second St', 'Second');
+            INSERT INTO address_cluster (id, text, text_tokenless) VALUES (3, 'First St', 'First');
+            INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (4, 3, 'First St', 'First');
+            INSERT INTO network_cluster (id, address, text, text_tokenless) VALUES (5, 3, 'Second St', 'Second');
             COMMIT;
         `, (err, res) => {
             t.error(err);

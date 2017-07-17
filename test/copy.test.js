@@ -10,20 +10,20 @@ tape('copy.js output', (t) => {
     copy.init({
         id: 0,
         read: __dirname + '/fixtures/copy.sample-input.geojson',
-	output: tempFile, 
+        output: tempFile,
         type: 'address',
         total: 1,
-	solo: true,
+        solo: true,
         error: false,
-	tokens: tokenize.createReplacer(['et'])
+        tokens: tokenize.createReplacer(['et'])
     });
     copy.start(() => {
-	if (process.env.UPDATE) {
-	    fs.rename(tempFile, __dirname + '/fixtures/copy.sample-output.psv');
-	    t.fail('updated fixture');
-	}
-	else
-	    t.equal(fs.readFileSync(tempFile).toString(), fs.readFileSync(__dirname + '/fixtures/copy.sample-output.psv').toString(), 'output is as expected');
-	t.end();
+        if (process.env.UPDATE) {
+            fs.rename(tempFile, __dirname + '/fixtures/copy.sample-output.psv');
+            t.fail('updated fixture');
+        }
+        else
+            t.equal(fs.readFileSync(tempFile).toString(), fs.readFileSync(__dirname + '/fixtures/copy.sample-output.psv').toString(), 'output is as expected');
+        t.end();
     });
 });
