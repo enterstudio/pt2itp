@@ -10,6 +10,10 @@
 
 ## Version History
 
+### v11.10.1
+
+- :rocket: :white_check_mark: Remove the `1/2` from numbers - numbers are deduped if they already exist in the non-`1/2` form.
+
 ### v11.10.0
 
 - :bug: fix titlecase behavior (remove external dep)
