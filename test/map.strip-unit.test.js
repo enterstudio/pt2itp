@@ -155,6 +155,22 @@ test('Strip-Unit', (t) => {
     t.deepEquals(map({
         type: 'Feature',
         properties: {
+            number: '123 1/2',
+            street: 'Main St'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [0, 0]
+        }
+    }), {
+        geometry: { coordinates: [ 0, 0 ], type: 'Point' },
+        properties: { number: '123', street: 'Main St' },
+        type: 'Feature'
+    }, 'Stripped 123 1/2 Address');
+
+    t.deepEquals(map({
+        type: 'Feature',
+        properties: {
             number: '123-45',
             street: 'Main St'
         },
