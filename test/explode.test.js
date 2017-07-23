@@ -1,5 +1,5 @@
 const test = require('tape');
-
+// add test for feature that dedupe will collapse & should discard
 const explode = require('../lib/explode');
 
 test('explode', (t) => {
@@ -244,6 +244,24 @@ test('explode', (t) => {
     });
     t.deepEquals(res.features.length, 3);
 
+    t.end();
+});
+
+test('explode#dedupeBorks', (t) => {
+    t.deepEquals(explode({
+        "type": "FeatureCollection",
+        "features": [{
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+                "type": "MultiLineString",
+                "coordinates": [ 
+                    [ [0,1], [1,0] ],
+                    [ [1,1], [1,1] ]
+                ]
+            }
+        }]
+    }, { noDistance: true }).features[0].geometry.coordinates, [[0,1], [1,0]], 'single-point dedupes are discarded');
     t.end();
 });
 
