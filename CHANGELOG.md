@@ -10,6 +10,12 @@
 
 ## Version History
 
+### v11.11.0
+
+
+- :bug: a call to `turf.linestring` failed when passed a one-coordinate feature. This was the result of a call to `dedup()` which was being passed a two-point line of coordinates that had been truncated enough to be identical. `dedup` removed one of them, producing the error. This case is now detected and handled.
+- :bug: `split.js` was producing weird errors related to `proc.c` and `InitProcess`. This looked like postgres connection exhaustion. Initially I implemented a system for calling the postgres pool shutdown function. That code remains in place (it's good hygiene!) but was not the issue: instead, the split.js parallelism based on CPU count was the culprit, as each child process instantiated its own postgres connection pool and I was on a 64 core ECS container. Capping the total number of child processes to 16 is inelegant but seems to do the trick.
+
 ### v11.10.1
 
 - :rocket: :white_check_mark: Remove the `1/2` from numbers - numbers are deduped if they already exist in the non-`1/2` form.
