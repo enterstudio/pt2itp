@@ -10,7 +10,9 @@
     "lint": "eslint index.js test/* lib/*",
     "coverage": "istanbul cover tape test/*.js && coveralls < ./coverage/lcov.info",
     "test": "tape test/*.test.js",
-    "pretest": "echo 'DROP DATABASE pt_test; CREATE DATABASE pt_test;' | psql -U postgres && echo 'CREATE EXTENSION postgis' | psql -U postgres pt_test"
+    "pretest": "echo 'DROP DATABASE pt_test; CREATE DATABASE pt_test;' | psql -U postgres && echo 'CREATE EXTENSION postgis' | psql -U postgres pt_test",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "author": "Nicholas Ingalls <nicholas.ingalls@gmail.com>",
   "license": "ISC",
@@ -23,18 +25,19 @@
     "@turf/turf": "^4.5.2",
     "d3-queue": "^3.0.7",
     "diacritics": "^1.3.0",
-    "express": "^4.15.3",
+    "express": "^4.16.0",
     "fast-levenshtein": "^2.0.6",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.5",
     "minimist": "^1.2.0",
-    "pg": "^6.4.1",
+    "pg": "^6.4.2",
     "pg-cursor": "^1.2.0",
     "progress": "^2.0.0",
     "split": "^1.0.0",
     "title-case-minors": "^1.0.0",
     "to-title-case": "^1.0.0",
     "turf-line-slice-at-intersection": "^1.0.1",
-    "wellknown": "^0.5.0"
+    "wellknown": "^0.5.0",
+    "snyk": "^1.113.0"
   },
   "devDependencies": {
     "coveralls": "^2.11.4",
@@ -84,5 +87,6 @@
   },
   "repository": {
     "type": "git"
-  }
+  },
+  "snyk": true
 }
